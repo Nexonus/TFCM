@@ -2,6 +2,11 @@ package dev.nexreon.tfcmineralogy;
 
 import net.minecraftforge.fml.common.Mod;
 import dev.nexreon.tfcmineralogy.init.CreativeTabInit;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+
 import dev.nexreon.tfcmineralogy.init.BlockInit;
 import dev.nexreon.tfcmineralogy.init.ItemInit;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +19,7 @@ public class TFCMineralogy{
 
     public TFCMineralogy(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
         CreativeTabInit.TABS.register(bus);
