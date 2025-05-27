@@ -1,0 +1,62 @@
+package dev.nexreon.tfcmineralogy.init;
+
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.material.MapColor;
+
+enum StoneType implements StringRepresentable {
+    DIORITE("diorite"),
+    GABBRO("gabbro"),
+    SHALE("shale"),
+    CLAYSTONE("claystone"),
+    LIMESTONE("limestone"),
+    CONGLOMERATE("conglomerate"),
+    DOLOMITE("dolomite"),
+    CHERT("chert"),
+    CHALK("chalk"),
+    RHYOLITE("rhyolite"),
+    BASALT("basalt"),
+    ANDESITE("andesite"),
+    DACITE("dacite"),
+    QUARTZITE("quartzite"),
+    SLATE("slate"),
+    PHYLLITE("phyllite"),
+    SCHIST("schist"),
+    GNEISS("gneiss"),
+    MARBLE("marble");
+
+    private final String name;
+
+    StoneType(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getSerializedName() {
+        return this.name;
+    }
+}
+
+enum MineralType implements StringRepresentable {
+    VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.0F),
+    SMITHSONITE("smithsonite", MapColor.COLOR_BLUE, 6.0f);
+
+    private final String name;
+    private final MapColor baseMapColor;
+    private final float blockStrength;
+
+    MineralType(String name, MapColor baseMapColor, float strength) {
+        this.name = name;
+        this.baseMapColor = baseMapColor;
+        this.blockStrength = strength;
+    }
+    public float getBlockStrength(){
+        return this.blockStrength;
+    }
+    @Override
+    public String getSerializedName() {
+        return this.name;
+    }
+    public MapColor getBaseMapColor() {
+        return this.baseMapColor;
+    }
+}
