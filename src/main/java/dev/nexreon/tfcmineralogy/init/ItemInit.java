@@ -1,9 +1,6 @@
 package dev.nexreon.tfcmineralogy.init;
 
-import java.rmi.registry.Registry;
 import dev.nexreon.tfcmineralogy.TFCMineralogy;
-import net.minecraftforge.common.Tags.Items;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -27,9 +24,9 @@ public class ItemInit {
 
 
     static{
-        for (StoneType stone : StoneType.values()){
+        for (ResourceEnums stone : ResourceEnums.values()){
             for (MineralType mineral : MineralType.values()){
-                String blockName = stone.getSerializedName() + "_" + mineral.getSerializedName();
+                String blockName = "ore/" + stone.getSerializedName() + "_" + mineral.getSerializedName();
                 RegistryObject<Block> correspondingBlock = BlockInit.MINERAL_ORES.get(blockName);
 
                 RegistryObject<BlockItem> ORE_BLOCK_ITEM = addToTab(ITEMS.register(blockName,

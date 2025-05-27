@@ -11,12 +11,13 @@ rm_forge = ResourceManager(domain='forge', resource_dir=RESOURCES_DIR, indent=2,
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
 ### CREATE AN ORE GEN FEATURE
-resource_list = {'example_block'} #Usage vivianite,kaolinite,etc. 
+mineral_dict = {'vivianite','smithsonite'} #Usage vivianite,kaolinite,etc.
+#stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 vein_feature_names = set()
 tfcm_veins = set()
 tfcm_prospectables = set()
 forge_ores = set()
-for mineral_name in resource_list:
+for mineral_name in mineral_dict:
     vein_feature_names.add(f'vein/{mineral_name}')
     tfcm_veins.add(f'tfcmineralogy:vein/{mineral_name}')
     tfcm_prospectables.add(f'tfcmineralogy:{mineral_name}')

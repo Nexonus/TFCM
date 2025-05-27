@@ -3,7 +3,7 @@ package dev.nexreon.tfcmineralogy.init;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.material.MapColor;
 
-enum StoneType implements StringRepresentable {
+enum ResourceEnums implements StringRepresentable {
     DIORITE("diorite"),
     GABBRO("gabbro"),
     SHALE("shale"),
@@ -26,7 +26,7 @@ enum StoneType implements StringRepresentable {
 
     private final String name;
 
-    StoneType(String name) {
+    ResourceEnums(String name) {
         this.name = name;
     }
 
@@ -35,7 +35,6 @@ enum StoneType implements StringRepresentable {
         return this.name;
     }
 }
-
 enum MineralType implements StringRepresentable {
     VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.0F),
     SMITHSONITE("smithsonite", MapColor.COLOR_BLUE, 6.0f);

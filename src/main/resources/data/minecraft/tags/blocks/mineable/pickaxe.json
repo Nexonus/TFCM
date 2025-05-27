@@ -1,6 +1,7 @@
 {
-    "replace": false,
-    "values": [
-        "tfcmineralogy:example_block"
-    ]
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:ore/schist_smithsonite"
+  ]
 }
