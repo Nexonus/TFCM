@@ -146,6 +146,7 @@ dependencies {
 
     // TFC here, using Curse Maven to get the dependency
     implementation fg.deobf("curse.maven:terrafirmacraft-302973:6187491")
+    implementation fg.deobf("curse.maven:ferritecore-429235:4810975")
     
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
