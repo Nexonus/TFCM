@@ -45,27 +45,22 @@ rm = ResourceManager(domain='tfcmineralogy', resource_dir=RESOURCES_DIR, indent=
 rm_mc = ResourceManager(domain='minecraft', resource_dir=RESOURCES_DIR, indent=2, ensure_ascii=False)
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
-mineral_dict = {'smithsonite'} 
+### ORES WITH NO TIERS
+mineral_dict = {'vivianite'} 
 stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 ore_quality = {'poor','normal','rich'}
 lang_dict = set()
 prospect_lang_dict = set()
 # For ores with no Qualities
-"""
+
 for mineral in mineral_dict:
     for stone in stone_dict:
         rm.block_loot(f'ore/{mineral}/{stone}',{'name': f'tfcmineralogy:ore/{stone}_{mineral}'})
-        rm.flush()
-
         rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{stone}_{mineral}')
         rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{stone}_{mineral}')
-        rm_mc.flush()
-
         rm.blockstate(f'tfcmineralogy:ore/{stone}_{mineral}')
         rm.block_model(f'tfcmineralogy:ore/{stone}_{mineral}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral}'}, parent='tfc:block/ore', render='minecraft:cutout')
         rm.item_model(f'tfcmineralogy:ore/{stone}_{mineral}', no_textures=True, parent=f'tfcmineralogy:block/ore/{stone}_{mineral}')
-        rm.flush()
-        
         stone_capital = stone[0].upper() + stone[1:]
         mineral_capital = mineral[0].upper() + mineral[1:]
         lang_capital = stone_capital + " " + mineral_capital
@@ -75,20 +70,13 @@ for mineral in mineral_dict:
 
         prospect_lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral}.prospected', mineral_capital)
         prospect_lang_dict.add(prospect_lang_entry)
-        #rm.lang(f'tfcmineralogy:ore/{stone}_{mineral}', lang_entry)
-        #lang[0] = f'tfcmineralogy:ore/{stone}_{mineral}'
-        #lang[1] = stone[0].upper + stone[1:] + " " + mineral[0].upper + mineral[1:] 
-        
-        #lang_names.add(lang)
+
 rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
 rm.lang(*lang_dict)
 rm.lang(*prospect_lang_dict)
-rm.flush()
 
-#rm.block(f'tfcmineralogy:ore/{stone}_{mineral}').with_lang(f'{stone_first_letter}', 'en_us')
-#rm.flush()
-"""
-### With Ore Quality
+### ORE WITH PREDEFINED TIERS - POOR, NORMAL, RICH
+mineral_dict = {'smithsonite'} 
 
 for quality in ore_quality:
     for mineral in mineral_dict:
@@ -118,3 +106,4 @@ rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
 rm.lang(*lang_dict)
 rm.lang(*prospect_lang_dict)
 rm.flush()
+rm_mc.flush()

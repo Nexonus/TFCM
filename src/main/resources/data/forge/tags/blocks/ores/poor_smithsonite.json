@@ -1,0 +1,25 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:ore/dolomite_poor_smithsonite",
+    "tfcmineralogy:ore/rhyolite_poor_smithsonite",
+    "tfcmineralogy:ore/marble_poor_smithsonite",
+    "tfcmineralogy:ore/diorite_poor_smithsonite",
+    "tfcmineralogy:ore/slate_poor_smithsonite",
+    "tfcmineralogy:ore/claystone_poor_smithsonite",
+    "tfcmineralogy:ore/phyllite_poor_smithsonite",
+    "tfcmineralogy:ore/schist_poor_smithsonite",
+    "tfcmineralogy:ore/dacite_poor_smithsonite",
+    "tfcmineralogy:ore/andesite_poor_smithsonite",
+    "tfcmineralogy:ore/chalk_poor_smithsonite",
+    "tfcmineralogy:ore/basalt_poor_smithsonite",
+    "tfcmineralogy:ore/conglomerate_poor_smithsonite",
+    "tfcmineralogy:ore/gneiss_poor_smithsonite",
+    "tfcmineralogy:ore/shale_poor_smithsonite",
+    "tfcmineralogy:ore/quartzite_poor_smithsonite",
+    "tfcmineralogy:ore/limestone_poor_smithsonite",
+    "tfcmineralogy:ore/gabbro_poor_smithsonite",
+    "tfcmineralogy:ore/chert_poor_smithsonite"
+  ]
+}

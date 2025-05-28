@@ -10,8 +10,8 @@ rm_tfc = ResourceManager(domain='tfc', resource_dir=RESOURCES_DIR, indent=2, ens
 rm_forge = ResourceManager(domain='forge', resource_dir=RESOURCES_DIR, indent=2, ensure_ascii=False)
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
-### CREATE AN ORE GEN FEATURE
-mineral_dict = {'smithsonite'} #Usage vivianite,kaolinite,etc.
+### CREATE AN ORE GEN FEATURE, NO TIERS
+mineral_dict = {'vivianite'} #Usage vivianite,kaolinite,etc.
 stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 vein_feature_names = set()
 tfcm_veins = set()
@@ -21,14 +21,14 @@ stone_mineral_vein_dict = set() # wip
 
 ### MODEL : NO WEIGHTS, SINGULAR MINERAL (HALITE ETC)
 # Comment here to hide
-"""
+
 for mineral_name in mineral_dict:
     vein_feature_names.add(f'vein/{mineral_name}')
     tfcm_veins.add(f'tfcmineralogy:vein/{mineral_name}')
     forge_ores.add(f'#forge:ores/{mineral_name}')
 
     rm.placed_feature(f'vein/{mineral_name}', f'tfcmineralogy:vein/{mineral_name}') # This is the vein we're looking for in configured feature
-    rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.2, 'min_y': -120, 'max_y': 120, 'size': 16,'random_name': f'{mineral_name}',
+    rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.65, 'min_y': 50, 'max_y': 90, 'size': 16,'random_name': f'{mineral_name}',
     'blocks':[  # Comment the ones we don't want to use for the specific generation.
         # No Weights
         {'replace':['tfc:rock/raw/diorite'],'with':[{'block':f'tfcmineralogy:ore/diorite_{mineral_name}'}]},
@@ -55,8 +55,6 @@ for mineral_name in mineral_dict:
     for stone in stone_dict:
         rm_forge.tag(f'{mineral_name}','blocks/ores', f'tfcmineralogy:ore/{stone}_{mineral_name}')
         tfcm_prospectables.add(f'tfcmineralogy:ore/{stone}_{mineral_name}')
-"""
-#Stop comment here
 
 ### MODEL : INCLUDING WEIGHTS (POOR, NORMAL, RICH)
 mineral_name = 'smithsonite'
@@ -66,7 +64,7 @@ for q in qualities:
     mineral_quality = q+'_'+mineral_name
     resource_list.append(mineral_quality)   # Populate list here
 
-weight = [55, 30, 15]
+weight = [50, 35, 15]
 
 for q in qualities:
     mineral_quality = q+'_'+mineral_name
@@ -74,7 +72,7 @@ for q in qualities:
     tfcm_veins.add(f'tfcmineralogy:vein/{mineral_quality}')
     forge_ores.add(f'#forge:ores/{mineral_quality}')
     rm.placed_feature(f'vein/{mineral_quality}', f'tfcmineralogy:vein/{mineral_quality}') # This is the vein we're looking for in configured feature
-    rm.configured_feature(f'vein/{mineral_quality}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.2, 'min_y': 45, 'max_y': 120, 'size': 25,'random_name': f'{mineral_quality}',
+    rm.configured_feature(f'vein/{mineral_quality}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.3, 'min_y': 30, 'max_y': 120, 'size': 22,'random_name': f'{mineral_quality}',
     'blocks':
     [   # With Weights Applied
     {'replace':['tfc:rock/raw/diorite'],'with':[{'weight':f'{weight[0]}','block':f'tfcmineralogy:ore/diorite_{resource_list[0]}'},{'weight':f'{weight[1]}','block':f'tfcmineralogy:ore/diorite_{resource_list[1]}'},{'weight':f'{weight[2]}','block':f'tfcmineralogy:ore/diorite_{resource_list[2]}'}]},
@@ -101,15 +99,10 @@ for q in qualities:
         rm_forge.tag(f'{mineral_quality}','blocks/ores', f'tfcmineralogy:ore/{stone}_{mineral_quality}')
         tfcm_prospectables.add(f'tfcmineralogy:ore/{stone}_{mineral_quality}')
 
-
-
-
-rm.flush()
-rm_forge.flush()
-
 rm_tfc.tag('veins','worldgen/placed_feature/in_biome',*tfcm_veins)
 rm_tfc.tag('prospectable','blocks',*tfcm_prospectables)
 rm_forge.tag('ores','blocks',*forge_ores)
 rm_tfc.flush()
 rm_forge.flush()
+rm.flush()
 

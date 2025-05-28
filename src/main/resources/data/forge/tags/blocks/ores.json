@@ -3,6 +3,8 @@
   "replace": false,
   "values": [
     "#forge:ores/vivianite",
-    "#forge:ores/smithsonite"
+    "#forge:ores/normal_smithsonite",
+    "#forge:ores/poor_smithsonite",
+    "#forge:ores/rich_smithsonite"
   ]
 }
