@@ -95,21 +95,18 @@ for quality in ore_quality:
         for stone in stone_dict:
             mineral_quality = quality+'_'+mineral
             rm.block_loot(f'ore/{mineral_quality}/{stone}',{'name': f'tfcmineralogy:ore/{stone}_{mineral_quality}'})
-            rm.flush()
 
             rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{stone}_{mineral_quality}')
             rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{stone}_{mineral_quality}')
-            rm_mc.flush()
 
             rm.blockstate(f'tfcmineralogy:ore/{stone}_{mineral_quality}')
             rm.block_model(f'tfcmineralogy:ore/{stone}_{mineral_quality}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral_quality}'}, parent='tfc:block/ore', render='minecraft:cutout')
             rm.item_model(f'tfcmineralogy:ore/{stone}_{mineral_quality}', no_textures=True, parent=f'tfcmineralogy:block/ore/{stone}_{mineral_quality}')
-            rm.flush()
             
             stone_capital = stone[0].upper() + stone[1:]
             mineral_capital = mineral[0].upper() + mineral[1:]
             quality_capital = quality[0].upper() + quality[1:]
-            lang_capital = stone_capital + " " + quality_capital + " " + mineral_capital
+            lang_capital = quality_capital + " " + stone_capital + " " + mineral_capital
 
             lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral_quality}', lang_capital)
             lang_dict.add(lang_entry)
