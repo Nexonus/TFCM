@@ -2,9 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#forge:ores/vivianite",
-    "#forge:ores/normal_smithsonite",
     "#forge:ores/poor_smithsonite",
-    "#forge:ores/rich_smithsonite"
+    "#forge:ores/rich_smithsonite",
+    "#forge:ores/vivianite",
+    "#forge:ores/normal_smithsonite"
   ]
 }

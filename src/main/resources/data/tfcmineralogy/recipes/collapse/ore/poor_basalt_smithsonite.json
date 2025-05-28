@@ -1,0 +1,6 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:collapse",
+  "ingredient": "tfcmineralogy:ore/basalt_normal_smithsonite",
+  "result": "tfcmineralogy:ore/basalt_poor_smithsonite"
+}

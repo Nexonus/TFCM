@@ -2,9 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "tfcmineralogy:vein/vivianite",
-    "tfcmineralogy:vein/rich_smithsonite",
+    "tfcmineralogy:vein/normal_smithsonite",
     "tfcmineralogy:vein/poor_smithsonite",
-    "tfcmineralogy:vein/normal_smithsonite"
+    "tfcmineralogy:vein/rich_smithsonite",
+    "tfcmineralogy:vein/vivianite"
   ]
 }

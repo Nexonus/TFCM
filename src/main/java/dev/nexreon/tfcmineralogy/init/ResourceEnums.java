@@ -36,10 +36,10 @@ enum ResourceEnums implements StringRepresentable {
     }
 }
 enum MineralType implements StringRepresentable {
-    VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.0F),
-    POOR_SMITHSONITE("poor_smithsonite", MapColor.COLOR_BLUE, 6.0f),
-    NORMAL_SMITHSONITE("normal_smithsonite", MapColor.COLOR_BLUE, 6.0f),
-    RICH_SMITHSONITE("rich_smithsonite", MapColor.COLOR_BLUE, 6.0f);
+    VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.5F),
+    POOR_SMITHSONITE("poor_smithsonite", MapColor.COLOR_BLUE, 6.5f),
+    NORMAL_SMITHSONITE("normal_smithsonite", MapColor.COLOR_BLUE, 6.5f),
+    RICH_SMITHSONITE("rich_smithsonite", MapColor.COLOR_BLUE, 6.5f);
 
     private final String name;
     private final MapColor baseMapColor;
