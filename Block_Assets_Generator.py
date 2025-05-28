@@ -47,8 +47,8 @@ os.makedirs(RESOURCES_DIR, exist_ok=True)
 
 mineral_dict = {'vivianite','smithsonite'} 
 stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
-lang = ("", "")
-lang_names = set()
+lang_dict = set()
+prospect_lang_dict = set()
 
 for mineral in mineral_dict:
     for stone in stone_dict:
@@ -64,12 +64,24 @@ for mineral in mineral_dict:
         rm.item_model(f'tfcmineralogy:ore/{stone}_{mineral}', no_textures=True, parent=f'tfcmineralogy:block/ore/{stone}_{mineral}')
         rm.flush()
         
+        stone_capital = stone[0].upper() + stone[1:]
+        mineral_capital = mineral[0].upper() + mineral[1:]
+        lang_capital = stone_capital + " " + mineral_capital
+
+        lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral}', lang_capital)
+        lang_dict.add(lang_entry)
+
+        prospect_lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral}.prospected', mineral_capital)
+        prospect_lang_dict.add(prospect_lang_entry)
+        #rm.lang(f'tfcmineralogy:ore/{stone}_{mineral}', lang_entry)
         #lang[0] = f'tfcmineralogy:ore/{stone}_{mineral}'
         #lang[1] = stone[0].upper + stone[1:] + " " + mineral[0].upper + mineral[1:] 
         
         #lang_names.add(lang)
-        #rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
-        #rm.flush()
+rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
+rm.lang(*lang_dict)
+rm.lang(*prospect_lang_dict)
+rm.flush()
 
 #rm.block(f'tfcmineralogy:ore/{stone}_{mineral}').with_lang(f'{stone_first_letter}', 'en_us')
 #rm.flush()
