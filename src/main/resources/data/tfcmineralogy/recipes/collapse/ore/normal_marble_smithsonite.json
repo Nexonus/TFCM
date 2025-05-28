@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/marble_rich_smithsonite",
-  "result": "tfcmineralogy:ore/marble_normal_smithsonite"
+  "ingredient": "tfcmineralogy:ore/rich_smithsonite/marble",
+  "result": "tfcmineralogy:ore/normal_smithsonite/marble"
 }

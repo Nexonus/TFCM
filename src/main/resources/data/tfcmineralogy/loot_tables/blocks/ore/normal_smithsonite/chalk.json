@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/chalk_normal_smithsonite"
+          "name": "tfcmineralogy:ore/normal_smithsonite/chalk"
         }
       ],
       "conditions": [

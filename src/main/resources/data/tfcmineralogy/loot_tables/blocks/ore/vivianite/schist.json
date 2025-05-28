@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/schist_vivianite"
+          "name": "tfcmineralogy:ore/vivianite/schist"
         }
       ],
       "conditions": [

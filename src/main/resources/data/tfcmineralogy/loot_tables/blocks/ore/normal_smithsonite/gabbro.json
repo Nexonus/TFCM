@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/gabbro_normal_smithsonite"
+          "name": "tfcmineralogy:ore/normal_smithsonite/gabbro"
         }
       ],
       "conditions": [

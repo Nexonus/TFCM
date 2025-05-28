@@ -11,115 +11,20 @@
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/diorite"
+          "tfc:rock/raw/chalk"
         ],
         "with": [
           {
             "weight": "50",
-            "block": "tfcmineralogy:ore/diorite_poor_smithsonite"
+            "block": "tfcmineralogy:ore/poor_smithsonite/chalk"
           },
           {
             "weight": "35",
-            "block": "tfcmineralogy:ore/diorite_normal_smithsonite"
+            "block": "tfcmineralogy:ore/normal_smithsonite/chalk"
           },
           {
             "weight": "15",
-            "block": "tfcmineralogy:ore/diorite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/gabbro"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/gabbro_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/gabbro_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/gabbro_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/shale"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/shale_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/shale_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/shale_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/claystone"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/claystone_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/claystone_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/claystone_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/limestone"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/limestone_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/limestone_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/limestone_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/conglomerate"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/conglomerate_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/conglomerate_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/conglomerate_rich_smithsonite"
+            "block": "tfcmineralogy:ore/rich_smithsonite/chalk"
           }
         ]
       },
@@ -130,224 +35,34 @@
         "with": [
           {
             "weight": "50",
-            "block": "tfcmineralogy:ore/dolomite_poor_smithsonite"
+            "block": "tfcmineralogy:ore/poor_smithsonite/dolomite"
           },
           {
             "weight": "35",
-            "block": "tfcmineralogy:ore/dolomite_normal_smithsonite"
+            "block": "tfcmineralogy:ore/normal_smithsonite/dolomite"
           },
           {
             "weight": "15",
-            "block": "tfcmineralogy:ore/dolomite_rich_smithsonite"
+            "block": "tfcmineralogy:ore/rich_smithsonite/dolomite"
           }
         ]
       },
       {
         "replace": [
-          "tfc:rock/raw/chert"
+          "tfc:rock/raw/limestone"
         ],
         "with": [
           {
             "weight": "50",
-            "block": "tfcmineralogy:ore/chert_poor_smithsonite"
+            "block": "tfcmineralogy:ore/poor_smithsonite/limestone"
           },
           {
             "weight": "35",
-            "block": "tfcmineralogy:ore/chert_normal_smithsonite"
+            "block": "tfcmineralogy:ore/normal_smithsonite/limestone"
           },
           {
             "weight": "15",
-            "block": "tfcmineralogy:ore/chert_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/chalk"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/chalk_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/chalk_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/chalk_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/rhyolite"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/rhyolite_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/rhyolite_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/rhyolite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/basalt"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/basalt_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/basalt_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/basalt_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/andesite"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/andesite_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/andesite_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/andesite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/dacite"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/dacite_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/dacite_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/dacite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/quartzite"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/quartzite_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/quartzite_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/quartzite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/slate"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/slate_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/slate_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/slate_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/phyllite"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/phyllite_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/phyllite_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/phyllite_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/schist"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/schist_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/schist_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/schist_rich_smithsonite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/gneiss"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/gneiss_poor_smithsonite"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/gneiss_normal_smithsonite"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/gneiss_rich_smithsonite"
+            "block": "tfcmineralogy:ore/rich_smithsonite/limestone"
           }
         ]
       },
@@ -358,15 +73,15 @@
         "with": [
           {
             "weight": "50",
-            "block": "tfcmineralogy:ore/marble_poor_smithsonite"
+            "block": "tfcmineralogy:ore/poor_smithsonite/marble"
           },
           {
             "weight": "35",
-            "block": "tfcmineralogy:ore/marble_normal_smithsonite"
+            "block": "tfcmineralogy:ore/normal_smithsonite/marble"
           },
           {
             "weight": "15",
-            "block": "tfcmineralogy:ore/marble_rich_smithsonite"
+            "block": "tfcmineralogy:ore/rich_smithsonite/marble"
           }
         ]
       }

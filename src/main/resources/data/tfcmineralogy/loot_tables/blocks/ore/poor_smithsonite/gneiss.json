@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/gneiss_poor_smithsonite"
+          "name": "tfcmineralogy:ore/poor_smithsonite/gneiss"
         }
       ],
       "conditions": [

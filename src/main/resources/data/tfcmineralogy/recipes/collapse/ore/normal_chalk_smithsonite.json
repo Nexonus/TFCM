@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/chalk_rich_smithsonite",
-  "result": "tfcmineralogy:ore/chalk_normal_smithsonite"
+  "ingredient": "tfcmineralogy:ore/rich_smithsonite/chalk",
+  "result": "tfcmineralogy:ore/normal_smithsonite/chalk"
 }

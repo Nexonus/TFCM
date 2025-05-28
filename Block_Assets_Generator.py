@@ -55,20 +55,20 @@ prospect_lang_dict = set()
 
 for mineral in mineral_dict:
     for stone in stone_dict:
-        rm.block_loot(f'ore/{mineral}/{stone}',{'name': f'tfcmineralogy:ore/{stone}_{mineral}'})
-        rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{stone}_{mineral}')
-        rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{stone}_{mineral}')
-        rm.blockstate(f'tfcmineralogy:ore/{stone}_{mineral}')
-        rm.block_model(f'tfcmineralogy:ore/{stone}_{mineral}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral}'}, parent='tfc:block/ore', render='minecraft:cutout')
-        rm.item_model(f'tfcmineralogy:ore/{stone}_{mineral}', no_textures=True, parent=f'tfcmineralogy:block/ore/{stone}_{mineral}')
+        rm.block_loot(f'ore/{mineral}/{stone}',{'name': f'tfcmineralogy:ore/{mineral}/{stone}'})
+        rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{mineral}/{stone}')
+        rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{mineral}/{stone}')
+        rm.blockstate(f'tfcmineralogy:ore/{mineral}/{stone}')
+        rm.block_model(f'tfcmineralogy:ore/{mineral}/{stone}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral}'}, parent='tfc:block/ore', render='minecraft:cutout')
+        rm.item_model(f'tfcmineralogy:ore/{mineral}/{stone}', no_textures=True, parent=f'tfcmineralogy:block/ore/{mineral}/{stone}')
         stone_capital = stone[0].upper() + stone[1:]
         mineral_capital = mineral[0].upper() + mineral[1:]
         lang_capital = stone_capital + " " + mineral_capital
 
-        lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral}', lang_capital)
+        lang_entry = (f'block.tfcmineralogy.ore.{mineral}.{stone}', lang_capital)
         lang_dict.add(lang_entry)
 
-        prospect_lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral}.prospected', mineral_capital)
+        prospect_lang_entry = (f'block.tfcmineralogy.ore.{mineral}.{stone}.prospected', mineral_capital)
         prospect_lang_dict.add(prospect_lang_entry)
 
 rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
@@ -82,24 +82,24 @@ for quality in ore_quality:
     for mineral in mineral_dict:
         for stone in stone_dict:
             mineral_quality = quality+'_'+mineral
-            rm.block_loot(f'ore/{mineral_quality}/{stone}',{'name': f'tfcmineralogy:ore/{stone}_{mineral_quality}'})
+            rm.block_loot(f'ore/{mineral_quality}/{stone}',{'name': f'tfcmineralogy:ore/{mineral_quality}/{stone}'})
 
-            rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{stone}_{mineral_quality}')
-            rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{stone}_{mineral_quality}')
+            rm_mc.tag('needs_iron_tool','blocks',f'tfcmineralogy:ore/{mineral_quality}/{stone}')
+            rm_mc.tag('pickaxe','blocks/mineable',f'tfcmineralogy:ore/{mineral_quality}/{stone}')
 
-            rm.blockstate(f'tfcmineralogy:ore/{stone}_{mineral_quality}')
-            rm.block_model(f'tfcmineralogy:ore/{stone}_{mineral_quality}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral_quality}'}, parent='tfc:block/ore', render='minecraft:cutout')
-            rm.item_model(f'tfcmineralogy:ore/{stone}_{mineral_quality}', no_textures=True, parent=f'tfcmineralogy:block/ore/{stone}_{mineral_quality}')
+            rm.blockstate(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
+            rm.block_model(f'tfcmineralogy:ore/{mineral_quality}/{stone}',{'all':f'tfc:block/rock/raw/{stone}','particle':f'tfc:block/rock/raw/{stone}','overlay':f'tfcmineralogy:block/ore/{mineral_quality}'}, parent='tfc:block/ore', render='minecraft:cutout')
+            rm.item_model(f'tfcmineralogy:ore/{mineral_quality}/{stone}', no_textures=True, parent=f'tfcmineralogy:block/ore/{mineral_quality}/{stone}')
             
             stone_capital = stone[0].upper() + stone[1:]
             mineral_capital = mineral[0].upper() + mineral[1:]
             quality_capital = quality[0].upper() + quality[1:]
             lang_capital = quality_capital + " " + stone_capital + " " + mineral_capital
 
-            lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral_quality}', lang_capital)
+            lang_entry = (f'block.tfcmineralogy.ore.{mineral_quality}.{stone}', lang_capital)
             lang_dict.add(lang_entry)
 
-            prospect_lang_entry = (f'block.tfcmineralogy.ore.{stone}_{mineral_quality}.prospected', mineral_capital)
+            prospect_lang_entry = (f'block.tfcmineralogy.ore.{mineral_quality}.{stone}.prospected', mineral_capital)
             prospect_lang_dict.add(prospect_lang_entry)
 
 rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')

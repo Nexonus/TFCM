@@ -3,6 +3,8 @@ package dev.nexreon.tfcmineralogy.init;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jline.utils.Log;
+
 import dev.nexreon.tfcmineralogy.TFCMineralogy;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,15 +28,19 @@ public class BlockInit {
     static{
         for (ResourceEnums stone : ResourceEnums.values()){
             for (MineralType mineral : MineralType.values()){
-                String blockName = "ore/" + stone.getSerializedName() + "_" + mineral.getSerializedName();
+                String blockName = "ore/" + mineral.getSerializedName() + "/" + stone.getSerializedName();
+                try{
                 RegistryObject<Block> ORE_BLOCK = BLOCKS.register(blockName, 
                 () -> new Block(BlockBehaviour.Properties.of()
                 .mapColor(mineral.getBaseMapColor())
                 .strength(mineral.getBlockStrength())
                 .sound(SoundType.STONE)
                 .requiresCorrectToolForDrops()));
-
                 MINERAL_ORES.put(blockName, ORE_BLOCK);
+                }
+                catch(Exception e){
+                    Log.error("Unable to Initialize Block @BLOCKINIT");
+                }
             }
         }
     }

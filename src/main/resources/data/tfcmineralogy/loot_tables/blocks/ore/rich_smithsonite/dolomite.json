@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/dolomite_rich_smithsonite"
+          "name": "tfcmineralogy:ore/rich_smithsonite/dolomite"
         }
       ],
       "conditions": [

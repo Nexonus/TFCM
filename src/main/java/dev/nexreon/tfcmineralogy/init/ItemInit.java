@@ -11,6 +11,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static dev.nexreon.tfcmineralogy.init.CreativeTabInit.addToTab;
 
+import org.jline.utils.Log;
+
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TFCMineralogy.MODID);
     public static final RegistryObject<Item> EXAMPLE_ITEM = addToTab(ITEMS.register("example_item",
@@ -26,12 +28,22 @@ public class ItemInit {
     static{
         for (ResourceEnums stone : ResourceEnums.values()){
             for (MineralType mineral : MineralType.values()){
-                String blockName = "ore/" + stone.getSerializedName() + "_" + mineral.getSerializedName();
+                String blockName = "ore/" + mineral.getSerializedName() + "/" + stone.getSerializedName();
+                String itemName = "ore/" + mineral.getSerializedName();
+                try{
                 RegistryObject<Block> correspondingBlock = BlockInit.MINERAL_ORES.get(blockName);
 
                 RegistryObject<BlockItem> ORE_BLOCK_ITEM = addToTab(ITEMS.register(blockName,
                 () -> new BlockItem(correspondingBlock.get(), new Item.Properties()
+                .rarity(Rarity.COMMON)))); // Register Block Item
+
+                RegistryObject<Item> ORE_ITEM = addToTab(ITEMS.register(itemName,
+                () -> new Item(new Item.Properties()
                 .rarity(Rarity.COMMON))));
+                }
+                catch(Exception e){
+                    Log.error("No Corresponding Block! @ITEMINIT");
+                }
             }
         }
     }

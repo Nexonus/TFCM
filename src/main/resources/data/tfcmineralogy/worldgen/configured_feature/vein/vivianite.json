@@ -11,21 +11,11 @@
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/diorite"
+          "tfc:rock/raw/dolomite"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/diorite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/gabbro"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/gabbro_vivianite"
+            "block": "tfcmineralogy:ore/vivianite/dolomite"
           }
         ]
       },
@@ -35,7 +25,7 @@
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/shale_vivianite"
+            "block": "tfcmineralogy:ore/vivianite/shale"
           }
         ]
       },
@@ -45,47 +35,7 @@
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/claystone_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/limestone"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/limestone_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/conglomerate"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/conglomerate_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/dolomite"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/dolomite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/chert"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/chert_vivianite"
+            "block": "tfcmineralogy:ore/vivianite/claystone"
           }
         ]
       },
@@ -95,107 +45,17 @@
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/chalk_vivianite"
+            "block": "tfcmineralogy:ore/vivianite/chalk"
           }
         ]
       },
       {
         "replace": [
-          "tfc:rock/raw/rhyolite"
+          "tfc:rock/raw/limestone"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/rhyolite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/basalt"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/basalt_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/andesite"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/andesite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/dacite"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/dacite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/quartzite"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/quartzite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/slate"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/slate_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/phyllite"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/phyllite_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/schist"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/schist_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/gneiss"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/gneiss_vivianite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/marble"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/marble_vivianite"
+            "block": "tfcmineralogy:ore/vivianite/limestone"
           }
         ]
       }

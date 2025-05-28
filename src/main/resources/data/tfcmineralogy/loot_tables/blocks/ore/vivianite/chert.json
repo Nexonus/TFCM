@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/chert_vivianite"
+          "name": "tfcmineralogy:ore/vivianite/chert"
         }
       ],
       "conditions": [

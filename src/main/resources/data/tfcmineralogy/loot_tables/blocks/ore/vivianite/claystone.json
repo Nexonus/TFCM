@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/claystone_vivianite"
+          "name": "tfcmineralogy:ore/vivianite/claystone"
         }
       ],
       "conditions": [

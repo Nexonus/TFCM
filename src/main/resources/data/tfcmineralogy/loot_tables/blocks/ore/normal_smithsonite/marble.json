@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/marble_normal_smithsonite"
+          "name": "tfcmineralogy:ore/normal_smithsonite/marble"
         }
       ],
       "conditions": [

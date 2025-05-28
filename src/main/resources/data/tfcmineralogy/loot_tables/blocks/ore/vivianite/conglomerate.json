@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/conglomerate_vivianite"
+          "name": "tfcmineralogy:ore/vivianite/conglomerate"
         }
       ],
       "conditions": [

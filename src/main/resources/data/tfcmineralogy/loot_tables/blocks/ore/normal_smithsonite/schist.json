@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/schist_normal_smithsonite"
+          "name": "tfcmineralogy:ore/normal_smithsonite/schist"
         }
       ],
       "conditions": [

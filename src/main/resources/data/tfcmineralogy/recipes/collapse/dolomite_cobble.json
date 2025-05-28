@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/dolomite_poor_smithsonite",
+  "ingredient": "tfcmineralogy:ore/poor_smithsonite/dolomite",
   "result": "tfc:rock/cobble/dolomite"
 }

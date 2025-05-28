@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/quartzite_rich_smithsonite"
+          "name": "tfcmineralogy:ore/rich_smithsonite/quartzite"
         }
       ],
       "conditions": [
