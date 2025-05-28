@@ -45,7 +45,7 @@ rm = ResourceManager(domain='tfcmineralogy', resource_dir=RESOURCES_DIR, indent=
 rm_mc = ResourceManager(domain='minecraft', resource_dir=RESOURCES_DIR, indent=2, ensure_ascii=False)
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
-mineral_dict = {'vivianite','smithsonite'} 
+mineral_dict = {'smithsonite'} 
 stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 ore_quality = {'poor','normal','rich'}
 lang_dict = set()

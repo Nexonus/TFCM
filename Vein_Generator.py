@@ -63,13 +63,13 @@ mineral_name = 'smithsonite'
 qualities = ['poor','normal','rich']
 resource_list = list()
 for q in qualities:
-    mineral_quality = q+mineral_name
+    mineral_quality = q+'_'+mineral_name
     resource_list.append(mineral_quality)   # Populate list here
 
 weight = [55, 30, 15]
 
 for q in qualities:
-    mineral_quality = q+mineral_name
+    mineral_quality = q+'_'+mineral_name
     vein_feature_names.add(f'vein/{mineral_quality}')
     tfcm_veins.add(f'tfcmineralogy:vein/{mineral_quality}')
     forge_ores.add(f'#forge:ores/{mineral_quality}')
