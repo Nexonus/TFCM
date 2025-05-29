@@ -1,0 +1,147 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:cluster_vein",
+  "config": {
+    "rarity": 28,
+    "density": 0.35,
+    "min_y": 40,
+    "max_y": 130,
+    "size": 20,
+    "random_name": "poor_galena",
+    "blocks": [
+      {
+        "replace": [
+          "tfc:rock/raw/granite"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/granite"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/granite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/granite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/andesite"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/andesite"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/andesite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/andesite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/gabbro"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/gabbro"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/gabbro"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/gabbro"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/diorite"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/diorite"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/diorite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/diorite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/basalt"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/basalt"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/basalt"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/basalt"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/rhyolite"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/rhyolite"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/rhyolite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/rhyolite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/dacite"
+        ],
+        "with": [
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/poor_galena/dacite"
+          },
+          {
+            "weight": "30",
+            "block": "tfcmineralogy:ore/normal_galena/dacite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/rich_galena/dacite"
+          }
+        ]
+      }
+    ]
+  }
+}

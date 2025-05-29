@@ -42,7 +42,10 @@ enum MineralType implements StringRepresentable {
     NORMAL_SMITHSONITE("normal_smithsonite", MapColor.COLOR_BLUE, 6.5f),
     RICH_SMITHSONITE("rich_smithsonite", MapColor.COLOR_BLUE, 6.5f),
     REALGAR("realgar", MapColor.COLOR_RED, 6.5f),
-    ORPIMENT("orpiment", MapColor.COLOR_ORANGE, 6.5f);
+    ORPIMENT("orpiment", MapColor.COLOR_ORANGE, 6.5f),
+    POOR_GALENA("poor_galena", MapColor.COLOR_GRAY, 6.5f),
+    NORMAL_GALENA("normal_galena", MapColor.COLOR_GRAY, 6.5f),
+    RICH_GALENA("rich_galena", MapColor.COLOR_GRAY, 6.5f);
 
     private final String name;
     private final MapColor baseMapColor;
@@ -69,7 +72,8 @@ enum PowderType implements StringRepresentable {
     SMITHSONITE("powder/smithsonite"),
     VIVIANITE("powder/vivianite"),
     REALGAR("powder/realgar"),
-    ORPIMENT("powder/orpiment");
+    ORPIMENT("powder/orpiment"),
+    GALENA("powder/galena");
 
     private final String name;
 

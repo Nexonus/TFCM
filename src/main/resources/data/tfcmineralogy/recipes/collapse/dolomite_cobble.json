@@ -2,10 +2,11 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/realgar/dolomite",
+    "tfcmineralogy:ore/orpiment/dolomite",
     "tfcmineralogy:ore/vivianite/dolomite",
-    "tfcmineralogy:ore/poor_smithsonite/dolomite",
-    "tfcmineralogy:ore/orpiment/dolomite"
+    "tfcmineralogy:ore/realgar/dolomite",
+    "tfcmineralogy:ore/poor_galena/dolomite",
+    "tfcmineralogy:ore/poor_smithsonite/dolomite"
   ],
   "result": "tfc:rock/cobble/dolomite"
 }

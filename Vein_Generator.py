@@ -46,7 +46,7 @@ for stone in stone_generation_dict:
 
 rm.placed_feature(f'vein/{mineral_name}', f'tfcmineralogy:vein/{mineral_name}') # This is the vein we're looking for in configured feature
 # Configured Feature: Cluster Vein, uncomment to use:
-rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 20, 'density': 0.45, 'min_y': 40, 'max_y': 60, 'biomes':'#tfc:is_lake', 'size': 20,'random_name': f'{mineral_name}', # Vivianite
+rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 25, 'density': 0.15, 'min_y': 45, 'max_y': 80, 'biomes':'#tfc:is_river', 'size': 20,'random_name': f'{mineral_name}', # Vivianite
 # Configured Feature: Disc Vein, uncomment to use:
 #rm.configured_feature(f'vein/{mineral_name}', 'tfc:disc_vein', {'rarity': 4, 'density': 0.25, 'min_y': -64, 'max_y': -45, 'near_lava':True, 'size': 20, 'height':5, 'random_name': f'{mineral_name}', # Realgar-Orpiment
 'blocks':resource_generation})
@@ -62,9 +62,9 @@ for stone in stone_dict_full:
 
 
 ### MODEL : INCLUDING WEIGHTS (POOR, NORMAL, RICH)
-mineral_name = 'smithsonite'
+mineral_name = 'galena'
 qualities = ['poor','normal','rich']
-weight = [50, 35, 15]
+weight = [15, 30, 55]
 resource_list = list()
 resource_generation = [] # Try to generate ore replacements here (for the json) to avoid spaghetti notation
 
@@ -74,7 +74,7 @@ for q in qualities:
     resource_list.append(mineral_quality)   # Populate list here
 
 # Configure which stones should the feature generate in here
-stone_generation_dict = {'limestone','marble','dolomite','chalk'} 
+stone_generation_dict = {'rhyolite','basalt','andesite','dacite','granite','diorite','gabbro'} 
 for stone in stone_generation_dict:
     entry = ({
     'replace': [f'tfc:rock/raw/{stone}'],
@@ -92,7 +92,7 @@ for q in qualities:
     tfcm_veins.add(f'tfcmineralogy:vein/{mineral_quality}')
     forge_ores.add(f'#forge:ores/{mineral_quality}')
     rm.placed_feature(f'vein/{mineral_quality}', f'tfcmineralogy:vein/{mineral_quality}') # This is the vein we're looking for in configured feature
-    rm.configured_feature(f'vein/{mineral_quality}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.3, 'min_y': 30, 'max_y': 120, 'size': 22,'random_name': f'{mineral_quality}',
+    rm.configured_feature(f'vein/{mineral_quality}', 'tfc:cluster_vein', {'rarity': 28, 'density': 0.35, 'min_y': 40, 'max_y': 130, 'size': 20,'random_name': f'{mineral_quality}',
     'blocks':resource_generation})
 
     for stone in stone_dict_full:
@@ -141,7 +141,7 @@ merged_vein_name = mineral_list[0]+"_"+mineral_list[1]
 vein_feature_names.add(f'vein/{merged_vein_name}')
 tfcm_veins.add(f'tfcmineralogy:vein/{merged_vein_name}')
 rm.placed_feature(f'vein/{merged_vein_name}', f'tfcmineralogy:vein/{merged_vein_name}') # This is the vein we're looking for in configured feature
-rm.configured_feature(f'vein/{merged_vein_name}', 'tfc:disc_vein', {'rarity': 4, 'density': 0.25, 'min_y': -64, 'max_y': -45, 'near_lava':True, 'size': 20, 'height':5, 'random_name': f'{merged_vein_name}', # Realgar-Orpiment
+rm.configured_feature(f'vein/{merged_vein_name}', 'tfc:disc_vein', {'rarity': 7, 'density': 0.45, 'min_y': -64, 'max_y': -55, 'near_lava':True, 'size': 15, 'height':5, 'random_name': f'{merged_vein_name}', # Realgar-Orpiment
 'blocks':resource_generation})
 
 for mineral in mineral_list:

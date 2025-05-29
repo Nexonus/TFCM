@@ -2,10 +2,11 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/realgar/conglomerate",
-    "tfcmineralogy:ore/vivianite/conglomerate",
+    "tfcmineralogy:ore/poor_smithsonite/conglomerate",
     "tfcmineralogy:ore/orpiment/conglomerate",
-    "tfcmineralogy:ore/poor_smithsonite/conglomerate"
+    "tfcmineralogy:ore/vivianite/conglomerate",
+    "tfcmineralogy:ore/poor_galena/conglomerate",
+    "tfcmineralogy:ore/realgar/conglomerate"
   ],
   "result": "tfc:rock/cobble/conglomerate"
 }

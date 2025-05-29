@@ -2,10 +2,11 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/poor_smithsonite/rhyolite",
-    "tfcmineralogy:ore/orpiment/rhyolite",
+    "tfcmineralogy:ore/realgar/rhyolite",
     "tfcmineralogy:ore/vivianite/rhyolite",
-    "tfcmineralogy:ore/realgar/rhyolite"
+    "tfcmineralogy:ore/poor_smithsonite/rhyolite",
+    "tfcmineralogy:ore/poor_galena/rhyolite",
+    "tfcmineralogy:ore/orpiment/rhyolite"
   ],
   "result": "tfc:rock/cobble/rhyolite"
 }

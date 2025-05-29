@@ -2,9 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
+    "tfcmineralogy:ore/poor_galena/diorite",
     "tfcmineralogy:ore/poor_smithsonite/diorite",
-    "tfcmineralogy:ore/orpiment/diorite",
     "tfcmineralogy:ore/realgar/diorite",
+    "tfcmineralogy:ore/orpiment/diorite",
     "tfcmineralogy:ore/vivianite/diorite"
   ],
   "result": "tfc:rock/cobble/diorite"

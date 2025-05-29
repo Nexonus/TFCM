@@ -2,8 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/realgar/gabbro",
     "tfcmineralogy:ore/vivianite/gabbro",
+    "tfcmineralogy:ore/poor_galena/gabbro",
+    "tfcmineralogy:ore/realgar/gabbro",
     "tfcmineralogy:ore/orpiment/gabbro",
     "tfcmineralogy:ore/poor_smithsonite/gabbro"
   ],

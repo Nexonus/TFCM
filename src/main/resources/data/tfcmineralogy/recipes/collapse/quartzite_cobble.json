@@ -3,9 +3,10 @@
   "type": "tfc:collapse",
   "ingredient": [
     "tfcmineralogy:ore/orpiment/quartzite",
-    "tfcmineralogy:ore/realgar/quartzite",
+    "tfcmineralogy:ore/poor_smithsonite/quartzite",
     "tfcmineralogy:ore/vivianite/quartzite",
-    "tfcmineralogy:ore/poor_smithsonite/quartzite"
+    "tfcmineralogy:ore/poor_galena/quartzite",
+    "tfcmineralogy:ore/realgar/quartzite"
   ],
   "result": "tfc:rock/cobble/quartzite"
 }

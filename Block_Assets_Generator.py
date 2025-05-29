@@ -90,7 +90,7 @@ rm.lang(*prospect_lang_dict)
 rm.lang(*item_lang_dict)
 
 ### ORE WITH PREDEFINED TIERS - POOR, NORMAL, RICH
-mineral_dict = {'smithsonite'} 
+mineral_dict = {'smithsonite','galena'} 
 tool_tier = 'copper' #valid: stone, copper, bronze, wrought_iron, black_steel, coloured_steel
 
 for quality in ore_quality:

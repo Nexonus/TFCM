@@ -2,10 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "tfcmineralogy:vein/normal_smithsonite",
-    "tfcmineralogy:vein/poor_smithsonite",
-    "tfcmineralogy:vein/realgar_orpiment",
+    "tfcmineralogy:vein/normal_galena",
+    "tfcmineralogy:vein/rich_galena",
+    "tfcmineralogy:vein/poor_galena",
     "tfcmineralogy:vein/vivianite",
-    "tfcmineralogy:vein/rich_smithsonite"
+    "tfcmineralogy:vein/realgar_orpiment"
   ]
 }

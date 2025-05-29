@@ -3,6 +3,7 @@
   "type": "tfc:collapse",
   "ingredient": [
     "tfcmineralogy:ore/poor_smithsonite/chalk",
+    "tfcmineralogy:ore/poor_galena/chalk",
     "tfcmineralogy:ore/realgar/chalk",
     "tfcmineralogy:ore/vivianite/chalk",
     "tfcmineralogy:ore/orpiment/chalk"

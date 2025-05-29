@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:ore/poor_galena/andesite",
+    "tfcmineralogy:ore/poor_galena/phyllite",
+    "tfcmineralogy:ore/poor_galena/conglomerate",
+    "tfcmineralogy:ore/poor_galena/dolomite",
+    "tfcmineralogy:ore/poor_galena/dacite",
+    "tfcmineralogy:ore/poor_galena/chalk",
+    "tfcmineralogy:ore/poor_galena/gneiss",
+    "tfcmineralogy:ore/poor_galena/gabbro",
+    "tfcmineralogy:ore/poor_galena/diorite",
+    "tfcmineralogy:ore/poor_galena/granite",
+    "tfcmineralogy:ore/poor_galena/schist",
+    "tfcmineralogy:ore/poor_galena/rhyolite",
+    "tfcmineralogy:ore/poor_galena/shale",
+    "tfcmineralogy:ore/poor_galena/limestone",
+    "tfcmineralogy:ore/poor_galena/slate",
+    "tfcmineralogy:ore/poor_galena/chert",
+    "tfcmineralogy:ore/poor_galena/basalt",
+    "tfcmineralogy:ore/poor_galena/quartzite",
+    "tfcmineralogy:ore/poor_galena/marble",
+    "tfcmineralogy:ore/poor_galena/claystone"
+  ]
+}

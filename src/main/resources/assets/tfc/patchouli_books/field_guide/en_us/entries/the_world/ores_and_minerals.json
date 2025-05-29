@@ -1191,9 +1191,73 @@
           }
         }
       ]
+    },
+
+
+    {
+      "type": "patchouli:text",
+      "anchor": "vivianite",
+      "text": "Vivianite is a rare iron phosphate $(thing)Mineral$() found mostly in sedimentary rocks nearby rivers. It can be used as a grayish-blue $(thing)Pigment$() or a phosphate $(thing)Fertilizer$().",
+      "title": "Vivianite"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "Vivianite Ores in Limestone.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "tfcmineralogy:ore/vivianite/limestone"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "orpiment",
+      "text": "Realgar and Orpiment are both $(thing)Arsenic Minerals$() found deep underground nearby $(thing)Magma$(). Both can be used to obtain red or yellow $(thing)Pigments$(), both minerals are highly toxic.",
+      "title": "Realgar and Orpiment"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "Realgar and Orpiment in Granite.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "tfcmineralogy:ore/orpiment/granite"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "X"
+            ],
+            [
+              "0"
+            ]
+          ],
+          "mapping": {
+            "X": "tfcmineralogy:ore/realgar/granite"
+          }
+        }
+      ]
     }
 
-    
   ],
   "read_by_default": true,
   "sortnum": 1,
@@ -1269,6 +1333,9 @@
     "tfc:ore/opal": 58,
     "tfcmineralogy:ore/poor_smithsonite": 60,
     "tfcmineralogy:ore/normal_smithsonite": 60,
-    "tfcmineralogy:ore/rich_smithsonite": 60
+    "tfcmineralogy:ore/rich_smithsonite": 60,
+    "tfcmineralogy:ore/vivianite": 62,
+    "tfcmineralogy:ore/realgar": 64,
+    "tfcmineralogy:ore/orpiment": 64
   }
 }
