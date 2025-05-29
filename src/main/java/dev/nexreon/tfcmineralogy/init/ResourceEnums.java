@@ -36,19 +36,25 @@ enum ResourceEnums implements StringRepresentable {
     }
 }
 enum MineralType implements StringRepresentable {
-    VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.5F),
-    POOR_SMITHSONITE("poor_smithsonite", MapColor.COLOR_BLUE, 6.5f),
-    NORMAL_SMITHSONITE("normal_smithsonite", MapColor.COLOR_BLUE, 6.5f),
-    RICH_SMITHSONITE("rich_smithsonite", MapColor.COLOR_BLUE, 6.5f);
+    VIVIANITE("vivianite", MapColor.COLOR_GREEN, 6.5F, true),
+    POOR_SMITHSONITE("poor_smithsonite", MapColor.COLOR_BLUE, 6.5f, true),
+    NORMAL_SMITHSONITE("normal_smithsonite", MapColor.COLOR_BLUE, 6.5f, false),
+    RICH_SMITHSONITE("rich_smithsonite", MapColor.COLOR_BLUE, 6.5f, false),
+    REALGAR("realgar", MapColor.COLOR_ORANGE, 6.5f, true);
 
     private final String name;
     private final MapColor baseMapColor;
     private final float blockStrength;
+    private final boolean hasDust;
 
-    MineralType(String name, MapColor baseMapColor, float strength) {
+    MineralType(String name, MapColor baseMapColor, float strength, boolean hasDust) {
         this.name = name;
         this.baseMapColor = baseMapColor;
         this.blockStrength = strength;
+        this.hasDust = hasDust;
+    }
+    public boolean getHasDust(){
+        return this.hasDust;
     }
     public float getBlockStrength(){
         return this.blockStrength;
