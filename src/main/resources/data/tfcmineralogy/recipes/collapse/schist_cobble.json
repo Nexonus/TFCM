@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/vivianite/schist",
-    "tfcmineralogy:ore/poor_smithsonite/schist"
+    "tfcmineralogy:ore/poor_smithsonite/schist",
+    "tfcmineralogy:ore/orpiment/schist",
+    "tfcmineralogy:ore/realgar/schist",
+    "tfcmineralogy:ore/vivianite/schist"
   ],
   "result": "tfc:rock/cobble/schist"
 }

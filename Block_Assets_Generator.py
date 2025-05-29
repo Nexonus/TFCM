@@ -47,8 +47,8 @@ rm_mc = ResourceManager(domain='minecraft', resource_dir=RESOURCES_DIR, indent=2
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
 ### ORES WITH NO TIERS
-mineral_dict = {'vivianite'} 
-stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
+mineral_dict = {'vivianite', 'realgar','orpiment'} 
+stone_dict = {'diorite','gabbro', 'granite', 'shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 ore_quality = {'poor','normal','rich'}
 lang_dict = set()
 prospect_lang_dict = set()
@@ -67,6 +67,7 @@ for mineral in mineral_dict:
         rm.item_model(f'tfcmineralogy:ore/{mineral}/{stone}', no_textures=True, parent=f'tfcmineralogy:block/ore/{mineral}/{stone}')
         # Add item for loot here:
         rm.item_model(f'tfcmineralogy:ore/{mineral}',no_textures=False,parent=f'minecraft:item/generated')
+        rm.item_model(f'tfcmineralogy:powder/{mineral}',no_textures=False,parent=f'minecraft:item/generated')
 
         stone_capital = stone[0].upper() + stone[1:]
         mineral_capital = mineral[0].upper() + mineral[1:]
@@ -78,6 +79,9 @@ for mineral in mineral_dict:
         prospect_lang_entry = (f'block.tfcmineralogy.ore.{mineral}.{stone}.prospected', mineral_capital)
         prospect_lang_dict.add(prospect_lang_entry)
         lang_entry = (f'item.tfcmineralogy.ore.{mineral}', mineral_capital)
+        item_lang_dict.add(lang_entry)
+        lang_capital = mineral_capital + " Powder"
+        lang_entry = (f'item.tfcmineralogy.powder.{mineral}', lang_capital)
         item_lang_dict.add(lang_entry)
 
 rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')
@@ -103,6 +107,7 @@ for quality in ore_quality:
             rm.item_model(f'tfcmineralogy:ore/{mineral_quality}/{stone}', no_textures=True, parent=f'tfcmineralogy:block/ore/{mineral_quality}/{stone}')
             # Add item for loot here:
             rm.item_model(f'tfcmineralogy:ore/{mineral_quality}',no_textures=False,parent=f'minecraft:item/generated')
+            rm.item_model(f'tfcmineralogy:powder/{mineral}',no_textures=False,parent=f'minecraft:item/generated')
             
             stone_capital = stone[0].upper() + stone[1:]
             mineral_capital = mineral[0].upper() + mineral[1:]
@@ -116,6 +121,9 @@ for quality in ore_quality:
             prospect_lang_dict.add(prospect_lang_entry)
             lang_capital = quality_capital + " " + mineral_capital
             lang_entry = (f'item.tfcmineralogy.ore.{mineral_quality}', lang_capital)
+            item_lang_dict.add(lang_entry)
+            lang_capital = mineral_capital + " Powder"
+            lang_entry = (f'item.tfcmineralogy.powder.{mineral}', lang_capital)
             item_lang_dict.add(lang_entry)
 
 rm.lang('itemGroup.tfcmineralogy_tab', 'TFC Mineralogy')

@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
+    "tfcmineralogy:ore/poor_smithsonite/gneiss",
     "tfcmineralogy:ore/vivianite/gneiss",
-    "tfcmineralogy:ore/poor_smithsonite/gneiss"
+    "tfcmineralogy:ore/realgar/gneiss",
+    "tfcmineralogy:ore/orpiment/gneiss"
   ],
   "result": "tfc:rock/cobble/gneiss"
 }

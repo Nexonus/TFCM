@@ -1,0 +1,151 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:disc_vein",
+  "config": {
+    "rarity": 4,
+    "density": 0.25,
+    "min_y": -64,
+    "max_y": -45,
+    "near_lava": true,
+    "size": 20,
+    "height": 5,
+    "random_name": "realgar_orpiment",
+    "blocks": [
+      {
+        "replace": [
+          "tfc:rock/raw/quartzite"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/quartzite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/quartzite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/diorite"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/diorite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/diorite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/marble"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/marble"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/marble"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/schist"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/schist"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/schist"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/slate"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/slate"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/slate"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/phyllite"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/phyllite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/phyllite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/gabbro"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/gabbro"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/gabbro"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/granite"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/granite"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/granite"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/gneiss"
+        ],
+        "with": [
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/realgar/gneiss"
+          },
+          {
+            "weight": "55",
+            "block": "tfcmineralogy:ore/orpiment/gneiss"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -11,20 +11,20 @@
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/dolomite"
+          "tfc:rock/raw/chalk"
         ],
         "with": [
           {
             "weight": "50",
-            "block": "tfcmineralogy:ore/poor_smithsonite/dolomite"
+            "block": "tfcmineralogy:ore/poor_smithsonite/chalk"
           },
           {
             "weight": "35",
-            "block": "tfcmineralogy:ore/normal_smithsonite/dolomite"
+            "block": "tfcmineralogy:ore/normal_smithsonite/chalk"
           },
           {
             "weight": "15",
-            "block": "tfcmineralogy:ore/rich_smithsonite/dolomite"
+            "block": "tfcmineralogy:ore/rich_smithsonite/chalk"
           }
         ]
       },
@@ -49,25 +49,6 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/chalk"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/poor_smithsonite/chalk"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/normal_smithsonite/chalk"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/rich_smithsonite/chalk"
-          }
-        ]
-      },
-      {
-        "replace": [
           "tfc:rock/raw/limestone"
         ],
         "with": [
@@ -82,6 +63,25 @@
           {
             "weight": "15",
             "block": "tfcmineralogy:ore/rich_smithsonite/limestone"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/dolomite"
+        ],
+        "with": [
+          {
+            "weight": "50",
+            "block": "tfcmineralogy:ore/poor_smithsonite/dolomite"
+          },
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/normal_smithsonite/dolomite"
+          },
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/rich_smithsonite/dolomite"
           }
         ]
       }

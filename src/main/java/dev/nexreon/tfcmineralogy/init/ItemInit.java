@@ -30,7 +30,6 @@ public class ItemInit {
             for (MineralType mineral : MineralType.values()){
                 String blockName = "ore/" + mineral.getSerializedName() + "/" + stone.getSerializedName();
                 String itemName = "ore/" + mineral.getSerializedName();
-                String powderName = "powder/"+mineral.getSerializedName();
                 try{
                 RegistryObject<Block> correspondingBlock = BlockInit.MINERAL_ORES.get(blockName);
 
@@ -41,25 +40,17 @@ public class ItemInit {
                 RegistryObject<Item> ORE_ITEM = addToTab(ITEMS.register(itemName,
                 () -> new Item(new Item.Properties()
                 .rarity(Rarity.COMMON))));
-                
-                if (mineral.getHasDust()){
-                    String resourceName = "";
-                    if (itemName.contains("rich") || itemName.contains("normal") || itemName.contains("poor")){
-                        resourceName = itemName.substring(itemName.indexOf("_")+1,itemName.length());
-                    }
-                    else{
-                        resourceName = itemName.substring(itemName.indexOf("/")+1,itemName.length());
-                    }
-                    String dustItem = "powder/" + resourceName;
-                    RegistryObject<Item> DUST_ITEM = addToTab(ITEMS.register(dustItem,
-                    () -> new Item(new Item.Properties()
-                    .rarity(Rarity.COMMON))));
-                }
                 }
                 catch(Exception e){
                     Log.error("No Corresponding Block! @ITEMINIT");
                 }
             }
+        }
+        for (PowderType powder : PowderType.values()){
+            String powderName = powder.getSerializedName();
+            RegistryObject<Item> ORE_POWDER = addToTab(ITEMS.register(powderName,
+                () -> new Item(new Item.Properties()
+                .rarity(Rarity.COMMON))));
         }
     }
 }

@@ -1,0 +1,26 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:ore/orpiment/chert",
+    "tfcmineralogy:ore/orpiment/marble",
+    "tfcmineralogy:ore/orpiment/chalk",
+    "tfcmineralogy:ore/orpiment/basalt",
+    "tfcmineralogy:ore/orpiment/conglomerate",
+    "tfcmineralogy:ore/orpiment/dacite",
+    "tfcmineralogy:ore/orpiment/shale",
+    "tfcmineralogy:ore/orpiment/gneiss",
+    "tfcmineralogy:ore/orpiment/quartzite",
+    "tfcmineralogy:ore/orpiment/rhyolite",
+    "tfcmineralogy:ore/orpiment/diorite",
+    "tfcmineralogy:ore/orpiment/dolomite",
+    "tfcmineralogy:ore/orpiment/schist",
+    "tfcmineralogy:ore/orpiment/slate",
+    "tfcmineralogy:ore/orpiment/claystone",
+    "tfcmineralogy:ore/orpiment/andesite",
+    "tfcmineralogy:ore/orpiment/gabbro",
+    "tfcmineralogy:ore/orpiment/phyllite",
+    "tfcmineralogy:ore/orpiment/granite",
+    "tfcmineralogy:ore/orpiment/limestone"
+  ]
+}

@@ -30,10 +30,11 @@ forge_ores.add(f'#forge:ores/{mineral_name}')
 resource_generation = [] # Try to generate ore replacements here (for the json) to avoid spaghetti notation
 
 # Configure which stones should the feature generate in here
-stone_generation_dict = {'chalk','limestone','dolomite','shale','claystone'} 
-stone_dict_full = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
+#stone_generation_dict = {'quartzite','slate','phyllite','schist','gneiss','marble','granite','diorite','gabbro'} # Realgar
+stone_generation_dict = {'chalk','limestone','dolomite','shale','claystone'} # Vivianite
+stone_dict_full = {'diorite','gabbro', 'granite', 'shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 
-#stone_dict = {'diorite','gabbro','shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
+#stone_dict = {'diorite','gabbro', 'granite', 'shale','claystone','limestone','conglomerate','dolomite','chert','chalk','rhyolite','basalt','andesite','dacite','quartzite','slate','phyllite','schist','gneiss','marble'} 
 for stone in stone_generation_dict:
     entry = ({
     'replace': [f'tfc:rock/raw/{stone}'],
@@ -44,7 +45,10 @@ for stone in stone_generation_dict:
     resource_generation.append(entry)
 
 rm.placed_feature(f'vein/{mineral_name}', f'tfcmineralogy:vein/{mineral_name}') # This is the vein we're looking for in configured feature
-rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.65, 'min_y': 50, 'max_y': 90, 'size': 16,'random_name': f'{mineral_name}',
+# Configured Feature: Cluster Vein, uncomment to use:
+rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 20, 'density': 0.45, 'min_y': 40, 'max_y': 60, 'biomes':'#tfc:is_lake', 'size': 20,'random_name': f'{mineral_name}', # Vivianite
+# Configured Feature: Disc Vein, uncomment to use:
+#rm.configured_feature(f'vein/{mineral_name}', 'tfc:disc_vein', {'rarity': 4, 'density': 0.25, 'min_y': -64, 'max_y': -45, 'near_lava':True, 'size': 20, 'height':5, 'random_name': f'{mineral_name}', # Realgar-Orpiment
 'blocks':resource_generation})
 
 for stone in stone_dict_full:
@@ -115,6 +119,44 @@ for q in qualities:
         tfcm_can_start_collapse.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
         tfcm_can_trigger_collapse.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
 
+### MODEL : HYBRID, MULTI-ORE
+mineral_list = ['realgar','orpiment']
+weight = [35, 55]
+resource_list = list()
+resource_generation = [] # Try to generate ore replacements here (for the json) to avoid spaghetti notation
+
+# Configure which stones should the feature generate in here
+stone_generation_dict = {'quartzite','slate','phyllite','schist','gneiss','marble','granite','diorite','gabbro'} # Realgar-Orpiment
+for stone in stone_generation_dict:
+    entry = ({
+    'replace': [f'tfc:rock/raw/{stone}'],
+    'with': [
+        {'weight': f'{weight[0]}', 'block': f'tfcmineralogy:ore/{mineral_list[0]}/{stone}'},
+        {'weight': f'{weight[1]}', 'block': f'tfcmineralogy:ore/{mineral_list[1]}/{stone}'},
+    ]
+    })
+    resource_generation.append(entry)
+
+merged_vein_name = mineral_list[0]+"_"+mineral_list[1]
+vein_feature_names.add(f'vein/{merged_vein_name}')
+tfcm_veins.add(f'tfcmineralogy:vein/{merged_vein_name}')
+rm.placed_feature(f'vein/{merged_vein_name}', f'tfcmineralogy:vein/{merged_vein_name}') # This is the vein we're looking for in configured feature
+rm.configured_feature(f'vein/{merged_vein_name}', 'tfc:disc_vein', {'rarity': 4, 'density': 0.25, 'min_y': -64, 'max_y': -45, 'near_lava':True, 'size': 20, 'height':5, 'random_name': f'{merged_vein_name}', # Realgar-Orpiment
+'blocks':resource_generation})
+
+for mineral in mineral_list:
+    forge_ores.add(f'#forge:ores/{mineral}')
+
+    for stone in stone_dict_full:
+        tfcm_prospectables.add(f'tfcmineralogy:ore/{mineral}/{stone}')
+        tfcm_can_collapse.add(f'tfcmineralogy:ore/{mineral}/{stone}')
+        tfcm_can_start_collapse.add(f'tfcmineralogy:ore/{mineral}/{stone}')
+        tfcm_can_trigger_collapse.add(f'tfcmineralogy:ore/{mineral}/{stone}')
+        rm_forge.tag(f'{mineral}','blocks/ores', f'tfcmineralogy:ore/{mineral}/{stone}')
+        
+        ingredient_minerals.add(mineral)
+
+# Done, add the collapses and finish:
 
 for stone in stone_dict_full:
     path = f'.\\src\\main\\resources\\data\\tfcmineralogy\\recipes\\collapse\\{stone}_cobble.json'

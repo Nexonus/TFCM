@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "tfc:block/ore",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "tfc:block/rock/raw/marble",
+    "particle": "tfc:block/rock/raw/marble",
+    "overlay": "tfcmineralogy:block/ore/orpiment"
+  }
+}

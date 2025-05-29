@@ -3,7 +3,9 @@
   "type": "tfc:collapse",
   "ingredient": [
     "tfcmineralogy:ore/poor_smithsonite/claystone",
-    "tfcmineralogy:ore/vivianite/claystone"
+    "tfcmineralogy:ore/realgar/claystone",
+    "tfcmineralogy:ore/vivianite/claystone",
+    "tfcmineralogy:ore/orpiment/claystone"
   ],
   "result": "tfc:rock/cobble/claystone"
 }

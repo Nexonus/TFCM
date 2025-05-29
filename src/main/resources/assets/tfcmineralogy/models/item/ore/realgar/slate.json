@@ -1,5 +1,4 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "feature": "tfcmineralogy:vein/example_block",
-  "placement": []
+  "parent": "tfcmineralogy:block/ore/realgar/slate"
 }

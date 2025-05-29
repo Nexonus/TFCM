@@ -3,7 +3,9 @@
   "type": "tfc:collapse",
   "ingredient": [
     "tfcmineralogy:ore/poor_smithsonite/rhyolite",
-    "tfcmineralogy:ore/vivianite/rhyolite"
+    "tfcmineralogy:ore/orpiment/rhyolite",
+    "tfcmineralogy:ore/vivianite/rhyolite",
+    "tfcmineralogy:ore/realgar/rhyolite"
   ],
   "result": "tfc:rock/cobble/rhyolite"
 }

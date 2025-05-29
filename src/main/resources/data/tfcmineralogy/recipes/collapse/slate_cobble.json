@@ -3,7 +3,9 @@
   "type": "tfc:collapse",
   "ingredient": [
     "tfcmineralogy:ore/vivianite/slate",
-    "tfcmineralogy:ore/poor_smithsonite/slate"
+    "tfcmineralogy:ore/poor_smithsonite/slate",
+    "tfcmineralogy:ore/orpiment/slate",
+    "tfcmineralogy:ore/realgar/slate"
   ],
   "result": "tfc:rock/cobble/slate"
 }

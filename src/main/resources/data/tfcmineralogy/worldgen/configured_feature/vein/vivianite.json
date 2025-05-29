@@ -2,20 +2,31 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:cluster_vein",
   "config": {
-    "rarity": 60,
-    "density": 0.65,
-    "min_y": 50,
-    "max_y": 90,
-    "size": 16,
+    "rarity": 20,
+    "density": 0.45,
+    "min_y": 40,
+    "max_y": 60,
+    "biomes": "#tfc:is_lake",
+    "size": 20,
     "random_name": "vivianite",
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/limestone"
+          "tfc:rock/raw/shale"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/vivianite/limestone"
+            "block": "tfcmineralogy:ore/vivianite/shale"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/dolomite"
+        ],
+        "with": [
+          {
+            "block": "tfcmineralogy:ore/vivianite/dolomite"
           }
         ]
       },
@@ -31,16 +42,6 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/shale"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/vivianite/shale"
-          }
-        ]
-      },
-      {
-        "replace": [
           "tfc:rock/raw/chalk"
         ],
         "with": [
@@ -51,11 +52,11 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/dolomite"
+          "tfc:rock/raw/limestone"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/vivianite/dolomite"
+            "block": "tfcmineralogy:ore/vivianite/limestone"
           }
         ]
       }

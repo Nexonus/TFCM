@@ -2,6 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
+    "tfcmineralogy:ore/realgar/basalt",
+    "tfcmineralogy:ore/orpiment/basalt",
     "tfcmineralogy:ore/poor_smithsonite/basalt",
     "tfcmineralogy:ore/vivianite/basalt"
   ],

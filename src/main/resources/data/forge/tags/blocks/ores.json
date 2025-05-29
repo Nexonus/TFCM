@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
+    "#forge:ores/orpiment",
     "#forge:ores/poor_smithsonite",
     "#forge:ores/normal_smithsonite",
+    "#forge:ores/realgar",
     "#forge:ores/vivianite",
     "#forge:ores/rich_smithsonite"
   ]

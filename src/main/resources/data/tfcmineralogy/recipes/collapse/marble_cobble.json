@@ -2,6 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
+    "tfcmineralogy:ore/orpiment/marble",
+    "tfcmineralogy:ore/realgar/marble",
     "tfcmineralogy:ore/vivianite/marble",
     "tfcmineralogy:ore/poor_smithsonite/marble"
   ],

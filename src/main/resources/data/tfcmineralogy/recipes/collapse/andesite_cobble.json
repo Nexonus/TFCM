@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/vivianite/andesite",
-    "tfcmineralogy:ore/poor_smithsonite/andesite"
+    "tfcmineralogy:ore/realgar/andesite",
+    "tfcmineralogy:ore/poor_smithsonite/andesite",
+    "tfcmineralogy:ore/orpiment/andesite",
+    "tfcmineralogy:ore/vivianite/andesite"
   ],
   "result": "tfc:rock/cobble/andesite"
 }

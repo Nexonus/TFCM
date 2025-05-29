@@ -2,8 +2,10 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
   "ingredient": [
-    "tfcmineralogy:ore/vivianite/chert",
-    "tfcmineralogy:ore/poor_smithsonite/chert"
+    "tfcmineralogy:ore/orpiment/chert",
+    "tfcmineralogy:ore/poor_smithsonite/chert",
+    "tfcmineralogy:ore/realgar/chert",
+    "tfcmineralogy:ore/vivianite/chert"
   ],
   "result": "tfc:rock/cobble/chert"
 }
