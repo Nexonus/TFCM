@@ -1,6 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/phyllite_poor_smithsonite",
+  "ingredient": [
+    "tfcmineralogy:ore/vivianite/phyllite",
+    "tfcmineralogy:ore/poor_smithsonite/phyllite"
+  ],
   "result": "tfc:rock/cobble/phyllite"
 }

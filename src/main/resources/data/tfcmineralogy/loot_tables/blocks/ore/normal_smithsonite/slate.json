@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/normal_smithsonite/slate"
+          "name": "tfcmineralogy:ore/normal_smithsonite"
         }
       ],
       "conditions": [

@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/normal_smithsonite/diorite"
+          "name": "tfcmineralogy:ore/normal_smithsonite"
         }
       ],
       "conditions": [

@@ -1,6 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/slate_poor_smithsonite",
+  "ingredient": [
+    "tfcmineralogy:ore/vivianite/slate",
+    "tfcmineralogy:ore/poor_smithsonite/slate"
+  ],
   "result": "tfc:rock/cobble/slate"
 }

@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/vivianite/dacite"
+          "name": "tfcmineralogy:ore/vivianite"
         }
       ],
       "conditions": [

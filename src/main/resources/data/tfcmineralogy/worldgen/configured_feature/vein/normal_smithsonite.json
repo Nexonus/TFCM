@@ -11,25 +11,6 @@
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/chalk"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/poor_smithsonite/chalk"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/normal_smithsonite/chalk"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/rich_smithsonite/chalk"
-          }
-        ]
-      },
-      {
-        "replace": [
           "tfc:rock/raw/dolomite"
         ],
         "with": [
@@ -49,25 +30,6 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/limestone"
-        ],
-        "with": [
-          {
-            "weight": "50",
-            "block": "tfcmineralogy:ore/poor_smithsonite/limestone"
-          },
-          {
-            "weight": "35",
-            "block": "tfcmineralogy:ore/normal_smithsonite/limestone"
-          },
-          {
-            "weight": "15",
-            "block": "tfcmineralogy:ore/rich_smithsonite/limestone"
-          }
-        ]
-      },
-      {
-        "replace": [
           "tfc:rock/raw/marble"
         ],
         "with": [
@@ -82,6 +44,44 @@
           {
             "weight": "15",
             "block": "tfcmineralogy:ore/rich_smithsonite/marble"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/chalk"
+        ],
+        "with": [
+          {
+            "weight": "50",
+            "block": "tfcmineralogy:ore/poor_smithsonite/chalk"
+          },
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/normal_smithsonite/chalk"
+          },
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/rich_smithsonite/chalk"
+          }
+        ]
+      },
+      {
+        "replace": [
+          "tfc:rock/raw/limestone"
+        ],
+        "with": [
+          {
+            "weight": "50",
+            "block": "tfcmineralogy:ore/poor_smithsonite/limestone"
+          },
+          {
+            "weight": "35",
+            "block": "tfcmineralogy:ore/normal_smithsonite/limestone"
+          },
+          {
+            "weight": "15",
+            "block": "tfcmineralogy:ore/rich_smithsonite/limestone"
           }
         ]
       }

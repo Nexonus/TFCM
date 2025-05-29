@@ -11,21 +11,11 @@
     "blocks": [
       {
         "replace": [
-          "tfc:rock/raw/dolomite"
+          "tfc:rock/raw/limestone"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/vivianite/dolomite"
-          }
-        ]
-      },
-      {
-        "replace": [
-          "tfc:rock/raw/shale"
-        ],
-        "with": [
-          {
-            "block": "tfcmineralogy:ore/vivianite/shale"
+            "block": "tfcmineralogy:ore/vivianite/limestone"
           }
         ]
       },
@@ -41,6 +31,16 @@
       },
       {
         "replace": [
+          "tfc:rock/raw/shale"
+        ],
+        "with": [
+          {
+            "block": "tfcmineralogy:ore/vivianite/shale"
+          }
+        ]
+      },
+      {
+        "replace": [
           "tfc:rock/raw/chalk"
         ],
         "with": [
@@ -51,11 +51,11 @@
       },
       {
         "replace": [
-          "tfc:rock/raw/limestone"
+          "tfc:rock/raw/dolomite"
         ],
         "with": [
           {
-            "block": "tfcmineralogy:ore/vivianite/limestone"
+            "block": "tfcmineralogy:ore/vivianite/dolomite"
           }
         ]
       }

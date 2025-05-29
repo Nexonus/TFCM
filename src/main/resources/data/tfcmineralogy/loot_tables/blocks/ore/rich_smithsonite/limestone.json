@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/rich_smithsonite/limestone"
+          "name": "tfcmineralogy:ore/rich_smithsonite"
         }
       ],
       "conditions": [

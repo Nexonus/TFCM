@@ -1,6 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/phyllite_rich_smithsonite",
-  "result": "tfcmineralogy:ore/phyllite_normal_smithsonite"
+  "ingredient": [
+    "tfcmineralogy:ore/rich_smithsonite/phyllite"
+  ],
+  "result": "tfcmineralogy:ore/normal_smithsonite/phyllite"
 }

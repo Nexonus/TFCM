@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tfcmineralogy:ore/vivianite/basalt"
+          "name": "tfcmineralogy:ore/vivianite"
         }
       ],
       "conditions": [

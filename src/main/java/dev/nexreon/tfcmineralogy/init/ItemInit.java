@@ -35,10 +35,12 @@ public class ItemInit {
 
                 RegistryObject<BlockItem> ORE_BLOCK_ITEM = addToTab(ITEMS.register(blockName,
                 () -> new BlockItem(correspondingBlock.get(), new Item.Properties()
+                .stacksTo(32)
                 .rarity(Rarity.COMMON)))); // Register Block Item
 
                 RegistryObject<Item> ORE_ITEM = addToTab(ITEMS.register(itemName,
                 () -> new Item(new Item.Properties()
+                .stacksTo(16)
                 .rarity(Rarity.COMMON))));
                 }
                 catch(Exception e){

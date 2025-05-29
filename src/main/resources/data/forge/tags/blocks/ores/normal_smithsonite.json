@@ -2,9 +2,24 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "tfcmineralogy:ore/normal_smithsonite/chalk",
-    "tfcmineralogy:ore/normal_smithsonite/dolomite",
+    "tfcmineralogy:ore/normal_smithsonite/marble",
+    "tfcmineralogy:ore/normal_smithsonite/slate",
+    "tfcmineralogy:ore/normal_smithsonite/conglomerate",
     "tfcmineralogy:ore/normal_smithsonite/limestone",
-    "tfcmineralogy:ore/normal_smithsonite/marble"
+    "tfcmineralogy:ore/normal_smithsonite/rhyolite",
+    "tfcmineralogy:ore/normal_smithsonite/gneiss",
+    "tfcmineralogy:ore/normal_smithsonite/diorite",
+    "tfcmineralogy:ore/normal_smithsonite/andesite",
+    "tfcmineralogy:ore/normal_smithsonite/claystone",
+    "tfcmineralogy:ore/normal_smithsonite/shale",
+    "tfcmineralogy:ore/normal_smithsonite/dacite",
+    "tfcmineralogy:ore/normal_smithsonite/chert",
+    "tfcmineralogy:ore/normal_smithsonite/phyllite",
+    "tfcmineralogy:ore/normal_smithsonite/gabbro",
+    "tfcmineralogy:ore/normal_smithsonite/basalt",
+    "tfcmineralogy:ore/normal_smithsonite/quartzite",
+    "tfcmineralogy:ore/normal_smithsonite/chalk",
+    "tfcmineralogy:ore/normal_smithsonite/schist",
+    "tfcmineralogy:ore/normal_smithsonite/dolomite"
   ]
 }

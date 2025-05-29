@@ -1,6 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/quartzite_poor_smithsonite",
+  "ingredient": [
+    "tfcmineralogy:ore/poor_smithsonite/quartzite",
+    "tfcmineralogy:ore/vivianite/quartzite"
+  ],
   "result": "tfc:rock/cobble/quartzite"
 }

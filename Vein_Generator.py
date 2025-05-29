@@ -1,23 +1,6 @@
 from mcresources.resource_manager import ResourceManager
 import os
-from mcresources.type_definitions import Json, JsonObject, ResourceLocation, ResourceIdentifier, TypeWithOptionalConfig
-from mcresources import utils
-from mcresources.recipe_context import RecipeContext
-from typing import Sequence, Dict, Union, Optional, Callable, Any
 import json
-
-
-# Modifying crafting_shapeless code by AlcatrazEscapee to match the collapse recipe
-def collapse_recipe(self, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: Optional[Json] = None) -> RecipeContext:
-        res = utils.resource_location(self.domain, name_parts)
-        self.write(('data', res.domain, 'recipes', res.path), {
-            'type': 'tfc:collapse',
-            'group': group,
-            'ingredient': ingredients,
-            'result': result,
-            'conditions': utils.recipe_condition(conditions)
-        })
-        return RecipeContext(self, res)
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESOURCES_DIR = os.path.join(ROOT_DIR, 'src/main/resources')
@@ -27,15 +10,17 @@ rm_tfc = ResourceManager(domain='tfc', resource_dir=RESOURCES_DIR, indent=2, ens
 rm_forge = ResourceManager(domain='forge', resource_dir=RESOURCES_DIR, indent=2, ensure_ascii=False)
 os.makedirs(RESOURCES_DIR, exist_ok=True)
 
-ResourceManager.collapse_recipe = collapse_recipe # Add the modified method
-
 ### CREATE AN ORE GEN FEATURE, NO TIERS
 vein_feature_names = set()
 tfcm_veins = set()
 tfcm_prospectables = set()
 tfcm_can_start_collapse = set()
 tfcm_can_collapse = set()
+tfcm_can_trigger_collapse = set()
 forge_ores = set()
+collapse_ingredients = set()
+ingredient_minerals = set()
+
 
 ### MODEL : NO WEIGHTS, SINGULAR MINERAL (HALITE ETC)
 mineral_name = 'vivianite'
@@ -62,12 +47,15 @@ rm.placed_feature(f'vein/{mineral_name}', f'tfcmineralogy:vein/{mineral_name}') 
 rm.configured_feature(f'vein/{mineral_name}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.65, 'min_y': 50, 'max_y': 90, 'size': 16,'random_name': f'{mineral_name}',
 'blocks':resource_generation})
 
-for stone in stone_generation_dict:
-    rm_forge.tag(f'{mineral_name}','blocks/ores', f'tfcmineralogy:ore/{mineral_name}/{stone}')
 for stone in stone_dict_full:
     tfcm_prospectables.add(f'tfcmineralogy:ore/{mineral_name}/{stone}')
     tfcm_can_collapse.add(f'tfcmineralogy:ore/{mineral_name}/{stone}')
     tfcm_can_start_collapse.add(f'tfcmineralogy:ore/{mineral_name}/{stone}')
+    tfcm_can_trigger_collapse.add(f'tfcmineralogy:ore/{mineral_name}/{stone}')
+    rm_forge.tag(f'{mineral_name}','blocks/ores', f'tfcmineralogy:ore/{mineral_name}/{stone}')
+
+    ingredient_minerals.add(mineral_name)
+
 
 ### MODEL : INCLUDING WEIGHTS (POOR, NORMAL, RICH)
 mineral_name = 'smithsonite'
@@ -103,32 +91,50 @@ for q in qualities:
     rm.configured_feature(f'vein/{mineral_quality}', 'tfc:cluster_vein', {'rarity': 60, 'density': 0.3, 'min_y': 30, 'max_y': 120, 'size': 22,'random_name': f'{mineral_quality}',
     'blocks':resource_generation})
 
-    for stone in stone_generation_dict:
-        rm_forge.tag(f'{mineral_quality}','blocks/ores', f'tfcmineralogy:ore/{mineral_quality}/{stone}')
+    for stone in stone_dict_full:
         match(q):
             case 'rich':
                 current_quality='rich'
                 downgraded_quality='normal' # Format downgradedquality_stone_mineral
-                rm.collapse_recipe(f'collapse/ore/{downgraded_quality}_{stone}_{mineral_name}',f'tfcmineralogy:ore/{current_quality}_{mineral_name}/{stone}',f'tfcmineralogy:ore/{downgraded_quality}_{mineral_name}/{stone}')
+                collapse_input = {'ingredient': [f'tfcmineralogy:ore/{current_quality}_{mineral_name}/{stone}'], 'result':f'tfcmineralogy:ore/{downgraded_quality}_{mineral_name}/{stone}'}
+                rm.recipe(f'collapse/ore/{downgraded_quality}_{stone}_{mineral_name}','tfc:collapse',collapse_input)
             case 'normal':
                 current_quality='normal'
                 downgraded_quality='poor'
-                rm.collapse_recipe(f'collapse/ore/{downgraded_quality}_{stone}_{mineral_name}',f'tfcmineralogy:ore/{current_quality}_{mineral_name}/{stone}',f'tfcmineralogy:ore/{downgraded_quality}_{mineral_name}/{stone}')
+                collapse_input = {'ingredient': [f'tfcmineralogy:ore/{current_quality}_{mineral_name}/{stone}'], 'result':f'tfcmineralogy:ore/{downgraded_quality}_{mineral_name}/{stone}'}
+                rm.recipe(f'collapse/ore/{downgraded_quality}_{stone}_{mineral_name}','tfc:collapse',collapse_input)
             case 'poor':
-                current_quality='poor'
-                downgraded_quality='cobble'
-                rm.collapse_recipe(f'collapse/{stone}_cobble',f'tfcmineralogy:ore/{current_quality}_{mineral_name}/{stone}',f'tfc:rock/cobble/{stone}')
+                current_quality = 'poor'+'_'+mineral_name
+                ingredient_minerals.add(current_quality)
 
     # Just make sure ALL the blocks are prospectable
     for stone in stone_dict_full:
+        rm_forge.tag(f'{mineral_quality}','blocks/ores', f'tfcmineralogy:ore/{mineral_quality}/{stone}')
         tfcm_prospectables.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
         tfcm_can_collapse.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
         tfcm_can_start_collapse.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
+        tfcm_can_trigger_collapse.add(f'tfcmineralogy:ore/{mineral_quality}/{stone}')
+
+
+for stone in stone_dict_full:
+    path = f'.\\src\\main\\resources\\data\\tfcmineralogy\\recipes\\collapse\\{stone}_cobble.json'
+    if os.path.exists(path):
+        file = open(path)
+        fileData = json.load(file)
+        for i in fileData['ingredient']:
+            collapse_ingredients.add(i) # Load existing entries
+        for min in ingredient_minerals:
+            entry = f'tfcmineralogy:ore/{min}/{stone}'
+            collapse_ingredients.add(entry)
+    updated_ingredients = {'ingredient': [*collapse_ingredients], 'result':f'tfc:rock/cobble/{stone}'}
+    rm.recipe(f'collapse/{stone}_cobble','tfc:collapse',updated_ingredients)
+    collapse_ingredients = set()    # Currently requires to be run twice to generate the collapses, will fix later
 
 rm_tfc.tag('veins','worldgen/placed_feature/in_biome',*tfcm_veins)
 rm_tfc.tag('prospectable','blocks',*tfcm_prospectables)
 rm_tfc.tag('can_start_collapse','blocks',*tfcm_can_start_collapse)
 rm_tfc.tag('can_collapse','blocks',*tfcm_can_collapse)
+rm_tfc.tag('can_trigger_collapse','blocks',*tfcm_can_trigger_collapse)
 rm_forge.tag('ores','blocks',*forge_ores)
 rm_tfc.flush()
 rm_forge.flush()

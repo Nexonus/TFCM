@@ -1,6 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/poor_smithsonite/limestone",
+  "ingredient": [
+    "tfcmineralogy:ore/poor_smithsonite/limestone",
+    "tfcmineralogy:ore/vivianite/limestone"
+  ],
   "result": "tfc:rock/cobble/limestone"
 }

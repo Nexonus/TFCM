@@ -1,6 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/chert_normal_smithsonite",
-  "result": "tfcmineralogy:ore/chert_poor_smithsonite"
+  "ingredient": [
+    "tfcmineralogy:ore/normal_smithsonite/chert"
+  ],
+  "result": "tfcmineralogy:ore/poor_smithsonite/chert"
 }

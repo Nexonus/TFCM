@@ -1,6 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/quartzite_rich_smithsonite",
-  "result": "tfcmineralogy:ore/quartzite_normal_smithsonite"
+  "ingredient": [
+    "tfcmineralogy:ore/rich_smithsonite/quartzite"
+  ],
+  "result": "tfcmineralogy:ore/normal_smithsonite/quartzite"
 }

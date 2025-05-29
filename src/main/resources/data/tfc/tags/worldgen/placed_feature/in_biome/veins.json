@@ -3,8 +3,8 @@
   "replace": false,
   "values": [
     "tfcmineralogy:vein/rich_smithsonite",
-    "tfcmineralogy:vein/vivianite",
     "tfcmineralogy:vein/poor_smithsonite",
+    "tfcmineralogy:vein/vivianite",
     "tfcmineralogy:vein/normal_smithsonite"
   ]
 }

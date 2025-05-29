@@ -1,6 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:collapse",
-  "ingredient": "tfcmineralogy:ore/schist_normal_smithsonite",
-  "result": "tfcmineralogy:ore/schist_poor_smithsonite"
+  "ingredient": [
+    "tfcmineralogy:ore/normal_smithsonite/schist"
+  ],
+  "result": "tfcmineralogy:ore/poor_smithsonite/schist"
 }
