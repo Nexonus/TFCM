@@ -1,6 +1,7 @@
 package dev.nexreon.tfcmineralogy.init;
 
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.material.MapColor;
 
 enum ResourceEnums implements StringRepresentable {
@@ -83,5 +84,29 @@ enum PowderType implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return this.name;
+    }
+}
+enum MetalType implements StringRepresentable{
+    ZINC("zinc",MapColor.COLOR_LIGHT_GRAY, Rarity.COMMON),
+    LEAD("lead", MapColor.COLOR_GRAY, Rarity.COMMON);
+    private final String name;
+    private final Rarity rarity;
+    private final MapColor baseMapColor;
+
+    MetalType(String name, MapColor baseMapColor, Rarity rarity) {
+        this.name = name;
+        this.baseMapColor = baseMapColor;
+        this.rarity = rarity;
+    }
+    @Override
+    public String getSerializedName() {
+        return this.name;
+    }
+    public Rarity getRarity()
+    {
+        return rarity;
+    }
+    public MapColor getBaseMapColor() {
+        return this.baseMapColor;
     }
 }
