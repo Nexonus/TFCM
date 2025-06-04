@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "axis=x": {
+      "model": "tfcmineralogy:block/metal/chain/lead",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tfcmineralogy:block/metal/chain/lead"
+    },
+    "axis=z": {
+      "model": "tfcmineralogy:block/metal/chain/lead",
+      "x": 90
+    }
+  }
+}

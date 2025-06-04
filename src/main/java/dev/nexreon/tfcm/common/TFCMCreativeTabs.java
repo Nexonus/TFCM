@@ -7,11 +7,15 @@ import dev.nexreon.tfcm.common.items.TFCMItems;
 import dev.nexreon.tfcm.util.TFCMMetal;
 
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.util.SelfTests;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -75,9 +79,11 @@ public class TFCMCreativeTabs {
         }
     }
     // Fill Misc Tab
+    @SuppressWarnings("deprecation")
     private static void fillMiscTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
         TFCMItems.ORE_POWDERS.values().forEach(p -> accept(out, p));
+        consumeOurs(BuiltInRegistries.FLUID, fluid -> out.accept(fluid.getBucket())); // Try to add fluid buckets here
     }
     // Helpers for registration
     private static CreativeTabHolder register(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator displayItems)
@@ -89,6 +95,7 @@ public class TFCMCreativeTabs {
             .build());
         return new CreativeTabHolder(reg, displayItems);
     }
+
     // Fill Metal Tab
     private static void fillMetalTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
@@ -170,6 +177,16 @@ public class TFCMCreativeTabs {
             })
             {
                 accept(out, TFCMItems.METAL_ITEMS, metal, itemType);
+            }
+        }
+    }
+    private static <T> void consumeOurs(Registry<T> registry, Consumer<T> consumer)
+    {
+        for (T value : registry)
+        {
+            if (Objects.requireNonNull(registry.getKey(value)).getNamespace().equals(TerraFirmaCraft.MOD_ID))
+            {
+                consumer.accept(value);
             }
         }
     }

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/chain",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "tfcmineralogy:block/metal/chain/lead",
+    "particle": "tfcmineralogy:block/metal/block/lead"
+  }
+}

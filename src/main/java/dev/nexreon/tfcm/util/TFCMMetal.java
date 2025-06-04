@@ -59,7 +59,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 public final class TFCMMetal{ 
     public enum Default implements RegistryMetal{
-    LEAD(0xFF66656c, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false);
+    LEAD(0xFF66656c, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, true);
 
     private final String serializedName;
     private final boolean parts, armor, utility;
