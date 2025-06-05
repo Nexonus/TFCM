@@ -3,7 +3,7 @@ package dev.nexreon.tfcm.common.fluids;
 import java.util.Locale;
 
 public enum TFCMSimpleFluid {
-    AMMONIZED_WATER(0xFFA7C8DD);
+    AMMONIZED_WATER(0xFF98AEBC);
 
     private final String id;
     private final int color;

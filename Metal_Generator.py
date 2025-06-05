@@ -23,7 +23,20 @@ def _block_model(self, name_parts: ResourceIdentifier, textures: Union[Dict[str,
             'elements': elements
         })
         return BlockContext(self, res)
-ResourceManager.block_model = _block_model
+ResourceManager.block_model = _block_model # Modifying the function to apply renderType feature.
+
+def _loot(self, name_parts: ResourceIdentifier, *loot_pools: Json, path: str, loot_type: str) -> ResourceLocation:
+        # Original code by AlactrazEscapee
+        res = utils.resource_location(self.domain, name_parts)
+        self.write(('data', res.domain, 'loot_tables', path, res.path), { # *loot_tables* is plural
+            'type': loot_type,
+            'pools': [
+                utils.loot_pool(pool, path)
+                for pool in loot_pools
+            ]
+        })
+        return res
+ResourceManager.loot = _loot # Fixing typo
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESOURCES_DIR = os.path.join(ROOT_DIR, 'src/main/resources')
@@ -41,7 +54,7 @@ metal_dict = {
         'melt_temperature' : 380,
         'specific_heat_capacity': 0.01029,
         'parts' : True,
-        'utility': True, #Lamps, Trapdoors, Etc
+        'utility': False, #Lamps, Trapdoors, Etc
         'tools': False #Pickaxes, Axes, Etc
     }
 }
@@ -67,8 +80,16 @@ for metal, properties in metal_dict.items():
     metalUtility = (properties['utility'])
     metalTools = (properties['tools'])
     metalPart = (properties['parts'])
+    metalTier = (properties['tier'])
+    metalMeltingTemperature = (properties['melt_temperature'])
+    metalSpecificHeatCapacity = (properties['specific_heat_capacity'])
     # Add basic Metal Tags - if PART
+#---------------------
     if metalPart:
+        rm_tfc.data(f'{metalName}',{'tier': metalTier, 'fluid':f'tfcmineralogy:metal/{metalName}','melt_temperature':metalMeltingTemperature,'specific_heat_capacity':metalSpecificHeatCapacity, 
+            'ingots':{'tag':f'forge:ingots/{metalName}'},
+            'double_ingots':{'tag':f'forge:double_ingots/{metalName}'},
+            'sheets':{'tag':f'forge:sheets/{metalName}'}},'data/tfc/tfc/metals', '')
         rm_forge.tag(f'{metalName}',f'items/double_ingots',f'tfcmineralogy:metal/double_ingot/{metalName}')
         rm_forge.tag(f'{metalName}',f'items/rods',f'tfcmineralogy:metal/rod/{metalName}')
         rm_forge.tag(f'{metalName}',f'items/ingots',f'tfcmineralogy:metal/ingot/{metalName}')
@@ -90,9 +111,7 @@ for metal, properties in metal_dict.items():
         rm.tag(f'{metalName}',f'items/metal_item',f'tfcmineralogy:metal/block/{metalName}')
         rm.tag(f'{metalName}',f'items/metal_item',f'tfcmineralogy:metal/block/{metalName}_slab')
         rm.tag(f'{metalName}',f'items/metal_item',f'tfcmineralogy:metal/block/{metalName}_stairs')
-
-        #rm.lang(f'metal.tfcmineralogy.{metalName}')
-
+        
         #rm.blockstate(f'tfcmineralogy:cauldron/metal/{metalName}') # Shouldn't this be in TFC's Domain?
         rm.blockstate(f'tfcmineralogy:fluid/metal/{metalName}')
         rm.blockstate(f'tfcmineralogy:metal/block/{metalName}')
@@ -126,8 +145,6 @@ for metal, properties in metal_dict.items():
                        'facing=west,half=bottom,shape=inner_left':{'model': f'tfcmineralogy:block/metal/block/{metalName}_stairs_inner', 'y':90, 'uvlock':True},
                        'facing=south,half=bottom,shape=inner_left':{'model': f'tfcmineralogy:block/metal/block/{metalName}_stairs_inner'},
                        'facing=north,half=bottom,shape=inner_left':{'model': f'tfcmineralogy:block/metal/block/{metalName}_stairs_inner', 'y':180, 'uvlock':True},
-
-
                         # Stairs top - straight FIXED
                        'facing=east,half=top,shape=straight':{'model': f'tfcmineralogy:block/metal/block/{metalName}_stairs', 'x':180, 'uvlock':True},
                        'facing=west,half=top,shape=straight':{'model': f'tfcmineralogy:block/metal/block/{metalName}_stairs', 'x':180, 'y':180, 'uvlock':True},
@@ -165,25 +182,42 @@ for metal, properties in metal_dict.items():
         rm.block_model(f'tfcmineralogy:metal/block/{metalName}_stairs', {'bottom':f'tfcmineralogy:block/metal/block/{metalName}','top':f'tfcmineralogy:block/metal/block/{metalName}','side':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='block/stairs')
         rm.block_model(f'tfcmineralogy:metal/block/{metalName}_stairs_inner', {'bottom':f'tfcmineralogy:block/metal/block/{metalName}','top':f'tfcmineralogy:block/metal/block/{metalName}','side':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='block/inner_stairs')
         rm.block_model(f'tfcmineralogy:metal/block/{metalName}_stairs_outer', {'bottom':f'tfcmineralogy:block/metal/block/{metalName}','top':f'tfcmineralogy:block/metal/block/{metalName}','side':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='block/outer_stairs')
-        
-        rm.block_model(f'tfcmineralogy:metal/chain/{metalName}', {'all':f'tfcmineralogy:block/metal/chain/{metalName}','particle':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='minecraft:block/chain', render='minecraft:cutout')
 
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_bottom', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_bottom',render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_top', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_top',render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_open', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_open',render='minecraft:cutout')
+        rm.item_model(f'tfcmineralogy:metal/block/{metalName}',parent=f'tfcmineralogy:block/metal/block/{metalName}', no_textures=True)
+        rm.item_model(f'tfcmineralogy:metal/block/{metalName}_slab',parent=f'tfcmineralogy:block/metal/block/{metalName}_slab', no_textures=True)
+        rm.item_model(f'tfcmineralogy:metal/block/{metalName}_stairs',parent=f'tfcmineralogy:block/metal/block/{metalName}_stairs', no_textures=True)
 
         rm.block_model(f'tfcmineralogy:fluid/metal/{metalName}', {'particle':'block/lava_still'}, parent=None)
         rm.custom_item_model(f'tfcmineralogy:bucket/metal/{metalName}', 'forge:fluid_container', {'parent':'forge:item/bucket', 'fluid':f'tfcmineralogy/metal/{metalName}'})
 
+        # Lang
+        rm.lang(f'metal.tfcmineralogy.{metalName}', (metalName[0].upper()+metalName[1:]))
+        rm.lang(f'fluid.tfcmineralogy.metal.{metalName}', (metalName[0].upper()+metalName[1:]))
+        rm.item(f'metal.ingot.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) + ' Ingot')
+        rm.item(f'metal.rod.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Rod')
+        rm.item(f'metal.sheet.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Sheet')
+        rm.item(f'metal.double_ingot.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Double Ingot')
+        rm.item(f'metal.double_sheet.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Double Sheet')
+        rm.item(f'bucket.metal.{metalName}').with_lang('Molten ' + (metalName[0].upper()+metalName[1:]) + ' Bucket')
+
+        rm.block(f'metal.block.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Plated Block')
+        rm.block(f'metal.block.{metalName}_slab').with_lang((metalName[0].upper()+metalName[1:]) +' Plated Slab')
+        rm.block(f'metal.block.{metalName}_stairs').with_lang((metalName[0].upper()+metalName[1:]) +' Plated Stairs')
+        rm.block(f'fluid.metal.{metalName}').with_lang('Molten ' + (metalName[0].upper()+metalName[1:]))
+        rm.block(f'cauldron.metal.{metalName}').with_lang('Molten ' + (metalName[0].upper()+metalName[1:]) + ' Cauldron')
+
+        # Loot
+        rm.block_loot(f'metal/block/{metalName}',{'name': f'tfcmineralogy:metal/block/{metalName}'})
+        rm.block_loot(f'metal/block/{metalName}_slab',{'name': f'tfcmineralogy:metal/block/{metalName}_slab'})
+        rm.block_loot(f'metal/block/{metalName}_stairs',{'name': f'tfcmineralogy:metal/block/{metalName}_stairs'})
+#---------------------
     if metalUtility:
         # Add Anvil, Lamp, Trapdoor if UTILITY
         rm.tag(f'trapdoors',f'items',f'tfcmineralogy:metal/trapdoor/{metalName}')
         rm.tag(f'lamps',f'blocks',f'tfcmineralogy:metal/lamp/{metalName}')
         rm.tag(f'anvils',f'blocks',f'tfcmineralogy:metal/anvil/{metalName}')
+        rm.item_tag('lamps', f'tfcmineralogy:metal/lamp/{metalName}')
+        rm.block_tag('lamps', f'tfcmineralogy:metal/lamp/{metalName}')
         rm.blockstate(f'tfcmineralogy:metal/anvil/{metalName}', f'tfcmineralogy:block/metal/anvil/{metalName}', 
                       {'facing=north':{'model': f'tfcmineralogy:block/metal/anvil/{metalName}','y':90},
                        'facing=east':{'model': f'tfcmineralogy:block/metal/anvil/{metalName}','y':180}, 
@@ -230,9 +264,6 @@ for metal, properties in metal_dict.items():
                        'facing=west,half=top,open=true':{'model': f'tfcmineralogy:block/metal/trapdoor/{metalName}_open', 'x':180, 'y':90}})
         rm.item_model(f'tfcmineralogy:metal/anvil/{metalName}',parent=f'tfcmineralogy:block/metal/anvil/{metalName}',no_textures=True)
         rm.item_model(f'tfcmineralogy:metal/bars/{metalName}',f'tfcmineralogy:block/metal/bars/{metalName}',parent='item/generated')
-        rm.item_model(f'tfcmineralogy:metal/block/{metalName}',parent=f'tfcmineralogy:block/metal/block/{metalName}', no_textures=True)
-        rm.item_model(f'tfcmineralogy:metal/block/{metalName}_slab',parent=f'tfcmineralogy:block/metal/block/{metalName}_slab', no_textures=True)
-        rm.item_model(f'tfcmineralogy:metal/block/{metalName}_stairs',parent=f'tfcmineralogy:block/metal/block/{metalName}_stairs', no_textures=True)
         rm.item_model(f'tfcmineralogy:metal/chain/{metalName}',f'tfcmineralogy:item/metal/chain/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/lamp/{metalName}',f'tfcmineralogy:item/metal/lamp/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/trapdoor/{metalName}',parent=f'tfcmineralogy:block/metal/trapdoor/{metalName}_bottom', no_textures=True)
@@ -247,7 +278,35 @@ for metal, properties in metal_dict.items():
         rm.block_model(f'tfcmineralogy:bars/{metalName}_bars_side_alt', {'particle':f'tfcmineralogy:block/metal/bars/{metalName}','bars':f'tfcmineralogy:block/metal/bars/{metalName}','edge':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='minecraft:block/iron_bars_side_alt',render='minecraft:cutout')
 
         rm.block_model(f'tfcmineralogy:metal/anvil/{metalName}', {'top':f'tfcmineralogy:block/metal/anvil/{metalName}_top', 'side':f'tfcmineralogy:block/metal/anvil/{metalName}_side','particle':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='tfc:block/anvil')
+
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_bottom', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_bottom',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_top', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_top',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_open', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_open',render='minecraft:cutout')
+        rm.block(f'{metalName}_trapdoor').with_lang((metalName[0].upper()+metalName[1:]) +' Trapdoor')
+        rm.block_model(f'tfcmineralogy:metal/chain/{metalName}', {'all':f'tfcmineralogy:block/metal/chain/{metalName}','particle':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='minecraft:block/chain', render='minecraft:cutout')
         
+        #Lang
+        rm.item(f'metal.unfinished_lamp.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Unfinished Lamp')
+        
+        rm.block(f'metal.anvil.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Anvil')
+        rm.block(f'metal.bars.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Bars')
+        rm.block(f'metal.chain.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Chain')
+        rm.block(f'metal.bars.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Bars')
+        rm.block(f'metal.lamp.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Lamp')
+        rm.block(f'metal.lamp.{metalName}.filled').with_lang('Filled '+(metalName[0].upper()+metalName[1:]) +' Lantern')
+        rm.block(f'metal.trapdoor.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Trapdoor')
+
+        #Loot
+        rm.block_loot(f'metal/anvil/{metalName}',{'name': f'tfcmineralogy:metal/anvil/{metalName}'})
+        rm.block_loot(f'metal/bars/{metalName}',{'name': f'tfcmineralogy:metal/bars/{metalName}'})
+        rm.block_loot(f'metal/chain/{metalName}',{'name': f'tfcmineralogy:metal/chain/{metalName}'})
+        rm.block_loot(f'metal/lamp/{metalName}',{'name': f'tfcmineralogy:metal/lamp/{metalName}'})
+        rm.block_loot(f'metal/trapdoor/{metalName}',{'name': f'tfcmineralogy:metal/trapdoor/{metalName}'})
+#---------------------
     if metalTools:
         # Add Metal Tools if TOOL
         rm.tag(f'pickaxes',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
@@ -265,6 +324,7 @@ for metal, properties in metal_dict.items():
         rm.tag(f'maces',f'items',f'tfcmineralogy:metal/mace/{metalName}')
         rm.tag(f'tuyeres',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
         rm.tag(f'shears',f'items',f'tfcmineralogy:metal/shears/{metalName}')
+        rm.tag(f'shears',f'items',f'tfcmineralogy:metal/fishing_rod/{metalName}')
         # Add UsableOnToolRack tag if TOOL
         rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/axe/{metalName}')
         rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
@@ -281,6 +341,7 @@ for metal, properties in metal_dict.items():
         rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/mace/{metalName}')
         rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
         rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/shears/{metalName}')
+        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/fishing_rod/{metalName}')
         # Add to Metal_Item Tool tag:
         rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/axe/{metalName}')
         rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/pickaxe/{metalName}')
@@ -297,6 +358,7 @@ for metal, properties in metal_dict.items():
         rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/mace/{metalName}')
         rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/tuyere/{metalName}')
         rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/shears/{metalName}')
+        rm.tag(f'{metalName}_tools',f'items/metal_item',f'tfcmineralogy:metal/fishing_rod/{metalName}')
         # Deals damage tags for TOOL
         rm.tag(f'deals_slashing_damage',f'items',f'#tfcmineralogy:scythes')
         rm.tag(f'deals_crushing_damage',f'items',f'#tfcmineralogy:hammers')
@@ -311,6 +373,7 @@ for metal, properties in metal_dict.items():
         rm.item_model(f'tfcmineralogy:metal/axe_head/{metalName}',f'tfcmineralogy:item/metal/axe_head/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/chisel_head/{metalName}',f'tfcmineralogy:item/metal/chisel_head/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/fish_hook/{metalName}',f'tfcmineralogy:item/metal/fish_hook/{metalName}',parent='item/generated')
+        rm.item_model(f'tfcmineralogy:metal/fishing_rod/{metalName}',f'tfcmineralogy:item/metal/fishing_rod/{metalName}',parent='tfc:item/handheld_flipped')
         rm.item_model(f'tfcmineralogy:metal/hammer_head/{metalName}',f'tfcmineralogy:item/metal/hammer_head/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/hoe_head/{metalName}',f'tfcmineralogy:item/metal/hoe_head/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/horse_armor/{metalName}',f'tfcmineralogy:item/metal/horse_armor/{metalName}',parent='item/generated')
@@ -344,6 +407,48 @@ for metal, properties in metal_dict.items():
         rm.custom_item_model(f'tfcmineralogy:metal/chestplate/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/chestplate/{metalName}','trim':'tfc:item/chestplate_trim'}})
         rm.custom_item_model(f'tfcmineralogy:metal/greaves/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/greaves/{metalName}','trim':'tfc:item/greaves_trim'}})
         rm.custom_item_model(f'tfcmineralogy:metal/helmet/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/helmet/{metalName}','trim':'tfc:item/helmet_trim'}})
+        
+        #Lang
+        rm.item(f'metal.tuyere.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Tuyere')
+        rm.item(f'metal.fish_hook.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Fish Hook')
+        rm.item(f'metal.fishing_rod.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Fishing Rod')
+        rm.item(f'metal.pickaxe.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Pickaxe')
+        rm.item(f'metal.pickaxe_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Pickaxe Head')
+        rm.item(f'metal.shovel.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Shovel')
+        rm.item(f'metal.shovel_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Shovel Head')
+        rm.item(f'metal.axe.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Axe')
+        rm.item(f'metal.axe_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Axe Head')
+        rm.item(f'metal.hoe.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Hoe')
+        rm.item(f'metal.hoe_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Hoe Head')
+        rm.item(f'metal.chisel.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Chisel')
+        rm.item(f'metal.chisel_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Chisel Head')
+        rm.item(f'metal.sword.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Sword')
+        rm.item(f'metal.sword_blade.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Sword Blade')
+        rm.item(f'metal.mace.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Mace')
+        rm.item(f'metal.mace_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Mace Head')
+        rm.item(f'metal.saw.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Saw')
+        rm.item(f'metal.saw_blade.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Saw Blade')
+        rm.item(f'metal.javelin.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Javelin')
+        rm.item(f'metal.javelin_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Javelin Head')
+        rm.item(f'metal.hammer.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +' Hammer Head')
+        rm.item(f'metal.propick.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Prospector's Pick")
+        rm.item(f'metal.propick_head.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Prospector's Pick Head")
+        rm.item(f'metal.knife.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Knife")
+        rm.item(f'metal.knife_blade.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Knife Blade")
+        rm.item(f'metal.scythe.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Scythe")
+        rm.item(f'metal.scythe_blade.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Scythe Blade")
+        rm.item(f'metal.shears.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Shears")
+        rm.item(f'metal.unfinished_helmet.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Unfinished Helmet")
+        rm.item(f'metal.helmet.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Helmet")
+        rm.item(f'metal.unfinished_chestplate.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Unfinished Chestplate")
+        rm.item(f'metal.chestplate.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Chestplate")
+        rm.item(f'metal.unfinished_greaves.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Unfinished Greaves")
+        rm.item(f'metal.greaves.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Greaves")
+        rm.item(f'metal.unfinished_boots.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Unfinished Boots")
+        rm.item(f'metal.boots.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Boots")
+        rm.item(f'metal.horse_armor.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Horse Armor")
+        rm.item(f'metal.shield.{metalName}').with_lang((metalName[0].upper()+metalName[1:]) +" Shield")
 
 rm_forge.flush()
+rm_tfc.flush()
 rm.flush()

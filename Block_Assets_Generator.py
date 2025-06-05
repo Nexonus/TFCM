@@ -74,7 +74,6 @@ for mineral in mineral_dict:
         lang_capital = stone_capital + " " + mineral_capital
 
         lang_entry = (f'block.tfcmineralogy.ore.{mineral}.{stone}', lang_capital)
-        lang_dict.add(lang_entry)
 
         prospect_lang_entry = (f'block.tfcmineralogy.ore.{mineral}.{stone}.prospected', mineral_capital)
         prospect_lang_dict.add(prospect_lang_entry)

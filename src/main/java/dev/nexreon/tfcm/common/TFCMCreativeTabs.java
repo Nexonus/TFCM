@@ -7,15 +7,11 @@ import dev.nexreon.tfcm.common.items.TFCMItems;
 import dev.nexreon.tfcm.util.TFCMMetal;
 
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.util.SelfTests;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -79,11 +75,9 @@ public class TFCMCreativeTabs {
         }
     }
     // Fill Misc Tab
-    @SuppressWarnings("deprecation")
     private static void fillMiscTab(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output out)
     {
         TFCMItems.ORE_POWDERS.values().forEach(p -> accept(out, p));
-        consumeOurs(BuiltInRegistries.FLUID, fluid -> out.accept(fluid.getBucket())); // Try to add fluid buckets here
     }
     // Helpers for registration
     private static CreativeTabHolder register(String name, Supplier<ItemStack> icon, CreativeModeTab.DisplayItemsGenerator displayItems)
@@ -116,11 +110,12 @@ public class TFCMCreativeTabs {
             }
 
             accept(out, TFCMItems.METAL_ITEMS, metal, TFCMMetal.ItemType.UNFINISHED_LAMP);
-
+            /* 
             if (metal == TFCMMetal.Default.LEAD)
             {
                 accept(out, TFCMBlocks.LEAD_PIPE);
             }
+            */
 
             for (TFCMMetal.ItemType itemType : new TFCMMetal.ItemType[] {
                 TFCMMetal.ItemType.INGOT,
@@ -180,6 +175,7 @@ public class TFCMCreativeTabs {
             }
         }
     }
+    /*  // Used by Lead Pipe?
     private static <T> void consumeOurs(Registry<T> registry, Consumer<T> consumer)
     {
         for (T value : registry)
@@ -190,6 +186,7 @@ public class TFCMCreativeTabs {
             }
         }
     }
+    */    
 
     private static <T extends ItemLike, R extends Supplier<T>, K1, K2> void accept(CreativeModeTab.Output out, Map<K1, Map<K2, R>> map, K1 key1, K2 key2)
     {
