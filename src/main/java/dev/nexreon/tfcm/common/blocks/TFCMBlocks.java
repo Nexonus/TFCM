@@ -7,13 +7,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import dev.nexreon.tfcm.TFCMineralogy;
-import dev.nexreon.tfcm.common.blockentities.TFCMBlockEntities;
 import dev.nexreon.tfcm.common.blocks.rock.TFCMOre;
 import dev.nexreon.tfcm.common.fluids.TFCMSimpleFluid;
 import dev.nexreon.tfcm.common.fluids.TFCMFluidId;
 import dev.nexreon.tfcm.common.fluids.TFCMFluids;
 import dev.nexreon.tfcm.common.items.TFCMItems;
 import dev.nexreon.tfcm.util.TFCMMetal;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.FluidCauldronBlock;
 import net.dries007.tfc.common.blocks.devices.DoubleIngotPileBlock;
@@ -56,14 +56,16 @@ public class TFCMBlocks {
             register(type.createName(metal), type.create(metal), type.createBlockItem(new Item.Properties()))
         )
     );
+    // Register Heavy Lead Block
+    public static final RegistryObject<Block> HEAVY_LEAD_BLOCK = register("metal/heavy_lead_block", () -> new HeavyLeadBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(5f, 1200.0f).sound(SoundType.METAL)));
 
     public static final Map<TFCMFluidId, RegistryObject<FluidCauldronBlock>> CAULDRONS = TFCMFluidId.mapOf(fluid ->
         registerNoItem("cauldron/" + fluid.name(), () -> new FluidCauldronBlock(Properties.copy(Blocks.CAULDRON)))
     );
     // Register Piles:
-    public static final RegistryObject<Block> SHEET_PILE = registerNoItem("tfcm_sheet_pile", () -> new SheetPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCMBlockEntities.SHEET_PILE)));
-    public static final RegistryObject<Block> INGOT_PILE = registerNoItem("tfcm_ingot_pile", () -> new IngotPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCMBlockEntities.INGOT_PILE)));
-    public static final RegistryObject<Block> DOUBLE_INGOT_PILE = registerNoItem("tfcm_double_ingot_pile", () -> new DoubleIngotPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCMBlockEntities.INGOT_PILE)));
+    public static final RegistryObject<Block> SHEET_PILE = registerNoItem("tfcm_sheet_pile", () -> new SheetPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCBlockEntities.SHEET_PILE)));
+    public static final RegistryObject<Block> INGOT_PILE = registerNoItem("tfcm_ingot_pile", () -> new IngotPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCBlockEntities.INGOT_PILE)));
+    public static final RegistryObject<Block> DOUBLE_INGOT_PILE = registerNoItem("tfcm_double_ingot_pile", () -> new DoubleIngotPileBlock(ExtendedProperties.of(MapColor.METAL).strength(4, 60).sound(SoundType.METAL).noOcclusion().blockEntity(TFCBlockEntities.INGOT_PILE)));
 
     // Register Lead Pipe : // UNREGISTERED FOR NOW
     //public static final RegistryObject<Block> LEAD_PIPE = register("lead_pipe", () -> new FluidPipeBlock(ExtendedProperties.of().strength(5f).sound(SoundType.METAL)));

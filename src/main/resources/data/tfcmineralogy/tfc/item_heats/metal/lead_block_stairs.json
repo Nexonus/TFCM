@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/block/lead_stairs"
+  },
+  "heat_capacity": 1.901,
+  "forging_temperature": 169,
+  "welding_temperature": 215
+}

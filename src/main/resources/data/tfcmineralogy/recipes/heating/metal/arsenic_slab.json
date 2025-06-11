@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/block/arsenic_slab"
+  },
+  "result_fluid": {
+    "fluid": "tfcmineralogy:metal/arsenic",
+    "amount": 50
+  },
+  "temperature": 816
+}

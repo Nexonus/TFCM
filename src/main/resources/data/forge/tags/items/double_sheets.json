@@ -2,6 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#forge:double_sheets/lead"
+    "#forge:double_sheets/lead",
+    "#forge:double_sheets/arsenic",
+    "#forge:double_sheets/arsenical_bronze"
   ]
 }

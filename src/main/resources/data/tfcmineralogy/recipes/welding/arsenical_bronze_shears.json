@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "tfcmineralogy:metal/knife_blade/arsenical_bronze"
+  },
+  "second_input": {
+    "item": "tfcmineralogy:metal/knife_blade/arsenical_bronze"
+  },
+  "tier": 1,
+  "result": {
+    "item": "tfcmineralogy:metal/shears/arsenical_bronze"
+  },
+  "combine_forging_bonus": true
+}

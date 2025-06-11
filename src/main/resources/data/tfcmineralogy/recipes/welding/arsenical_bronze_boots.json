@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "tfcmineralogy:metal/unfinished_boots/arsenical_bronze"
+  },
+  "second_input": {
+    "item": "tfcmineralogy:metal/sheet/arsenical_bronze"
+  },
+  "tier": 1,
+  "result": {
+    "item": "tfcmineralogy:metal/boots/arsenical_bronze"
+  }
+}

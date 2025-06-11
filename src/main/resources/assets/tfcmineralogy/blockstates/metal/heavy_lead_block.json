@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=north": {
+      "model": "tfcmineralogy:block/metal/heavy_lead_block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "tfcmineralogy:block/metal/heavy_lead_block"
+    },
+    "facing=south": {
+      "model": "tfcmineralogy:block/metal/heavy_lead_block",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tfcmineralogy:block/metal/heavy_lead_block",
+      "y":180
+    }
+  }
+}

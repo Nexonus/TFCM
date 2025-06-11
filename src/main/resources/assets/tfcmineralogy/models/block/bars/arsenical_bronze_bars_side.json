@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "minecraft:block/iron_bars_side",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "tfcmineralogy:block/metal/bars/arsenical_bronze",
+    "bars": "tfcmineralogy:block/metal/bars/arsenical_bronze",
+    "edge": "tfcmineralogy:block/metal/smooth/arsenical_bronze"
+  }
+}

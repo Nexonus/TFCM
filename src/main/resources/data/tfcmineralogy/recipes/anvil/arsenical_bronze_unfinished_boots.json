@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:anvil",
+  "input": {
+    "tag": "forge:sheets/arsenical_bronze"
+  },
+  "result": {
+    "item": "tfcmineralogy:metal/unfinished_boots/arsenical_bronze"
+  },
+  "tier": 2,
+  "rules": [
+    "bend_last",
+    "bend_second_last",
+    "shrink_third_last"
+  ]
+}

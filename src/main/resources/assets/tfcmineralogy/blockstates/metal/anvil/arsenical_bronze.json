@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=north": {
+      "model": "tfcmineralogy:block/metal/anvil/arsenical_bronze",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "tfcmineralogy:block/metal/anvil/arsenical_bronze",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "tfcmineralogy:block/metal/anvil/arsenical_bronze",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "tfcmineralogy:block/metal/anvil/arsenical_bronze"
+    }
+  }
+}

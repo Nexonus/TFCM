@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:alloy",
+  "result": "tfcmineralogy:arsenical_bronze",
+  "contents": [
+    {
+      "metal": "tfc:copper",
+      "min": 0.78,
+      "max": 0.9
+    },
+    {
+      "metal": "tfc:tin",
+      "min": 0.06,
+      "max": 0.16
+    },
+    {
+      "metal": "tfcmineralogy:arsenic",
+      "min": 0.04,
+      "max": 0.06
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "hanging=false,lit=false": {
+      "model": "tfcmineralogy:block/metal/lamp/arsenical_bronze_off"
+    },
+    "hanging=true,lit=false": {
+      "model": "tfcmineralogy:block/metal/lamp/arsenical_bronze_hanging_off"
+    },
+    "hanging=false,lit=true": {
+      "model": "tfcmineralogy:block/metal/lamp/arsenical_bronze_on"
+    },
+    "hanging=true,lit=true": {
+      "model": "tfcmineralogy:block/metal/lamp/arsenical_bronze_hanging_on"
+    }
+  }
+}

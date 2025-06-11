@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:casting",
+  "mold": {
+    "item": "tfc:ceramic/sword_blade_mold"
+  },
+  "fluid": {
+    "ingredient": "tfcmineralogy:metal/arsenical_bronze",
+    "amount": 200
+  },
+  "result": {
+    "item": "tfcmineralogy:metal/sword_blade/arsenical_bronze"
+  },
+  "break_chance": 1
+}

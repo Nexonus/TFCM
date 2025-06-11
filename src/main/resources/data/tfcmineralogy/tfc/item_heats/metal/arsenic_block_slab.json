@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/block/arsenic_slab"
+  },
+  "heat_capacity": 3.679,
+  "forging_temperature": 493,
+  "welding_temperature": 685
+}

@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "type=bottom": {
+      "model": "tfcmineralogy:block/metal/block/arsenical_bronze_slab"
+    },
+    "type=top": {
+      "model": "tfcmineralogy:block/metal/block/arsenical_bronze_slab_top"
+    },
+    "type=double": {
+      "model": "tfcmineralogy:block/metal/block/arsenical_bronze"
+    }
+  }
+}

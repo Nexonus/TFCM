@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:items/metal/ingot/lead",
+    "tfc:items/metal/double_ingot/lead",
+    "tfc:items/metal/sheet/lead",
+    "tfc:items/metal/double_sheet/lead",
+    "tfc:items/metal/rod/lead",
+    "tfc:items/metal/block/lead",
+    "tfc:items/metal/block/lead_slab",
+    "tfc:items/metal/block/lead_stairs"
+  ]
+}

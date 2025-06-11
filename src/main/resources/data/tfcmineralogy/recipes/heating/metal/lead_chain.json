@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "heating",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/chain/lead"
+  },
+  "result_fluid": {
+    "fluid": "tfcmineralogy:metal/lead",
+    "amount": 6
+  },
+  "temperature": "380"
+}

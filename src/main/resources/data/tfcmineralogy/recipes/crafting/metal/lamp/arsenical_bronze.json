@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tfc:lamp_glass"
+    },
+    {
+      "item": "tfcmineralogy:metal/unfinished_lamp/arsenical_bronze"
+    }
+  ],
+  "result": {
+    "item": "tfcmineralogy:metal/lamp/arsenical_bronze"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "block/template_orientable_trapdoor_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "tfcmineralogy:block/metal/trapdoor/arsenical_bronze"
+  }
+}

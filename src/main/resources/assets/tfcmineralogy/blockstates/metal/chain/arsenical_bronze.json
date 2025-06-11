@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "axis=x": {
+      "model": "tfcmineralogy:block/metal/chain/arsenical_bronze",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tfcmineralogy:block/metal/chain/arsenical_bronze"
+    },
+    "axis=z": {
+      "model": "tfcmineralogy:block/metal/chain/arsenical_bronze",
+      "x": 90
+    }
+  }
+}

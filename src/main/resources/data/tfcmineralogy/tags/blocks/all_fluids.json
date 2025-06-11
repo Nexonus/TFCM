@@ -3,6 +3,7 @@
   "replace": false,
   "values": [
     "tfcmineralogy:fluid/ammonized_water",
-    "tfcmineralogy:fluid/metal/lead"
+    "tfcmineralogy:fluid/metal/lead",
+    "tfcmineralogy:fluid/metal/arsenical_bronze"
   ]
 }

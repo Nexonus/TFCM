@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "forge:double_sheets/lead"
+  },
+  "heat_capacity": 10.14,
+  "forging_temperature": 169,
+  "welding_temperature": 215
+}

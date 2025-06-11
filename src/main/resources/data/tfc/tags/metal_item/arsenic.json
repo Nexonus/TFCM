@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:items/metal/ingot/arsenic",
+    "tfc:items/metal/double_ingot/arsenic",
+    "tfc:items/metal/sheet/arsenic",
+    "tfc:items/metal/double_sheet/arsenic",
+    "tfc:items/metal/rod/arsenic",
+    "tfc:items/metal/block/arsenic",
+    "tfc:items/metal/block/arsenic_slab",
+    "tfc:items/metal/block/arsenic_stairs"
+  ]
+}

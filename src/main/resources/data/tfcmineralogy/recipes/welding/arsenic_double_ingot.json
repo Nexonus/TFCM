@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "tag": "forge:ingots/arsenic"
+  },
+  "second_input": {
+    "tag": "forge:ingots/arsenic"
+  },
+  "tier": 0,
+  "result": {
+    "item": "tfcmineralogy:metal/double_ingot/arsenic"
+  }
+}

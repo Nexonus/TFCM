@@ -1,0 +1,39 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "story/tfc:story/plated_block",
+  "criteria": {
+    "metal/heavy_lead_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tfcmineralogy:metal/heavy_lead_block"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "tfcmineralogy:metal/heavy_lead_block"
+    },
+    "title": {
+      "translate": "tfcmineralogy.advancements.story.heavy_lead_block.title"
+    },
+    "description": {
+      "translate": "tfcmineralogy.advancements.story.heavy_lead_block.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "tfc:textures/block/rock/mossy_cobble/schist.png"
+  },
+  "requirements": [
+    [
+      "metal/heavy_lead_block"
+    ]
+  ]
+}

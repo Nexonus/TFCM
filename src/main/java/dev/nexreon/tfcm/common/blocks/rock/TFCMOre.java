@@ -12,7 +12,9 @@ public enum TFCMOre
     GALENA(true),
     ORPIMENT(false),
     REALGAR(false),
-    VIVIANITE(false);
+    VIVIANITE(false),
+    ARSENOPYRITE(true),
+    SALMIAC(false);
 
     private final boolean graded;
 

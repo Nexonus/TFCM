@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "tier": 1,
+  "fluid": "tfcmineralogy:metal/arsenic",
+  "melt_temperature": 816,
+  "specific_heat_capacity": 0.02857,
+  "ingots": {
+    "tag": "forge:ingots/arsenic"
+  }
+}

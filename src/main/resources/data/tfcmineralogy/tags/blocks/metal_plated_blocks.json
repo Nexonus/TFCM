@@ -2,6 +2,8 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "tfcmineralogy:metal/block/lead"
+    "tfcmineralogy:metal/block/lead",
+    "tfcmineralogy:metal/block/arsenic",
+    "tfcmineralogy:metal/block/arsenical_bronze"
   ]
 }

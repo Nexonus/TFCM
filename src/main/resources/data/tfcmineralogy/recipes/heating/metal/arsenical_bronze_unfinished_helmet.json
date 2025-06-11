@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/unfinished_helmet/arsenical_bronze"
+  },
+  "result_fluid": {
+    "fluid": "tfcmineralogy:metal/arsenical_bronze",
+    "amount": 400
+  },
+  "temperature": 980
+}

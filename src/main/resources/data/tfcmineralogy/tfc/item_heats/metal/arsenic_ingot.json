@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "forge:ingots/arsenic"
+  },
+  "heat_capacity": 7.358,
+  "forging_temperature": 493,
+  "welding_temperature": 685
+}

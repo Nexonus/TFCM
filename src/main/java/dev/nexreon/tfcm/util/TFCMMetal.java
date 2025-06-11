@@ -9,6 +9,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import dev.nexreon.tfcm.common.TFCMArmorMaterials;
+import dev.nexreon.tfcm.common.TFCMTiers;
 import dev.nexreon.tfcm.common.blocks.TFCMBlocks;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
@@ -59,7 +61,9 @@ import net.minecraft.world.level.material.PushReaction;
 
 public final class TFCMMetal{ 
     public enum Default implements RegistryMetal{
-    LEAD(0xFF4A4553, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, true); // utility true for debugging lamps
+    LEAD(0xFF4A4553, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false),
+    ARSENIC(0xFF333b36, MapColor.COLOR_GREEN, Rarity.COMMON, true, false, false),
+    ARSENICAL_BRONZE(0xFFbcafa1, MapColor.COLOR_GRAY, Rarity.COMMON, Tier.TIER_II, TFCMTiers.ARSENICAL_BRONZE, TFCMArmorMaterials.ARSENICAL_BRONZE, true, true, true); // utility true for debugging lamps
 
     private final String serializedName;
     private final boolean parts, armor, utility;
