@@ -701,7 +701,7 @@ for metal, properties in metal_dict.items():
             'parent':f'tfcmineralogy:item/metal/javelin/{metalName}_gui'
         }}})
         rm.item_model(f'tfcmineralogy:metal/javelin/{metalName}_gui',f'tfcmineralogy:item/metal/javelin/{metalName}',parent='item/generated')
-        rm.data(f'tfcmineralogy:metal/javelin/{metalName}_in_hand',{'parent':'item/trident_in_hand','textures':{'particle':f'tfcmineralogy:item/metal/javelin/{metalName}'}},'data','models/item/')
+        rm.data(f'tfcmineralogy:metal/javelin/{metalName}_in_hand',{'parent':'item/trident_in_hand','textures':{'particle':f'tfcmineralogy:item/metal/javelin/{metalName}'}},'assets','models/item/')
         #rm.item_model(f'tfcmineralogy:metal/javelin/{metalName}_in_hand',f'tfcmineralogy:item/metal/javelin/{metalName}',parent='item/trident_in_hand')
         rm.custom_item_model(f'tfcmineralogy:metal/javelin/{metalName}_throwing','forge:separate_transforms',{'gui_light':'front',
         'base':{'parent':f'tfcmineralogy:item/metal/javelin/{metalName}_throwing_base'},'perspectives':
