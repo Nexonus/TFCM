@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "tfcmineralogy:metal/block/vanadium_slab"
+  },
+  "heat_capacity": 2.062,
+  "forging_temperature": 1576,
+  "welding_temperature": 1785
+}

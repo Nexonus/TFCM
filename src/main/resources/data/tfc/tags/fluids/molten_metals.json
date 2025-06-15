@@ -4,6 +4,8 @@
   "values": [
     "tfcmineralogy:metal/lead",
     "tfcmineralogy:metal/arsenic",
-    "tfcmineralogy:metal/arsenical_bronze"
+    "tfcmineralogy:metal/arsenical_bronze",
+    "tfcmineralogy:metal/vanadium",
+    "tfcmineralogy:metal/cobalt"
   ]
 }

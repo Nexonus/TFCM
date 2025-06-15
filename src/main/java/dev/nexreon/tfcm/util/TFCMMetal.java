@@ -61,9 +61,12 @@ import net.minecraft.world.level.material.PushReaction;
 
 public final class TFCMMetal{ 
     public enum Default implements RegistryMetal{
-    LEAD(0xFF4A4553, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false),
+    LEAD(0xFF4A4553, MapColor.COLOR_BLACK, Rarity.COMMON, true, false, false),
     ARSENIC(0xFF333b36, MapColor.COLOR_GREEN, Rarity.COMMON, true, false, false),
-    ARSENICAL_BRONZE(0xFFbcafa1, MapColor.COLOR_GRAY, Rarity.COMMON, Tier.TIER_II, TFCMTiers.ARSENICAL_BRONZE, TFCMArmorMaterials.ARSENICAL_BRONZE, true, true, true); // utility true for debugging lamps
+    ARSENICAL_BRONZE(0xFFbcafa1, MapColor.COLOR_GRAY, Rarity.COMMON, Tier.TIER_II, TFCMTiers.ARSENICAL_BRONZE, TFCMArmorMaterials.ARSENICAL_BRONZE, true, true, true), // utility true for debugging lamps
+    COBALT(0xFF7d7f89, MapColor.COLOR_LIGHT_GRAY, Rarity.COMMON, true, false, false),
+    VANADIUM(0xFF8b7b7e, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false),
+    CAST_IRON(0xFF989897, MapColor.COLOR_BROWN, Rarity.COMMON, Tier.TIER_II, TFCMTiers.CAST_IRON, TFCMArmorMaterials.CAST_IRON, false, true, true);
 
     private final String serializedName;
     private final boolean parts, armor, utility;

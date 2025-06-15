@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:items/metal/ingot/cobalt",
+    "tfc:items/metal/double_ingot/cobalt",
+    "tfc:items/metal/sheet/cobalt",
+    "tfc:items/metal/double_sheet/cobalt",
+    "tfc:items/metal/rod/cobalt",
+    "tfc:items/metal/block/cobalt",
+    "tfc:items/metal/block/cobalt_slab",
+    "tfc:items/metal/block/cobalt_stairs"
+  ]
+}

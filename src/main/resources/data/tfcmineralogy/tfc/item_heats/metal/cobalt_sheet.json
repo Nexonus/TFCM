@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "forge:sheets/cobalt"
+  },
+  "heat_capacity": 5.846,
+  "forging_temperature": 983,
+  "welding_temperature": 1205
+}

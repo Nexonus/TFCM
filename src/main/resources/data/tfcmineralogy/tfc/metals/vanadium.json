@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "tier": 4,
+  "fluid": "tfcmineralogy:metal/vanadium",
+  "melt_temperature": 1900,
+  "specific_heat_capacity": 0.01257,
+  "ingots": {
+    "tag": "forge:ingots/vanadium"
+  },
+  "double_ingots": {
+    "tag": "forge:double_ingots/vanadium"
+  },
+  "sheets": {
+    "tag": "forge:sheets/vanadium"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:items/metal/ingot/vanadium",
+    "tfc:items/metal/double_ingot/vanadium",
+    "tfc:items/metal/sheet/vanadium",
+    "tfc:items/metal/double_sheet/vanadium",
+    "tfc:items/metal/rod/vanadium",
+    "tfc:items/metal/block/vanadium",
+    "tfc:items/metal/block/vanadium_slab",
+    "tfc:items/metal/block/vanadium_stairs"
+  ]
+}

@@ -4,6 +4,8 @@
   "values": [
     "#forge:double_ingots/lead",
     "#forge:double_ingots/arsenic",
-    "#forge:double_ingots/arsenical_bronze"
+    "#forge:double_ingots/arsenical_bronze",
+    "#forge:double_ingots/vanadium",
+    "#forge:double_ingots/cobalt"
   ]
 }

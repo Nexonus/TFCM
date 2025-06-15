@@ -4,6 +4,8 @@
   "values": [
     "#forge:sheets/lead",
     "#forge:sheets/arsenic",
-    "#forge:sheets/arsenical_bronze"
+    "#forge:sheets/arsenical_bronze",
+    "#forge:sheets/vanadium",
+    "#forge:sheets/cobalt"
   ]
 }

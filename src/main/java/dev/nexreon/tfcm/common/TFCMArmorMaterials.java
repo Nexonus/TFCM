@@ -13,7 +13,8 @@ import net.dries007.tfc.util.PhysicalDamageType;
 
 public enum TFCMArmorMaterials implements ArmorMaterial, PhysicalDamageType.Multiplier
 {
-    ARSENICAL_BRONZE(265, 355, 336, 230, 1, 4, 4, 1, 9, 0f, 0f, 10, 15, 8.25f);
+    ARSENICAL_BRONZE(265, 355, 336, 230, 1, 4, 4, 1, 9, 0f, 0f, 10, 15, 8.25f),
+    CAST_IRON(180, 230, 235, 175, 1, 3, 4, 1, 9, 0f, 0f, 10, 10, 6.25f);
     /* 
     COPPER(160, 200, 215, 150, 1, 3, 4, 1, 9, 0f, 0f, 10, 10, 6.25f),
     BISMUTH_BRONZE( 250, 288, 311, 240, 1, 4, 4, 1, 9, 0f, 0f, 15, 10, 8.25f),

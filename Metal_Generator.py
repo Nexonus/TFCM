@@ -138,6 +138,30 @@ metal_dict = {
          'parts': True,
          'utility': True,
          'tools': True
+    },
+    'vanadium':{
+         'name': 'vanadium',
+         'tier': 4,
+         'melt_temperature': 1900,
+         'specific_heat_capacity': 0.01257,
+         'base_heat_capacity': 4.123,
+         'forging_temperature': 1576,
+         'welding_temperature': 1785, 
+         'parts': True,
+         'utility': False,
+         'tools': False
+    },
+    'cobalt':{
+         'name': 'cobalt',
+         'tier': 4,
+         'melt_temperature': 1495,
+         'specific_heat_capacity': 0.00925,
+         'base_heat_capacity': 2.923,
+         'forging_temperature': 983,
+         'welding_temperature': 1205, 
+         'parts': True,
+         'utility': False,
+         'tools': False
     }
 }
 simple_fluid_dict = {

@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "forge:sheets/vanadium"
+  },
+  "heat_capacity": 8.246,
+  "forging_temperature": 1576,
+  "welding_temperature": 1785
+}

@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "tag": "forge:ingots/cobalt"
+  },
+  "second_input": {
+    "tag": "forge:ingots/cobalt"
+  },
+  "tier": 3,
+  "result": {
+    "item": "tfcmineralogy:metal/double_ingot/cobalt"
+  }
+}

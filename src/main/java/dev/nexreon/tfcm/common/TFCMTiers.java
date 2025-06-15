@@ -25,6 +25,7 @@ public class TFCMTiers {
     
     // Bronze >= Vanilla Iron
     public static final Tier ARSENICAL_BRONZE = register("arsenical_bronze", Tiers.IRON, Tiers.DIAMOND, TFCTags.Blocks.NEEDS_BRONZE_TOOL, 2, 1300, 7.3f, 4.0f, 13);
+    public static final Tier CAST_IRON = register("cast_iron", Tiers.IRON, Tiers.DIAMOND, TFCTags.Blocks.NEEDS_BRONZE_TOOL, 2, 600, 7.3f, 4.0f, 13);
     //public static final Tier BRONZE = register("bronze", Tiers.IRON, Tiers.DIAMOND, TFCTags.Blocks.NEEDS_BRONZE_TOOL, 2, 1300, 7.3f, 4.0f, 13);
     
     // Wrought Iron >= Vanilla Iron

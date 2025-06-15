@@ -4,6 +4,8 @@
   "values": [
     "#forge:double_sheets/lead",
     "#forge:double_sheets/arsenic",
-    "#forge:double_sheets/arsenical_bronze"
+    "#forge:double_sheets/arsenical_bronze",
+    "#forge:double_sheets/vanadium",
+    "#forge:double_sheets/cobalt"
   ]
 }
