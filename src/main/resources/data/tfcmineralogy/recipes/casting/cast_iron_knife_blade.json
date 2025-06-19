@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:casting",
+  "mold": {
+    "item": "tfc:ceramic/knife_blade_mold"
+  },
+  "fluid": {
+    "ingredient": "tfc:metal/cast_iron",
+    "amount": 100
+  },
+  "result": {
+    "item": "tfcmineralogy:metal/knife_blade/cast_iron"
+  },
+  "break_chance": 1
+}

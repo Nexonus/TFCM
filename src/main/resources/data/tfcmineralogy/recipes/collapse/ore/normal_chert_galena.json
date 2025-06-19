@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:collapse",
-  "ingredient": [
-    "tfcmineralogy:ore/rich_galena/chert"
-  ],
-  "result": "tfcmineralogy:ore/normal_galena/chert"
-}

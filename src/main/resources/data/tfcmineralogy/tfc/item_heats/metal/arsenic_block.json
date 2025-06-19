@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "tfcmineralogy:metal/block/arsenic"
   },
-  "heat_capacity": 7.358,
-  "forging_temperature": 493,
+  "heat_capacity": 6.358,
+  "forging_temperature": 393,
   "welding_temperature": 685
 }

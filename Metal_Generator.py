@@ -89,7 +89,8 @@ metal_tools = {
      'knife_blade':{'name':'knife_blade','units':100},
      'scythe':{'name':'scythe','units':100},
      'scythe_blade':{'name':'scythe_blade','units':100},
-     'shears':{'name':'shears','units':200}
+     'shears':{'name':'shears','units':200},
+     'shield':{'name':'shield','units':400}
      }
 metal_armor = {
      'unfinished_helmet':{'name':'unfinished_helmet','units':400},
@@ -109,23 +110,25 @@ metal_dict = {
         'melt_temperature' : 330,
         'specific_heat_capacity': 0.00857, # Default: 0.00857 - Cu, 0.02143 - Bi, requires more heat
         'base_heat_capacity': 2.535,
-        'forging_temperature': 169,
+        'forging_temperature': 139,
         'welding_temperature': 215, 
         'parts' : True,
         'utility': False, #Lamps, Trapdoors, Etc
-        'tools': False #Pickaxes, Axes, Etc
+        'tools': False, #Pickaxes, Axes, Etc
+        'armor': False
     },
     'arsenic' :{
         'name': 'arsenic',
         'tier': 1,
         'melt_temperature' : 816,
         'specific_heat_capacity': 0.02857, # Default: 0.00857 - Cu, 0.02143 - Bi, requires more heat
-        'base_heat_capacity': 7.358,
-        'forging_temperature': 493,
+        'base_heat_capacity': 6.358,
+        'forging_temperature': 393,
         'welding_temperature': 685, 
         'parts' : True,
         'utility': False, #Lamps, Trapdoors, Etc
-        'tools': False #Pickaxes, Axes, Etc
+        'tools': False, #Pickaxes, Axes, Etc
+        'armor': False
     },
     'arsenical_bronze':{
          'name': 'arsenical_bronze',
@@ -133,23 +136,25 @@ metal_dict = {
          'melt_temperature': 980,
          'specific_heat_capacity': 0.00857,
          'base_heat_capacity': 2.857,
-         'forging_temperature': 680,
+         'forging_temperature': 580,
          'welding_temperature': 896, 
          'parts': True,
          'utility': True,
-         'tools': True
+         'tools': True,
+         'armor': True
     },
     'vanadium':{
          'name': 'vanadium',
          'tier': 4,
          'melt_temperature': 1900,
          'specific_heat_capacity': 0.01257,
-         'base_heat_capacity': 4.123,
-         'forging_temperature': 1576,
+         'base_heat_capacity': 3.123,
+         'forging_temperature': 1476,
          'welding_temperature': 1785, 
          'parts': True,
          'utility': False,
-         'tools': False
+         'tools': False,
+         'armor': False
     },
     'cobalt':{
          'name': 'cobalt',
@@ -161,7 +166,21 @@ metal_dict = {
          'welding_temperature': 1205, 
          'parts': True,
          'utility': False,
-         'tools': False
+         'tools': False,
+         'armor': False
+    },
+    'cast_iron':{
+         'name': 'cast_iron',
+         'tier': 2,
+         'melt_temperature': 1535,
+         'specific_heat_capacity': 0.00857,
+         'base_heat_capacity': 1.4285,
+         'forging_temperature': 921,
+         'welding_temperature': 1228, 
+         'parts': False,
+         'utility': False,
+         'tools': True,
+         'armor': False
     }
 }
 simple_fluid_dict = {
@@ -187,6 +206,7 @@ for metal, properties in metal_dict.items():
     metalName = (properties['name'])
     metalUtility = (properties['utility'])
     metalTools = (properties['tools'])
+    metalArmor = (properties['armor'])
     metalPart = (properties['parts'])
     metalTier = (properties['tier'])
     metalMeltingTemperature = (properties['melt_temperature'])
@@ -195,6 +215,11 @@ for metal, properties in metal_dict.items():
     metalBaseHeatCapacity = (properties['base_heat_capacity']) # Base heat for 100 mB of metal
     metalForgingTemperature = (properties['forging_temperature'])
     metalWeldingTemperature = (properties['welding_temperature'])
+
+    if metalName == 'cast_iron':
+        resultMoltenMetal = 'tfc:metal/cast_iron'
+    else:
+        resultMoltenMetal = f'tfcmineralogy:metal/{metalName}'
 
 #-------------------
 # Metal Names
@@ -210,27 +235,16 @@ for metal, properties in metal_dict.items():
     # Add basic Metal Tags - if PART
 #---------------------
 # Add Molten Fluids here
-    rm_tfc.tag('all_fluids', 'blocks', f'tfcmineralogy:metal/{metalName}') # Add to all fluids here
-    rm_tfc.tag('molten_metals', 'fluids', f'tfcmineralogy:metal/{metalName}') # Add to the molten_metals
-    rm.tag(f'{metalName}',f'fluids',f'tfcmineralogy:metal/{metalName}')
+    rm_tfc.tag('all_fluids', 'blocks', resultMoltenMetal) # Add to all fluids here
+    rm_tfc.tag('molten_metals', 'fluids', resultMoltenMetal) # Add to the molten_metals
+    rm.tag(f'{metalName}',f'fluids',resultMoltenMetal)
     rm.tag(f'{metalName}',f'fluids',f'tfcmineralogy:metal/flowing_{metalName}')
     rm.blockstate(f'tfcmineralogy:fluid/metal/{metalName}')
 
-# For Special Metals that don't have their parts, tools and utility.
-    if not metalPart and not metalTools and not metalUtility and not metalTools:
-         rm.data(f'{metalName}',{'tier': metalTier, 'fluid':f'tfcmineralogy:metal/{metalName}','melt_temperature':metalMeltingTemperature,'specific_heat_capacity':metalSpecificHeatCapacity, 
-            'ingots':{'tag':f'forge:ingots/{metalName}'}})
-         rm_tfc.tag(f'{metalName}', 'metal_item', f'items/metal/ingot/{metalName}')
-         rm_forge.tag(f'{metalName}',f'items/ingots',f'tfcmineralogy:metal/ingot/{metalName}')
-         rm_forge.tag(f'ingots',f'items',f'#forge:ingots/{metalName}')
-         rm_tfc.tag('pileable_ingots','items',f'#forge:ingots/{metalName}')
-         rm.recipe(f'heating/metal/{metalName}_ingot','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/ingot/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
-         rm.item_model(f'tfcmineralogy:metal/double_ingot/{metalName}',f'tfcmineralogy:item/metal/double_ingot/{metalName}',parent='item/generated')
-         rm.item(f'metal.ingot.{metalName}').with_lang((langMetalName) + ' Ingot')
 #---------------------
+    
     if metalPart:
-        rm.data(f'{metalName}',{'tier': metalTier, 'fluid':f'tfcmineralogy:metal/{metalName}','melt_temperature':metalMeltingTemperature,'specific_heat_capacity':metalSpecificHeatCapacity, 
+        rm.data(f'{metalName}',{'tier': metalTier, 'fluid':resultMoltenMetal,'melt_temperature':metalMeltingTemperature,'specific_heat_capacity':metalSpecificHeatCapacity, 
             'ingots':{'tag':f'forge:ingots/{metalName}'},
             'double_ingots':{'tag':f'forge:double_ingots/{metalName}'},
             'sheets':{'tag':f'forge:sheets/{metalName}'}},'data', 'tfc/metals/')
@@ -262,23 +276,23 @@ for metal, properties in metal_dict.items():
         # Melting Recipes 
 
         rm.recipe(f'heating/metal/{metalName}_block','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/block/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':100},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_slab','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/block/{metalName}_slab'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':50},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':50},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_stairs','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/block/{metalName}_stairs'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':75},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':75},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_block','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/block/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':100},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_ingot','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/ingot/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':100},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_double_ingot','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/double_ingot/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':200},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':200},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_sheet','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/sheet/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':200},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':200},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_double_sheet','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/double_sheet/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':400},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':400},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_rod','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/rod/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':50},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':50},'temperature':(metalMeltingTemperature)})
         # Crafting Recipes
 
         rm.recipe(f'crafting/metal/block/{metalName}', 'tfc:damage_inputs_shaped_crafting',{'recipe':{'type':'minecraft:crafting_shaped',
@@ -382,7 +396,7 @@ for metal, properties in metal_dict.items():
         rm.item_model(f'tfcmineralogy:metal/double_ingot/{metalName}',f'tfcmineralogy:item/metal/double_ingot/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/double_sheet/{metalName}',f'tfcmineralogy:item/metal/double_sheet/{metalName}',parent='item/generated')
         rm.item_model(f'tfcmineralogy:metal/ingot/{metalName}',f'tfcmineralogy:item/metal/ingot/{metalName}',parent='item/generated')
-        rm.item_model(f'tfcmineralogy:metal/rod/{metalName}',f'tfcmineralogy:item/metal/rod/{metalName}',parent='item/generated')
+        rm.item_model(f'tfcmineralogy:metal/rod/{metalName}',f'tfcmineralogy:item/metal/rod/{metalName}',parent='item/handheld_rod')
         rm.item_model(f'tfcmineralogy:metal/sheet/{metalName}',f'tfcmineralogy:item/metal/sheet/{metalName}',parent='item/generated')
         rm.block_model(f'tfcmineralogy:metal/block/{metalName}')
         rm.block_model(f'tfcmineralogy:metal/block/{metalName}_slab', {'bottom':f'tfcmineralogy:block/metal/block/{metalName}','top':f'tfcmineralogy:block/metal/block/{metalName}','side':f'tfcmineralogy:block/metal/block/{metalName}'}, parent='block/slab')
@@ -450,7 +464,7 @@ for metal, properties in metal_dict.items():
         # Casting recipe:
         rm.recipe(f'casting/{metalName}_ingot','tfc:casting',{
             'mold':{'item':'tfc:ceramic/ingot_mold'},
-            'fluid':{'ingredient':f'tfcmineralogy:metal/{metalName}','amount':100},
+            'fluid':{'ingredient':resultMoltenMetal,'amount':100},
             'result':{'item':f'tfcmineralogy:metal/ingot/{metalName}'},
             'break_chance':0.1
         })
@@ -465,10 +479,10 @@ for metal, properties in metal_dict.items():
         rm_tfc.tag(f'{metalName}','metal_item', f'items/metal/unfinished_lamp/{metalName}')
         rm_tfc.tag(f'{metalName}','metal_item', f'items/metal/chain/{metalName}')
 
-        rm.tag(f'trapdoors',f'items',f'tfcmineralogy:metal/trapdoor/{metalName}')
+        rm_tfc.tag(f'trapdoors',f'items',f'tfcmineralogy:metal/trapdoor/{metalName}')
         rm_tfc.tag(f'lamps',f'blocks',f'tfcmineralogy:metal/lamp/{metalName}')
         rm_tfc.tag(f'lamps',f'items',f'tfcmineralogy:metal/lamp/{metalName}') # Fixing these tags
-        rm.tag(f'anvils',f'blocks',f'tfcmineralogy:metal/anvil/{metalName}')
+        rm_tfc.tag(f'anvils',f'blocks',f'tfcmineralogy:metal/anvil/{metalName}')
         rm.blockstate(f'tfcmineralogy:metal/anvil/{metalName}', f'tfcmineralogy:block/metal/anvil/{metalName}', 
                       {'facing=north':{'model': f'tfcmineralogy:block/metal/anvil/{metalName}','y':90},
                        'facing=east':{'model': f'tfcmineralogy:block/metal/anvil/{metalName}','y':180}, 
@@ -528,12 +542,12 @@ for metal, properties in metal_dict.items():
         rm.block_model(f'tfcmineralogy:bars/{metalName}_bars_side', {'particle':f'tfcmineralogy:block/metal/bars/{metalName}','bars':f'tfcmineralogy:block/metal/bars/{metalName}','edge':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='minecraft:block/iron_bars_side',render='minecraft:cutout')
         rm.block_model(f'tfcmineralogy:bars/{metalName}_bars_side_alt', {'particle':f'tfcmineralogy:block/metal/bars/{metalName}','bars':f'tfcmineralogy:block/metal/bars/{metalName}','edge':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='minecraft:block/iron_bars_side_alt',render='minecraft:cutout')
 
-        rm.block_model(f'tfcmineralogy:metal/anvil/{metalName}', {'top':f'tfcmineralogy:block/metal/anvil/{metalName}_top', 'side':f'tfcmineralogy:block/metal/anvil/{metalName}_side','particle':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='tfc:block/anvil')
+        rm.block_model(f'tfcmineralogy:metal/anvil/{metalName}', {'all':f'tfcmineralogy:block/metal/smooth/{metalName}','particle':f'tfcmineralogy:block/metal/smooth/{metalName}'}, parent='tfc:block/anvil')
 
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_hanging_lantern', render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_off', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}_off'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
-        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_on', {'lantern': f'tfcmineralogy:block/metal/lamp/{metalName}'}, parent='minecraft:block/template_lantern',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_off', {'metal': f'tfcmineralogy:block/metal/smooth/{metalName}','chain':f'tfcmineralogy:block/metal/chain/{metalName}', 'lamp':f'tfc:block/lamp_off'}, parent='tfc:block/lamp_hanging', render='minecraft:cutout') # Render is no longer neccessary as the ClientEventHandler handles it now.
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_hanging_on', {'metal': f'tfcmineralogy:block/metal/smooth/{metalName}','chain':f'tfcmineralogy:block/metal/chain/{metalName}', 'lamp':f'tfc:block/lamp'}, parent='tfc:block/lamp_hanging', render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_off', {'metal': f'tfcmineralogy:block/metal/smooth/{metalName}','lamp':f'tfc:block/lamp_off'}, parent='tfc:block/lamp',render='minecraft:cutout')
+        rm.block_model(f'tfcmineralogy:metal/lamp/{metalName}_on', {'metal': f'tfcmineralogy:block/metal/smooth/{metalName}','lamp':f'tfc:block/lamp'}, parent='tfc:block/lamp',render='minecraft:cutout')
         rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_bottom', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_bottom',render='minecraft:cutout')
         rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_top', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_top',render='minecraft:cutout')
         rm.block_model(f'tfcmineralogy:metal/trapdoor/{metalName}_open', {'texture':f'tfcmineralogy:block/metal/trapdoor/{metalName}'}, parent='block/template_orientable_trapdoor_open',render='minecraft:cutout')
@@ -548,7 +562,7 @@ for metal, properties in metal_dict.items():
         rm.block(f'metal.chain.{metalName}').with_lang((langMetalName) +' Chain')
         rm.block(f'metal.bars.{metalName}').with_lang((langMetalName) +' Bars')
         rm.block(f'metal.lamp.{metalName}').with_lang((langMetalName) +' Lamp')
-        rm.block(f'metal.lamp.{metalName}.filled').with_lang('Filled '+(langMetalName) +' Lantern')
+        rm.block(f'metal.lamp.{metalName}.filled').with_lang('Filled '+(langMetalName) +' Lamp')
         rm.block(f'metal.trapdoor.{metalName}').with_lang((langMetalName) +' Trapdoor')
 
         #Loot
@@ -560,17 +574,17 @@ for metal, properties in metal_dict.items():
 
         # Melting Recipes
         rm.recipe(f'heating/metal/{metalName}_anvil','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/anvil/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':1400},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':1400},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_trapdoor','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/trapdoor/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':200},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':200},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_bars','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/bars/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':25},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':25},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_lamp','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/lamp/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':100},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_unfinished_lamp','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/unfinished_lamp/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':100},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':100},'temperature':(metalMeltingTemperature)})
         rm.recipe(f'heating/metal/{metalName}_chain','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/chain/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':6},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':6},'temperature':(metalMeltingTemperature)})
         
         # Utility Block Heating Recipes
         rm.data(f'{metalName}_trapdoor',{'ingredient':{'tag':f'tfcmineralogy:metal/trapdoors/{metalName}'}, 
@@ -638,61 +652,68 @@ for metal, properties in metal_dict.items():
 #---------------------
     if metalTools:
         # Add Metal Tools if TOOL
-        rm.tag(f'pickaxes',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
-        rm.tag(f'axes',f'items',f'tfcmineralogy:metal/axe/{metalName}')
-        rm.tag(f'shovels',f'items',f'tfcmineralogy:metal/shovel/{metalName}')
-        rm.tag(f'swords',f'items',f'tfcmineralogy:metal/sword/{metalName}')
-        rm.tag(f'hammers',f'items',f'tfcmineralogy:metal/hammer/{metalName}')
-        rm.tag(f'knives',f'items',f'tfcmineralogy:metal/knife/{metalName}')
-        rm.tag(f'hoes',f'items',f'tfcmineralogy:metal/hoe/{metalName}')
-        rm.tag(f'chisels',f'items',f'tfcmineralogy:metal/chisel/{metalName}')
-        rm.tag(f'propicks',f'items',f'tfcmineralogy:metal/propick/{metalName}')
-        rm.tag(f'saws',f'items',f'tfcmineralogy:metal/saw/{metalName}')
-        rm.tag(f'scythes',f'items',f'tfcmineralogy:metal/scythe/{metalName}')
-        rm.tag(f'javelins',f'items',f'tfcmineralogy:metal/javelin/{metalName}')
-        rm.tag(f'maces',f'items',f'tfcmineralogy:metal/mace/{metalName}')
-        rm.tag(f'tuyeres',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
-        rm.tag(f'shears',f'items',f'tfcmineralogy:metal/shears/{metalName}')
+        rm_tfc.tag(f'pickaxes',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
+        rm_tfc.tag(f'axes',f'items',f'tfcmineralogy:metal/axe/{metalName}')
+        rm_tfc.tag(f'shovels',f'items',f'tfcmineralogy:metal/shovel/{metalName}')
+        rm_tfc.tag(f'swords',f'items',f'tfcmineralogy:metal/sword/{metalName}')
+        rm_tfc.tag(f'hammers',f'items',f'tfcmineralogy:metal/hammer/{metalName}')
+        rm_tfc.tag(f'knives',f'items',f'tfcmineralogy:metal/knife/{metalName}')
+        rm_tfc.tag(f'hoes',f'items',f'tfcmineralogy:metal/hoe/{metalName}')
+        rm_tfc.tag(f'chisels',f'items',f'tfcmineralogy:metal/chisel/{metalName}')
+        rm_tfc.tag(f'propicks',f'items',f'tfcmineralogy:metal/propick/{metalName}')
+        rm_tfc.tag(f'saws',f'items',f'tfcmineralogy:metal/saw/{metalName}')
+        rm_tfc.tag(f'scythes',f'items',f'tfcmineralogy:metal/scythe/{metalName}')
+        rm_tfc.tag(f'javelins',f'items',f'tfcmineralogy:metal/javelin/{metalName}')
+        rm_tfc.tag(f'maces',f'items',f'tfcmineralogy:metal/mace/{metalName}')
+        rm_tfc.tag(f'tuyeres',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
+        rm_tfc.tag(f'shears',f'items',f'tfcmineralogy:metal/shears/{metalName}')
         # Add UsableOnToolRack tag if TOOL
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/axe/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/shovel/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/sword/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/hammer/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/knife/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/hoe/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/chisel/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/propick/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/saw/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/scythe/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/javelin/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/mace/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/shears/{metalName}')
-        rm.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/fishing_rod/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/axe/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/pickaxe/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/shovel/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/sword/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/hammer/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/knife/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/hoe/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/chisel/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/propick/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/saw/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/scythe/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/javelin/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/mace/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/tuyere/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/shears/{metalName}')
+        rm_tfc.tag(f'usable_on_tool_rack',f'items',f'tfcmineralogy:metal/fishing_rod/{metalName}')
         # Add to metal Tool tag:
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/axe/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/pickaxe/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/shovel/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/sword/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/hammer/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/knife/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/hoe/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/chisel/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/propick/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/saw/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/scythe/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/javelin/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/mace/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/tuyere/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/shears/{metalName}')
-        rm.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/fishing_rod/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/axe/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/pickaxe/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/shovel/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/sword/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/hammer/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/knife/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/hoe/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/chisel/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/propick/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/saw/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/scythe/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/javelin/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/mace/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/tuyere/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/shears/{metalName}')
+        rm_tfc.tag(f'{metalName}_tools',f'items/metal',f'tfcmineralogy:metal/fishing_rod/{metalName}')
+
+        # Extra Tags:
+        rm_forge.tag(f'{metalName}', 'items/fishing_rods', f'tfcmineralogy:metal/fishing_rod/{metalName}')
+        rm_forge.tag('fishing_rods', 'items', f'#forge:fishing_rods/{metalName}')
+        rm_tfc.tag('fishing_rods', 'items', f'tfcmineralogy:metal/fishing_rod/{metalName}')
+        rm_tfc.tag('holds_small_fishing_bait', 'items', f'tfcmineralogy:metal/fishing_rod/{metalName}') # For lower quality rods, for iron+ use holds_large_fishing_bait
+
         # Deals damage tags for TOOL
-        rm.tag(f'deals_slashing_damage',f'items',f'#tfcmineralogy:scythes')
-        rm.tag(f'deals_crushing_damage',f'items',f'#tfcmineralogy:hammers')
-        rm.tag(f'deals_crushing_damage',f'items',f'#tfcmineralogy:maces')
-        rm.tag(f'deals_piercing_damage',f'items',f'#tfcmineralogy:javelins')
-        rm.tag(f'deals_piercing_damage',f'items',f'#tfcmineralogy:knives')
+        rm_tfc.tag(f'deals_slashing_damage',f'items',f'#tfcmineralogy:scythes')
+        rm_tfc.tag(f'deals_crushing_damage',f'items',f'#tfcmineralogy:hammers')
+        rm_tfc.tag(f'deals_crushing_damage',f'items',f'#tfcmineralogy:maces')
+        rm_tfc.tag(f'deals_piercing_damage',f'items',f'#tfcmineralogy:javelins')
+        rm_tfc.tag(f'deals_piercing_damage',f'items',f'#tfcmineralogy:knives')
         # Add Metal Tools Models
         rm.item_model(f'tfcmineralogy:metal/axe/{metalName}',f'tfcmineralogy:item/metal/axe/{metalName}',parent='item/handheld')
         rm.item_model(f'tfcmineralogy:metal/chisel/{metalName}',f'tfcmineralogy:item/metal/chisel/{metalName}',parent='tfc:item/handheld_flipped')
@@ -742,7 +763,8 @@ for metal, properties in metal_dict.items():
         {
             'parent':f'tfcmineralogy:item/metal/javelin/{metalName}_gui'
         }}})
-        rm.item_model(f'tfcmineralogy:metal/javelin/{metalName}_throwing_base',f'tfcmineralogy:item/metal/javelin/{metalName}',parent='item/trident_throwing')
+        #rm.item_model(f'tfcmineralogy:metal/javelin/{metalName}_throwing_base',f'tfcmineralogy:item/metal/javelin/{metalName}',parent='item/trident_throwing')
+        rm.data(f'tfcmineralogy:metal/javelin/{metalName}_throwing_base',{'parent':'item/trident_throwing','textures':{'particle':f'tfcmineralogy:item/metal/javelin/{metalName}'}},'assets','models/item/')
 
         #rm.item_model(f'tfcmineralogy:metal/javelin/{metalName}',f'tfcmineralogy:item/metal/javelin/{metalName}',parent='tfc:item/handheld_flipped')
         rm.item_model(f'tfcmineralogy:metal/javelin_head/{metalName}',f'tfcmineralogy:item/metal/javelin_head/{metalName}',parent='item/generated')
@@ -767,15 +789,16 @@ for metal, properties in metal_dict.items():
         rm.item_model(f'tfcmineralogy:metal/sword/{metalName}',f'tfcmineralogy:item/metal/sword/{metalName}',parent='item/handheld')
         rm.item_model(f'tfcmineralogy:metal/tuyere/{metalName}',f'tfcmineralogy:item/metal/tuyere/{metalName}',parent='item/generated')
 
-        rm.item_model(f'tfcmineralogy:metal/unfinished_helmet/{metalName}',f'tfcmineralogy:item/metal/unfinished_helmet/{metalName}',parent='item/generated')
-        rm.item_model(f'tfcmineralogy:metal/unfinished_chestplate/{metalName}',f'tfcmineralogy:item/metal/unfinished_chestplate/{metalName}',parent='item/generated')
-        rm.item_model(f'tfcmineralogy:metal/unfinished_greaves/{metalName}',f'tfcmineralogy:item/metal/unfinished_greaves/{metalName}',parent='item/generated')
-        rm.item_model(f'tfcmineralogy:metal/unfinished_boots/{metalName}',f'tfcmineralogy:item/metal/unfinished_boots/{metalName}',parent='item/generated')
-
-        rm.custom_item_model(f'tfcmineralogy:metal/boots/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/boots/{metalName}','trim':'tfc:item/boots_trim'}})
-        rm.custom_item_model(f'tfcmineralogy:metal/chestplate/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/chestplate/{metalName}','trim':'tfc:item/chestplate_trim'}})
-        rm.custom_item_model(f'tfcmineralogy:metal/greaves/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/greaves/{metalName}','trim':'tfc:item/greaves_trim'}})
-        rm.custom_item_model(f'tfcmineralogy:metal/helmet/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/helmet/{metalName}','trim':'tfc:item/helmet_trim'}})
+        if (metalArmor):
+            rm.item_model(f'tfcmineralogy:metal/unfinished_helmet/{metalName}',f'tfcmineralogy:item/metal/unfinished_helmet/{metalName}',parent='item/generated')
+            rm.item_model(f'tfcmineralogy:metal/unfinished_chestplate/{metalName}',f'tfcmineralogy:item/metal/unfinished_chestplate/{metalName}',parent='item/generated')
+            rm.item_model(f'tfcmineralogy:metal/unfinished_greaves/{metalName}',f'tfcmineralogy:item/metal/unfinished_greaves/{metalName}',parent='item/generated')
+            rm.item_model(f'tfcmineralogy:metal/unfinished_boots/{metalName}',f'tfcmineralogy:item/metal/unfinished_boots/{metalName}',parent='item/generated')
+            
+            rm.custom_item_model(f'tfcmineralogy:metal/boots/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/boots/{metalName}','trim':'tfc:item/boots_trim'}})
+            rm.custom_item_model(f'tfcmineralogy:metal/chestplate/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/chestplate/{metalName}','trim':'tfc:item/chestplate_trim'}})
+            rm.custom_item_model(f'tfcmineralogy:metal/greaves/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/greaves/{metalName}','trim':'tfc:item/greaves_trim'}})
+            rm.custom_item_model(f'tfcmineralogy:metal/helmet/{metalName}', 'tfc:trim', {'parent':'forge:item/default', 'textures':{'armor':f'tfcmineralogy:item/metal/helmet/{metalName}','trim':'tfc:item/helmet_trim'}})
         
         #Lang
         # why did i do this- anyway.
@@ -809,28 +832,32 @@ for metal, properties in metal_dict.items():
         rm.item(f'metal.scythe.{metalName}').with_lang((langMetalName) +" Scythe")
         rm.item(f'metal.scythe_blade.{metalName}').with_lang((langMetalName) +" Scythe Blade")
         rm.item(f'metal.shears.{metalName}').with_lang((langMetalName) +" Shears")
-        rm.item(f'metal.unfinished_helmet.{metalName}').with_lang((langMetalName) +" Unfinished Helmet")
-        rm.item(f'metal.helmet.{metalName}').with_lang((langMetalName) +" Helmet")
-        rm.item(f'metal.unfinished_chestplate.{metalName}').with_lang((langMetalName) +" Unfinished Chestplate")
-        rm.item(f'metal.chestplate.{metalName}').with_lang((langMetalName) +" Chestplate")
-        rm.item(f'metal.unfinished_greaves.{metalName}').with_lang((langMetalName) +" Unfinished Greaves")
-        rm.item(f'metal.greaves.{metalName}').with_lang((langMetalName) +" Greaves")
-        rm.item(f'metal.unfinished_boots.{metalName}').with_lang((langMetalName) +" Unfinished Boots")
-        rm.item(f'metal.boots.{metalName}').with_lang((langMetalName) +" Boots")
+        
         rm.item(f'metal.horse_armor.{metalName}').with_lang((langMetalName) +" Horse Armor")
         rm.item(f'metal.shield.{metalName}').with_lang((langMetalName) +" Shield")
-        rm.tag('axes_that_log','items',f'#tfcmineralogy:axes')
-        rm.tag('sharp_tools','items',f'#tfcmineralogy:knives')
-        rm.tag('sharp_tools','items',f'#tfcmineralogy:scythes')
+        rm_tfc.tag('axes_that_log','items',f'#tfcmineralogy:axes')
+        rm_tfc.tag('sharp_tools','items',f'#tfcmineralogy:knives')
+        rm_tfc.tag('sharp_tools','items',f'#tfcmineralogy:scythes')
+        rm_tfc.tag(f'shields',f'items',f'tfcmineralogy:metal/shield/{metalName}')
+
+        if (metalArmor):
+            rm.item(f'metal.unfinished_helmet.{metalName}').with_lang((langMetalName) +" Unfinished Helmet")
+            rm.item(f'metal.helmet.{metalName}').with_lang((langMetalName) +" Helmet")
+            rm.item(f'metal.unfinished_chestplate.{metalName}').with_lang((langMetalName) +" Unfinished Chestplate")
+            rm.item(f'metal.chestplate.{metalName}').with_lang((langMetalName) +" Chestplate")
+            rm.item(f'metal.unfinished_greaves.{metalName}').with_lang((langMetalName) +" Unfinished Greaves")
+            rm.item(f'metal.greaves.{metalName}').with_lang((langMetalName) +" Greaves")
+            rm.item(f'metal.unfinished_boots.{metalName}').with_lang((langMetalName) +" Unfinished Boots")
+            rm.item(f'metal.boots.{metalName}').with_lang((langMetalName) +" Boots")
 
         # Heating Recipes and Tags
         for toolID, recipe_property in metal_tools.items():
             metalUnits = (recipe_property['units'])
             metalPart = (recipe_property['name'])
-            
+
             rm_tfc.tag(f'{metalName}','metal_item', f'items/metal/{metalPart}/{metalName}')
             rm.recipe(f'heating/metal/{metalName}_{metalPart}','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':metalUnits},'temperature':(metalMeltingTemperature)})
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':metalUnits},'temperature':(metalMeltingTemperature)})
             # Heating Recipes:
             rm.data(f'{metalName}_{metalPart}',{'ingredient':{'tag':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
             'heat_capacity':round(metalBaseHeatCapacity*(metalUnits/100),3), 'forging_temperature':metalForgingTemperature, 'welding_temperature':metalWeldingTemperature},
@@ -839,20 +866,7 @@ for metal, properties in metal_dict.items():
             # Crafting Recipes:
             if ('head' in metalPart):
                 toolPart = str(metalPart).replace('_head', '')
-                rm.recipe(f'crafting/metal/{toolPart}/{metalName}', 'tfc:advanced_shaped_crafting',{
-                'pattern':['X', 'Y'],'key':{'X':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
-                'Y':{'tag':'forge:rods/wooden'}},
-                'result':{'stack':{'item':f'tfcmineralogy:metal/{toolPart}/{metalName}'},'modifiers':['tfc:copy_forging_bonus']
-                },'input_row':0,'input_column':0})
-            # Casting Recipes
-                rm.recipe(f'casting/{metalName}_{metalPart}','tfc:casting',{
-                'mold':{'item':f'tfc:ceramic/{metalPart}_mold'},
-                'fluid':{'ingredient':f'tfcmineralogy:metal/{metalName}','amount':metalUnits},
-                'result':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
-                'break_chance':1
-                })
-            if ('blade' in metalPart):
-                toolPart = str(metalPart).replace('_blade', '')
+                rm_tfc.tag('mob_mainhand_weapons', 'items', f'tfcmineralogy:metal/{toolPart}/{metalName}')
                 rm.recipe(f'crafting/metal/{toolPart}/{metalName}', 'tfc:advanced_shaped_crafting',{
                 'pattern':['X', 'Y'],'key':{'X':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
                 'Y':{'tag':'forge:rods/wooden'}},
@@ -861,173 +875,182 @@ for metal, properties in metal_dict.items():
                 # Casting Recipes
                 rm.recipe(f'casting/{metalName}_{metalPart}','tfc:casting',{
                 'mold':{'item':f'tfc:ceramic/{metalPart}_mold'},
-                'fluid':{'ingredient':f'tfcmineralogy:metal/{metalName}','amount':metalUnits},
+                'fluid':{'ingredient':resultMoltenMetal,'amount':metalUnits},
                 'result':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
                 'break_chance':1
                 })
-             
-        for armorpart, recipe_property in metal_armor.items():
-             metalUnits = (recipe_property['units'])
-             metalPart = (recipe_property['name'])
-             rm_tfc.tag(f'{metalName}','metal_item', f'items/metal/{metalPart}/{metalName}') # The I'm Done Loop
-             rm.recipe(f'heating/metal/{metalName}_{metalPart}','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
-                'result_fluid':{'fluid':f'tfcmineralogy:metal/{metalName}', 'amount':metalUnits},'temperature':(metalMeltingTemperature)})
-             # Heating Recipes:
-             rm.data(f'{metalName}_{metalPart}',{'ingredient':{'tag':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
-             'heat_capacity':round(metalBaseHeatCapacity*(metalUnits/100),3), 'forging_temperature':metalForgingTemperature, 'welding_temperature':metalWeldingTemperature},
-             'data', 'tfc/item_heats/metal/')
-        # Recipe Hell - Anvil Recipes for Tools:
-        # Axe Head
-        rm.recipe(f'anvil/{metalName}_axe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/axe_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','hit_second_last','upset_third_last'
-        ],'apply_forging_bonus':True})
-        # Chisel
-        rm.recipe(f'anvil/{metalName}_chisel_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/chisel_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','hit_not_last','draw_not_last'
-        ],'apply_forging_bonus':True})
-        # Fish Hook
-        rm.recipe(f'anvil/{metalName}_fish_hook','tfc:anvil',{'input':{'tag':f'forge:sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/fish_hook/{metalName}'},'tier':metalTier,'rules':
-        [
-             'draw_not_last','bend_any','hit_any'
-        ],'apply_forging_bonus':True})
-        # Hammer
-        rm.recipe(f'anvil/{metalName}_hammer_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/hammer_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','shrink_not_last'
-        ],'apply_forging_bonus':True})
-        # Hoe
-        rm.recipe(f'anvil/{metalName}_hoe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/hoe_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','hit_not_last','bend_not_last'
-        ],'apply_forging_bonus':True})
-        # Javelin
-        rm.recipe(f'anvil/{metalName}_javelin_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/javelin_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','hit_second_last','draw_third_last'
-        ],'apply_forging_bonus':True})
-        # Knife
-        rm.recipe(f'anvil/{metalName}_knife_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/knife_blade/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','draw_second_last','draw_third_last'
-        ],'apply_forging_bonus':True})
-        # Mace
-        rm.recipe(f'anvil/{metalName}_mace_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/mace_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','shrink_not_last','bend_not_last'
-        ],'apply_forging_bonus':True})
-        # Pickaxe
-        rm.recipe(f'anvil/{metalName}_pickaxe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/pickaxe_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','bend_not_last','draw_not_last'
-        ],'apply_forging_bonus':True})
-        # Propick 
-        rm.recipe(f'anvil/{metalName}_propick_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/propick_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','draw_not_last','bend_not_last'
-        ],'apply_forging_bonus':True})
-        # Propick 
-        rm.recipe(f'anvil/{metalName}_propick_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/propick_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','draw_not_last','bend_not_last'
-        ],'apply_forging_bonus':True})
-        # Saw
-        rm.recipe(f'anvil/{metalName}_saw_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/saw_blade/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','hit_second_last'
-        ],'apply_forging_bonus':True})
-        # Scythe
-        rm.recipe(f'anvil/{metalName}_scythe_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/scythe_blade/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','draw_second_last','bend_third_last'
-        ],'apply_forging_bonus':True})
-        # Shield
-        rm.recipe(f'anvil/{metalName}_shield','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/shield/{metalName}'},'tier':metalTier,'rules':
-        [
-             'upset_last','bend_second_last','bend_third_last'
-        ],'apply_forging_bonus':True})
-        # Shovel
-        rm.recipe(f'anvil/{metalName}_shovel_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/shovel_head/{metalName}'},'tier':metalTier,'rules':
-        [
-             'punch_last','hit_not_last'
-        ],'apply_forging_bonus':True})
-        # Sword
-        rm.recipe(f'anvil/{metalName}_sword_blade','tfc:anvil',{'input':{'tag':f'forge:double_ingots/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/sword_blade/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','bend_second_last','bend_third_last'
-        ],'apply_forging_bonus':True})
-        # Tuyere
-        rm.recipe(f'anvil/{metalName}_tuyere','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/tuyere/{metalName}'},'tier':metalTier,'rules':
-        [
-             'bend_last','bend_second_last'
-        ]})
-        # Unfinished Boots
-        rm.recipe(f'anvil/{metalName}_unfinished_boots','tfc:anvil',{'input':{'tag':f'forge:sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/unfinished_boots/{metalName}'},'tier':metalTier,'rules':
-        [
-             'bend_last','bend_second_last','shrink_third_last'
-        ]})
-        # Unfinished Chestplate
-        rm.recipe(f'anvil/{metalName}_unfinished_chestplate','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/unfinished_chestplate/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','hit_second_last','upset_third_last'
-        ]})
-        # Unfinished Greaves
-        rm.recipe(f'anvil/{metalName}_unfinished_greaves','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/unfinished_greaves/{metalName}'},'tier':metalTier,'rules':
-        [
-             'bend_any','draw_any','hit_any'
-        ]})
-        # Unfinished Helmet
-        rm.recipe(f'anvil/{metalName}_unfinished_helmet','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
-        'result':{'item':f'tfcmineralogy:metal/unfinished_helmet/{metalName}'},'tier':metalTier,'rules':
-        [
-             'hit_last','bend_second_last','bend_third_last'
-        ]})
+
+            if ('fish_hook' == metalPart):
+                rm.recipe(f'crafting/metal/fish_hook/{metalName}', 'tfc:advanced_shaped_crafting',{
+                'pattern':['  X', ' XY', 'XZY'],'key':{'X':{'tag':f'forge:rods/wooden'},
+                'Y':{'tag':'forge:string'}, 'Z':{'item':f'tfcmineralogy:metal/fish_hook/{metalName}'}},
+                'result':{'stack':{'item':f'tfcmineralogy:metal/fishing_rod/{metalName}'},'modifiers':['tfc:copy_forging_bonus']
+                },'input_row':2,'input_column':1})
+            if ('blade' in metalPart):
+                toolPart = str(metalPart).replace('_blade', '')
+                rm_tfc.tag('mob_mainhand_weapons', 'items', f'tfcmineralogy:metal/{toolPart}/{metalName}')
+                rm.recipe(f'crafting/metal/{toolPart}/{metalName}', 'tfc:advanced_shaped_crafting',{
+                'pattern':['X', 'Y'],'key':{'X':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
+                'Y':{'tag':'forge:rods/wooden'}},
+                'result':{'stack':{'item':f'tfcmineralogy:metal/{toolPart}/{metalName}'},'modifiers':['tfc:copy_forging_bonus']
+                },'input_row':0,'input_column':0})
+                # Casting Recipes
+                rm.recipe(f'casting/{metalName}_{metalPart}','tfc:casting',{
+                'mold':{'item':f'tfc:ceramic/{metalPart}_mold'},
+                'fluid':{'ingredient':resultMoltenMetal,'amount':metalUnits},
+                'result':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'},
+                'break_chance':1
+                })
+
+            rm_tfc.tag('mob_offhand_weapons', 'items', f'tfcmineralogy:metal/shield/{metalName}') # Make sure it's added.
+
+        if (metalArmor):
+            for armorID, recipe_property in metal_armor.items():
+                metalUnits = (recipe_property['units'])
+                metalPart = (recipe_property['name'])
+
+                rm_tfc.tag('mob_head_armor', 'items', f'tfcmineralogy:metal/helmet/{metalName}')
+                rm_tfc.tag('mob_chest_armor', 'items', f'tfcmineralogy:metal/chestplate/{metalName}')
+                rm_tfc.tag('mob_leg_armor', 'items', f'tfcmineralogy:metal/greaves/{metalName}')
+                rm_tfc.tag('mob_feet_armor', 'items', f'tfcmineralogy:metal/boots/{metalName}')
+
+                rm_tfc.tag(f'{metalName}','metal_item', f'items/metal/{metalPart}/{metalName}') # The I'm Done Loop
+                rm.recipe(f'heating/metal/{metalName}_{metalPart}','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
+                'result_fluid':{'fluid':resultMoltenMetal, 'amount':metalUnits},'temperature':(metalMeltingTemperature)})
+                # Heating Recipes:
+                rm.data(f'{metalName}_{metalPart}',{'ingredient':{'tag':f'tfcmineralogy:metal/{metalPart}/{metalName}'}, 
+                'heat_capacity':round(metalBaseHeatCapacity*(metalUnits/100),3), 'forging_temperature':metalForgingTemperature, 'welding_temperature':metalWeldingTemperature},
+                'data', 'tfc/item_heats/metal/')
+        # Recipe Hell - Anvil Recipes for Tools: IF NOT CAST IRON
+        if metalName != 'cast_iron':
+            # Axe Head
+            rm.recipe(f'anvil/{metalName}_axe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/axe_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','hit_second_last','upset_third_last'
+            ],'apply_forging_bonus':True})
+            # Chisel
+            rm.recipe(f'anvil/{metalName}_chisel_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/chisel_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','hit_not_last','draw_not_last'
+            ],'apply_forging_bonus':True})
+            # Fish Hook
+            rm.recipe(f'anvil/{metalName}_fish_hook','tfc:anvil',{'input':{'tag':f'forge:sheets/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/fish_hook/{metalName}'},'tier':metalTier,'rules':
+            [
+                'draw_not_last','bend_any','hit_any'
+            ],'apply_forging_bonus':True})
+            # Hammer
+            rm.recipe(f'anvil/{metalName}_hammer_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/hammer_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','shrink_not_last'
+            ],'apply_forging_bonus':True})
+            # Hoe
+            rm.recipe(f'anvil/{metalName}_hoe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/hoe_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','hit_not_last','bend_not_last'
+            ],'apply_forging_bonus':True})
+            # Javelin
+            rm.recipe(f'anvil/{metalName}_javelin_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/javelin_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','hit_second_last','draw_third_last'
+            ],'apply_forging_bonus':True})
+            # Knife
+            rm.recipe(f'anvil/{metalName}_knife_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/knife_blade/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','draw_second_last','draw_third_last'
+            ],'apply_forging_bonus':True})
+            # Mace
+            rm.recipe(f'anvil/{metalName}_mace_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/mace_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','shrink_not_last','bend_not_last'
+            ],'apply_forging_bonus':True})
+            # Pickaxe
+            rm.recipe(f'anvil/{metalName}_pickaxe_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/pickaxe_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','bend_not_last','draw_not_last'
+            ],'apply_forging_bonus':True})
+            # Propick 
+            rm.recipe(f'anvil/{metalName}_propick_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/propick_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','draw_not_last','bend_not_last'
+            ],'apply_forging_bonus':True})
+            # Propick 
+            rm.recipe(f'anvil/{metalName}_propick_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/propick_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','draw_not_last','bend_not_last'
+            ],'apply_forging_bonus':True})
+            # Saw
+            rm.recipe(f'anvil/{metalName}_saw_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/saw_blade/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','hit_second_last'
+            ],'apply_forging_bonus':True})
+            # Scythe
+            rm.recipe(f'anvil/{metalName}_scythe_blade','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/scythe_blade/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','draw_second_last','bend_third_last'
+            ],'apply_forging_bonus':True})
+            # Shield
+            rm.recipe(f'anvil/{metalName}_shield','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/shield/{metalName}'},'tier':metalTier,'rules':
+            [
+                'upset_last','bend_second_last','bend_third_last'
+            ],'apply_forging_bonus':True})
+            # Shovel
+            rm.recipe(f'anvil/{metalName}_shovel_head','tfc:anvil',{'input':{'tag':f'forge:ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/shovel_head/{metalName}'},'tier':metalTier,'rules':
+            [
+                'punch_last','hit_not_last'
+            ],'apply_forging_bonus':True})
+            # Sword
+            rm.recipe(f'anvil/{metalName}_sword_blade','tfc:anvil',{'input':{'tag':f'forge:double_ingots/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/sword_blade/{metalName}'},'tier':metalTier,'rules':
+            [
+                'hit_last','bend_second_last','bend_third_last'
+            ],'apply_forging_bonus':True})
+            # Tuyere
+            rm.recipe(f'anvil/{metalName}_tuyere','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
+            'result':{'item':f'tfcmineralogy:metal/tuyere/{metalName}'},'tier':metalTier,'rules':
+            [
+                'bend_last','bend_second_last'
+            ]})
+            if (metalArmor):
+                # Unfinished Boots
+                rm.recipe(f'anvil/{metalName}_unfinished_boots','tfc:anvil',{'input':{'tag':f'forge:sheets/{metalName}'},
+                'result':{'item':f'tfcmineralogy:metal/unfinished_boots/{metalName}'},'tier':metalTier,'rules':
+                [
+                    'bend_last','bend_second_last','shrink_third_last'
+                ]})
+                # Unfinished Chestplate
+                rm.recipe(f'anvil/{metalName}_unfinished_chestplate','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
+                'result':{'item':f'tfcmineralogy:metal/unfinished_chestplate/{metalName}'},'tier':metalTier,'rules':
+                [
+                    'hit_last','hit_second_last','upset_third_last'
+                ]})
+                # Unfinished Greaves
+                rm.recipe(f'anvil/{metalName}_unfinished_greaves','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
+                'result':{'item':f'tfcmineralogy:metal/unfinished_greaves/{metalName}'},'tier':metalTier,'rules':
+                [
+                    'bend_any','draw_any','hit_any'
+                ]})
+                # Unfinished Helmet
+                rm.recipe(f'anvil/{metalName}_unfinished_helmet','tfc:anvil',{'input':{'tag':f'forge:double_sheets/{metalName}'},
+                'result':{'item':f'tfcmineralogy:metal/unfinished_helmet/{metalName}'},'tier':metalTier,'rules':
+                [
+                    'hit_last','bend_second_last','bend_third_last'
+                ]})
     # Welding recipes:
-    # Boots
-        rm.recipe(f'welding/{metalName}_boots','tfc:welding',
-        {'first_input':{'item':f'tfcmineralogy:metal/unfinished_boots/{metalName}'},
-        'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
-        'tier':metalTier-1,
-        'result':{'item':f'tfcmineralogy:metal/boots/{metalName}'}})
-    # Chestplate
-        rm.recipe(f'welding/{metalName}_chestplate','tfc:welding',
-        {'first_input':{'item':f'tfcmineralogy:metal/unfinished_chestplate/{metalName}'},
-        'second_input':{'item':f'tfcmineralogy:metal/double_sheet/{metalName}'},
-        'tier':metalTier-1,
-        'result':{'item':f'tfcmineralogy:metal/chestplate/{metalName}'}})
-    # Greaves
-        rm.recipe(f'welding/{metalName}_greaves','tfc:welding',
-        {'first_input':{'item':f'tfcmineralogy:metal/unfinished_greaves/{metalName}'},
-        'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
-        'tier':metalTier-1,
-        'result':{'item':f'tfcmineralogy:metal/greaves/{metalName}'}})
-    # Helmet
-        rm.recipe(f'welding/{metalName}_helmet','tfc:welding',
-        {'first_input':{'item':f'tfcmineralogy:metal/unfinished_helmet/{metalName}'},
-        'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
-        'tier':metalTier-1,
-        'result':{'item':f'tfcmineralogy:metal/helmet/{metalName}'}})
     # Shears
         rm.recipe(f'welding/{metalName}_shears','tfc:welding',
         {'first_input':{'item':f'tfcmineralogy:metal/knife_blade/{metalName}'},
@@ -1035,8 +1058,33 @@ for metal, properties in metal_dict.items():
         'tier':metalTier-1,
         'result':{'item':f'tfcmineralogy:metal/shears/{metalName}'},
         'combine_forging_bonus': True})
+    if (metalArmor):
+        # Boots
+            rm.recipe(f'welding/{metalName}_boots','tfc:welding',
+            {'first_input':{'item':f'tfcmineralogy:metal/unfinished_boots/{metalName}'},
+            'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
+            'tier':metalTier-1,
+            'result':{'item':f'tfcmineralogy:metal/boots/{metalName}'}})
+        # Chestplate
+            rm.recipe(f'welding/{metalName}_chestplate','tfc:welding',
+            {'first_input':{'item':f'tfcmineralogy:metal/unfinished_chestplate/{metalName}'},
+            'second_input':{'item':f'tfcmineralogy:metal/double_sheet/{metalName}'},
+            'tier':metalTier-1,
+            'result':{'item':f'tfcmineralogy:metal/chestplate/{metalName}'}})
+        # Greaves
+            rm.recipe(f'welding/{metalName}_greaves','tfc:welding',
+            {'first_input':{'item':f'tfcmineralogy:metal/unfinished_greaves/{metalName}'},
+            'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
+            'tier':metalTier-1,
+            'result':{'item':f'tfcmineralogy:metal/greaves/{metalName}'}})
+        # Helmet
+            rm.recipe(f'welding/{metalName}_helmet','tfc:welding',
+            {'first_input':{'item':f'tfcmineralogy:metal/unfinished_helmet/{metalName}'},
+            'second_input':{'item':f'tfcmineralogy:metal/sheet/{metalName}'},
+            'tier':metalTier-1,
+            'result':{'item':f'tfcmineralogy:metal/helmet/{metalName}'}})
     # Crafting Recipes Special:
-    rm.recipe(f'crafting/{metalName}_horse_armor', 'minecraft:crafting_shaped',{
+            rm.recipe(f'crafting/{metalName}_horse_armor', 'minecraft:crafting_shaped',{
              'pattern':['YXY','ZZZ'],'key':{'Z':{'tag':f'forge:double_sheets/{metalName}'},
              'Y':{'item':f'tfc:jute_fiber'},
              'X':{'item':f'minecraft:leather_horse_armor'}},
@@ -1060,25 +1108,45 @@ rm.recipe(f'heating/metal/heavy_lead_block','tfc:heating',{'ingredient':{'item':
 
 story.advancement('heavy_lead_block', icon('tfcmineralogy:metal/heavy_lead_block'), 'Mostly Metal', 'Make a Heavy Lead Block', 'tfc:story/plated_block', inventory_changed('tfcmineralogy:metal/heavy_lead_block'))    
 
+# Special Recipes for Cast Iron:
+
+# Shield
+rm.recipe(f'anvil/cast_iron_shield','tfc:anvil',{'input':{'tag':f'forge:double_sheets/cast_iron'},
+'result':{'item':f'tfcmineralogy:metal/shield/cast_iron'},'tier':1,'rules':
+[
+    'upset_last','bend_second_last','bend_third_last'
+],'apply_forging_bonus':True})
+# Tuyere
+rm.recipe(f'anvil/cast_iron_tuyere','tfc:anvil',{'input':{'tag':f'forge:double_sheets/cast_iron'},
+'result':{'item':f'tfcmineralogy:metal/tuyere/cast_iron'},'tier':1,'rules':
+[
+    'bend_last','bend_second_last'
+]})
+
+rm_tfc.tag(f'cast_iron','metal_item', f'items/metal/shield/cast_iron')
+rm.recipe(f'heating/metal/cast_iron_shield','tfc:heating',{'ingredient':{'item':f'tfcmineralogy:metal/shield/cast_iron'}, 
+'result_fluid':{'fluid':'tfc:metal/cast_iron', 'amount':400},'temperature':1535})
+# Heating Recipes:
+rm.data(f'cast_iron_shield',{'ingredient':{'tag':f'tfcmineralogy:metal/shield/cast_iron'}, 
+'heat_capacity':round(1.4285*(400/100),3), 'forging_temperature':921, 'welding_temperature':1228},
+'data', 'tfc/item_heats/metal/')
+
 # Alloying Recipes:
 rm.recipe(f'alloy/arsenical_bronze', 'tfc:alloy', {'result':'tfcmineralogy:arsenical_bronze',
 'contents':[
     {
         'metal':'tfc:copper',
-        'min':0.78,
-        'max':0.9
-    },
-    {
-        'metal':'tfc:tin',
-        'min':0.06,
-        'max':0.16
+        'min':0.9,
+        'max':0.95
     },
     {
         'metal':'tfcmineralogy:arsenic',
-        'min':0.04,
-        'max':0.06
+        'min':0.05,
+        'max':0.1
     }
 ]})
+
+
 
 rm_forge.flush()
 rm_tfc.flush()

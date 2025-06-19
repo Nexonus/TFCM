@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:collapse",
-  "ingredient": [
-    "tfcmineralogy:ore/normal_smithsonite/dacite"
-  ],
-  "result": "tfcmineralogy:ore/poor_smithsonite/dacite"
-}

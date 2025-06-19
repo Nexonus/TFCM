@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "tfcmineralogy:metal/chains/cast_iron"
+  },
+  "heat_capacity": 0.086,
+  "forging_temperature": 921,
+  "welding_temperature": 1228
+}

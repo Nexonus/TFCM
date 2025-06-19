@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "type": "tfc:collapse",
-  "ingredient": [
-    "tfcmineralogy:ore/rich_smithsonite/rhyolite"
-  ],
-  "result": "tfcmineralogy:ore/normal_smithsonite/rhyolite"
-}

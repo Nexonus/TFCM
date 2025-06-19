@@ -71,7 +71,7 @@ public class TFCMBlocks {
     //public static final RegistryObject<Block> LEAD_PIPE = register("lead_pipe", () -> new FluidPipeBlock(ExtendedProperties.of().strength(5f).sound(SoundType.METAL)));
     
     // Register Molten Metals + TFCM Fluids:
-    public static final Map<TFCMMetal.Default, RegistryObject<LiquidBlock>> METAL_FLUIDS = Helpers.mapOfKeys(TFCMMetal.Default.class, metal ->
+    public static final Map<TFCMMetal.Default, RegistryObject<LiquidBlock>> METAL_FLUIDS = Helpers.mapOfKeys(TFCMMetal.Default.class, TFCMMetal.Default::hasLiquidState, metal ->
         registerNoItem("fluid/metal/" + metal.name(), () -> new LiquidBlock(TFCMFluids.METALS.get(metal).source(), Properties.copy(Blocks.LAVA).noLootTable()))
     ); 
     public static final Map<TFCMSimpleFluid, RegistryObject<LiquidBlock>> SIMPLE_FLUIDS = Helpers.mapOfKeys(TFCMSimpleFluid.class, fluid ->

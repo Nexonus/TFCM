@@ -1,8 +1,9 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "minecraft:block/template_lantern",
+  "parent": "tfc:block/lamp",
   "render_type": "minecraft:cutout",
   "textures": {
-    "lantern": "tfcmineralogy:block/metal/lamp/arsenical_bronze_off"
+    "metal": "tfcmineralogy:block/metal/smooth/arsenical_bronze",
+    "lamp": "tfc:block/lamp_off"
   }
 }

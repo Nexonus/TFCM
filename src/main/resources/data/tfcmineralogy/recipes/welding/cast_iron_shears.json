@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:welding",
+  "first_input": {
+    "item": "tfcmineralogy:metal/knife_blade/cast_iron"
+  },
+  "second_input": {
+    "item": "tfcmineralogy:metal/knife_blade/cast_iron"
+  },
+  "tier": 1,
+  "result": {
+    "item": "tfcmineralogy:metal/shears/cast_iron"
+  },
+  "combine_forging_bonus": true
+}

@@ -3,7 +3,7 @@
   "ingredient": {
     "tag": "forge:sheets/vanadium"
   },
-  "heat_capacity": 8.246,
-  "forging_temperature": 1576,
+  "heat_capacity": 6.246,
+  "forging_temperature": 1476,
   "welding_temperature": 1785
 }

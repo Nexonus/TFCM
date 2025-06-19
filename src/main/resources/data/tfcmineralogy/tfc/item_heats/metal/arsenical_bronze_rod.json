@@ -4,6 +4,6 @@
     "tag": "forge:rods/arsenical_bronze"
   },
   "heat_capacity": 1.429,
-  "forging_temperature": 680,
+  "forging_temperature": 580,
   "welding_temperature": 896
 }

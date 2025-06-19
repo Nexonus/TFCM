@@ -1,0 +1,52 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": [
+    {
+      "tag": "forge:fishing_rods"
+    },
+    {
+      "tag": "tfcmineralogy:pickaxes"
+    },
+    {
+      "tag": "tfcmineralogy:propicks"
+    },
+    {
+      "tag": "tfcmineralogy:axes"
+    },
+    {
+      "tag": "tfcmineralogy:shovels"
+    },
+    {
+      "tag": "tfcmineralogy:hoes"
+    },
+    {
+      "tag": "tfcmineralogy:hammers"
+    },
+    {
+      "tag": "tfcmineralogy:saws"
+    },
+    {
+      "tag": "tfcmineralogy:javelins"
+    },
+    {
+      "tag": "tfcmineralogy:swords"
+    },
+    {
+      "tag": "tfcmineralogy:maces"
+    },
+    {
+      "tag": "tfcmineralogy:scythes"
+    },
+    {
+      "tag": "tfcmineralogy:shields"
+    },
+    {
+      "tag": "tfcmineralogy:glassworking_tools"
+    },
+    {
+      "tag": "tfcmineralogy:all_blowpipes"
+    }
+  ],
+  "size": "very_large",
+  "weight": "very_heavy"
+}

@@ -3,8 +3,7 @@
   "parent": "tfc:block/anvil",
   "render_type": "minecraft:solid",
   "textures": {
-    "top": "tfcmineralogy:block/metal/anvil/arsenical_bronze_top",
-    "side": "tfcmineralogy:block/metal/anvil/arsenical_bronze_side",
+    "all": "tfcmineralogy:block/metal/smooth/arsenical_bronze",
     "particle": "tfcmineralogy:block/metal/smooth/arsenical_bronze"
   }
 }

@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "#forge:fishing_rods/arsenical_bronze",
+    "#forge:fishing_rods/cast_iron"
+  ]
+}

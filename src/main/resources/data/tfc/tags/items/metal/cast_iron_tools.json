@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:metal/axe/cast_iron",
+    "tfcmineralogy:metal/pickaxe/cast_iron",
+    "tfcmineralogy:metal/shovel/cast_iron",
+    "tfcmineralogy:metal/sword/cast_iron",
+    "tfcmineralogy:metal/hammer/cast_iron",
+    "tfcmineralogy:metal/knife/cast_iron",
+    "tfcmineralogy:metal/hoe/cast_iron",
+    "tfcmineralogy:metal/chisel/cast_iron",
+    "tfcmineralogy:metal/propick/cast_iron",
+    "tfcmineralogy:metal/saw/cast_iron",
+    "tfcmineralogy:metal/scythe/cast_iron",
+    "tfcmineralogy:metal/javelin/cast_iron",
+    "tfcmineralogy:metal/mace/cast_iron",
+    "tfcmineralogy:metal/tuyere/cast_iron",
+    "tfcmineralogy:metal/shears/cast_iron",
+    "tfcmineralogy:metal/fishing_rod/cast_iron"
+  ]
+}

@@ -61,15 +61,15 @@ import net.minecraft.world.level.material.PushReaction;
 
 public final class TFCMMetal{ 
     public enum Default implements RegistryMetal{
-    LEAD(0xFF4A4553, MapColor.COLOR_BLACK, Rarity.COMMON, true, false, false),
-    ARSENIC(0xFF333b36, MapColor.COLOR_GREEN, Rarity.COMMON, true, false, false),
-    ARSENICAL_BRONZE(0xFFbcafa1, MapColor.COLOR_GRAY, Rarity.COMMON, Tier.TIER_II, TFCMTiers.ARSENICAL_BRONZE, TFCMArmorMaterials.ARSENICAL_BRONZE, true, true, true), // utility true for debugging lamps
-    COBALT(0xFF7d7f89, MapColor.COLOR_LIGHT_GRAY, Rarity.COMMON, true, false, false),
-    VANADIUM(0xFF8b7b7e, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false),
-    CAST_IRON(0xFF989897, MapColor.COLOR_BROWN, Rarity.COMMON, Tier.TIER_II, TFCMTiers.CAST_IRON, TFCMArmorMaterials.CAST_IRON, false, true, true);
+    LEAD(0xFF4A4553, MapColor.COLOR_BLACK, Rarity.COMMON, true, false, false, true, true),
+    ARSENIC(0xFF333b36, MapColor.COLOR_GREEN, Rarity.COMMON, true, false, false, true, true),
+    ARSENICAL_BRONZE(0xFFbcafa1, MapColor.COLOR_GRAY, Rarity.COMMON, Tier.TIER_II, TFCMTiers.ARSENICAL_BRONZE, TFCMArmorMaterials.ARSENICAL_BRONZE, true, true, true, true, true), // utility true for debugging lamps
+    COBALT(0xFF7d7f89, MapColor.COLOR_LIGHT_GRAY, Rarity.COMMON, true, false, false, true, true),
+    VANADIUM(0xFF8b7b7e, MapColor.COLOR_GRAY, Rarity.COMMON, true, false, false, true, true),
+    CAST_IRON(0xFF989897, MapColor.COLOR_BROWN, Rarity.COMMON, Tier.TIER_II, TFCMTiers.CAST_IRON, TFCMArmorMaterials.CAST_IRON, false, false, false, false, false);
 
     private final String serializedName;
-    private final boolean parts, armor, utility;
+    private final boolean parts, armor, utility, hasLiquid, ingot;
     private final Tier metalTier;
     @Nullable private final net.minecraft.world.item.Tier toolTier;
     @Nullable private final ArmorMaterial armorTier;
@@ -77,12 +77,12 @@ public final class TFCMMetal{
     private final Rarity rarity;
     private final int color;
 
-    Default(int color, MapColor mapColor, Rarity rarity, boolean parts, boolean armor, boolean utility)
+    Default(int color, MapColor mapColor, Rarity rarity, boolean parts, boolean armor, boolean utility, boolean hasLiquid, boolean ingot)
     {
-        this(color, mapColor, rarity, Tier.TIER_0, null, null, parts, armor, utility);
+        this(color, mapColor, rarity, Tier.TIER_0, null, null, parts, armor, utility, hasLiquid, ingot);
     }
 
-    Default(int color, MapColor mapColor, Rarity rarity, Tier metalTier, @Nullable net.minecraft.world.item.Tier toolTier, @Nullable ArmorMaterial armorTier, boolean parts, boolean armor, boolean utility)
+    Default(int color, MapColor mapColor, Rarity rarity, Tier metalTier, @Nullable net.minecraft.world.item.Tier toolTier, @Nullable ArmorMaterial armorTier, boolean parts, boolean armor, boolean utility, boolean hasLiquid, boolean ingot)
     {
         this.serializedName = name().toLowerCase(Locale.ROOT);
         this.metalTier = metalTier;
@@ -91,10 +91,12 @@ public final class TFCMMetal{
         this.rarity = rarity;
         this.mapColor = mapColor;
         this.color = color;
+        this.hasLiquid = hasLiquid;
 
         this.parts = parts;
         this.armor = armor;
         this.utility = utility;
+        this.ingot = ingot;
     }
     @Override
         public String getSerializedName()
@@ -115,6 +117,14 @@ public final class TFCMMetal{
         public boolean hasParts()
         {
             return parts;
+        }
+        public boolean hasLiquidState()
+        {
+            return hasLiquid;
+        }
+        public boolean hasIngot()
+        {
+            return ingot;
         }
 
         public boolean hasArmor()
@@ -318,7 +328,8 @@ public final class TFCMMetal{
 
     private enum Type
     {
-        DEFAULT(metal -> true),
+        //DEFAULT(metal -> true),
+        DEFAULT(Default::hasIngot),
         PART(Default::hasParts),
         TOOL(Default::hasTools),
         ARMOR(Default::hasArmor),

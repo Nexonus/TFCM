@@ -18,7 +18,7 @@ public record TFCMFluidId(String name, OptionalInt color, Supplier<? extends Flu
     private static final Map<Enum<?>, TFCMFluidId> IDENTITY = new HashMap<>();
     private static final List<TFCMFluidId> VALUES = Stream.of(
             Arrays.stream(TFCMSimpleFluid.values()).map(fluid -> fromEnum(fluid, fluid.getColor(), fluid.getId(), TFCMFluids.SIMPLE_FLUIDS.get(fluid).source())),
-            Arrays.stream(TFCMMetal.Default.values()).map(metal -> fromEnum(metal, metal.getColor(), "metal/" + metal.getSerializedName(), TFCMFluids.METALS.get(metal).source()))
+            Arrays.stream(TFCMMetal.Default.values()).filter(metal -> metal.hasLiquidState()).map(metal -> fromEnum(metal, metal.getColor(), "metal/" + metal.getSerializedName(), TFCMFluids.METALS.get(metal).source()))
         )
         .flatMap(Function.identity())
         .toList();

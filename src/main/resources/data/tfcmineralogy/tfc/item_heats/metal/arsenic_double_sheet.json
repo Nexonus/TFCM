@@ -3,7 +3,7 @@
   "ingredient": {
     "tag": "forge:double_sheets/arsenic"
   },
-  "heat_capacity": 29.432,
-  "forging_temperature": 493,
+  "heat_capacity": 25.432,
+  "forging_temperature": 393,
   "welding_temperature": 685
 }

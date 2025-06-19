@@ -1,0 +1,15 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "item/handheld_rod",
+  "textures": {
+    "layer0": "tfcmineralogy:item/metal/fishing_rod/cast_iron"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "tfc:cast": 1
+      },
+      "model": "tfcmineralogy:item/metal/fishing_rod/cast_iron_cast"
+    }
+  ]
+}

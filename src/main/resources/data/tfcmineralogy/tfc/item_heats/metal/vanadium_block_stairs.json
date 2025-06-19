@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "tfcmineralogy:metal/block/vanadium_stairs"
   },
-  "heat_capacity": 3.092,
-  "forging_temperature": 1576,
+  "heat_capacity": 2.342,
+  "forging_temperature": 1476,
   "welding_temperature": 1785
 }

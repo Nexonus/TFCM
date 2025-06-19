@@ -35,7 +35,7 @@ public final class TFCMItems {
 
     // Metal Items
     public static final Map<TFCMMetal.Default, Map<TFCMMetal.ItemType, RegistryObject<Item>>> METAL_ITEMS = Helpers.mapOfKeys(TFCMMetal.Default.class, metal ->
-        Helpers.mapOfKeys(TFCMMetal.ItemType.class, type -> type.has(metal), type ->
+        Helpers.mapOfKeys(TFCMMetal.ItemType.class, type -> type.has(metal), type -> // Figure out how to get rid of ingot
             register("metal/" + type.name() + "/" + metal.name(), () -> type.create(metal))
         )
     );

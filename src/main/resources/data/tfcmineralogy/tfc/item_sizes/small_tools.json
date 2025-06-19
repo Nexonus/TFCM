@@ -1,0 +1,16 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": [
+    {
+      "tag": "tfcmineralogy:chisels"
+    },
+    {
+      "tag": "tfcmineralogy:knives"
+    },
+    {
+      "tag": "tfcmineralogy:shears"
+    }
+  ],
+  "size": "large",
+  "weight": "medium"
+}

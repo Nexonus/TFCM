@@ -1,8 +1,0 @@
-{
-  "__comment__": "This file was automatically created by mcresources",
-  "parent": "minecraft:block/template_hanging_lantern",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "lantern": "tfcmineralogy:block/metal/lamp/lead_off"
-  }
-}

@@ -1,13 +1,16 @@
 package dev.nexreon.tfcm;
 
 import net.minecraftforge.fml.common.Mod;
+import dev.nexreon.tfcm.client.TFCMClientEvenHandler;
 import dev.nexreon.tfcm.client.TFCMSounds;
 import dev.nexreon.tfcm.common.TFCMCreativeTabs;
 import dev.nexreon.tfcm.common.blocks.TFCMBlocks;
 import dev.nexreon.tfcm.common.fluids.TFCMFluids;
 import dev.nexreon.tfcm.common.items.TFCMItems;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(TFCMineralogy.MODID)
 public class TFCMineralogy{
@@ -24,6 +27,12 @@ public class TFCMineralogy{
         TFCMFluids.FLUID_TYPES.register(bus);
         TFCMFluids.FLUIDS.register(bus);
         TFCMSounds.SOUNDS.register(bus);
+
+        /* */
+        if (FMLEnvironment.dist == Dist.CLIENT)
+        {
+            TFCMClientEvenHandler.init();
+        }
         /* 
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);

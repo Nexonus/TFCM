@@ -1,0 +1,32 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcmineralogy:metal/pickaxe/arsenical_bronze",
+    "tfcmineralogy:metal/shovel/arsenical_bronze",
+    "tfcmineralogy:metal/axe/arsenical_bronze",
+    "tfcmineralogy:metal/hoe/arsenical_bronze",
+    "tfcmineralogy:metal/chisel/arsenical_bronze",
+    "tfcmineralogy:metal/sword/arsenical_bronze",
+    "tfcmineralogy:metal/mace/arsenical_bronze",
+    "tfcmineralogy:metal/saw/arsenical_bronze",
+    "tfcmineralogy:metal/javelin/arsenical_bronze",
+    "tfcmineralogy:metal/hammer/arsenical_bronze",
+    "tfcmineralogy:metal/propick/arsenical_bronze",
+    "tfcmineralogy:metal/knife/arsenical_bronze",
+    "tfcmineralogy:metal/scythe/arsenical_bronze",
+    "tfcmineralogy:metal/pickaxe/cast_iron",
+    "tfcmineralogy:metal/shovel/cast_iron",
+    "tfcmineralogy:metal/axe/cast_iron",
+    "tfcmineralogy:metal/hoe/cast_iron",
+    "tfcmineralogy:metal/chisel/cast_iron",
+    "tfcmineralogy:metal/sword/cast_iron",
+    "tfcmineralogy:metal/mace/cast_iron",
+    "tfcmineralogy:metal/saw/cast_iron",
+    "tfcmineralogy:metal/javelin/cast_iron",
+    "tfcmineralogy:metal/hammer/cast_iron",
+    "tfcmineralogy:metal/propick/cast_iron",
+    "tfcmineralogy:metal/knife/cast_iron",
+    "tfcmineralogy:metal/scythe/cast_iron"
+  ]
+}

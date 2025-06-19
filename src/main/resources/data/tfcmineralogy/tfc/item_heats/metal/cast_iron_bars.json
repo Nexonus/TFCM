@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "tfcmineralogy:metal/bars/cast_iron"
+  },
+  "heat_capacity": 0.357,
+  "forging_temperature": 921,
+  "welding_temperature": 1228
+}

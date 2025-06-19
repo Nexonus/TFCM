@@ -3,7 +3,7 @@
   "ingredient": {
     "tag": "forge:rods/arsenic"
   },
-  "heat_capacity": 3.679,
-  "forging_temperature": 493,
+  "heat_capacity": 3.179,
+  "forging_temperature": 393,
   "welding_temperature": 685
 }

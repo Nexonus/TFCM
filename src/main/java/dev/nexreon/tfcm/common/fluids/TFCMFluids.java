@@ -40,8 +40,8 @@ public class TFCMFluids {
     /** @see net.minecraft.client.renderer.ScreenEffectRenderer#UNDERWATER_LOCATION */
     public static final ResourceLocation UNDERWATER_LOCATION = Helpers.identifierMC("textures/misc/underwater.png");
 
-    // Register Molten Metals
-    public static final Map<TFCMMetal.Default, FluidRegistryObject<ForgeFlowingFluid>> METALS = Helpers.mapOfKeys(TFCMMetal.Default.class, metal -> register(
+    // Register Molten Metals - if they're supposed to have an unique fluid (hasLiquidState)
+    public static final Map<TFCMMetal.Default, FluidRegistryObject<ForgeFlowingFluid>> METALS = Helpers.mapOfKeys(TFCMMetal.Default.class, TFCMMetal.Default::hasLiquidState, metal -> register(
         "metal/" + metal.getSerializedName(),
         properties -> properties
             .block(TFCMBlocks.METAL_FLUIDS.get(metal))
